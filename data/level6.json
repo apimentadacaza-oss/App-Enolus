@@ -1,0 +1,56 @@
+{
+  "id": "level-6",
+  "title": "Nível 6: Tópicos Especiais e Tendências",
+  "description": "Explore os cantos mais intrigantes e modernos do mundo do vinho, das fronteiras emergentes aos movimentos de vanguarda.",
+  "modules": [
+    {
+      "id": "module-6-1",
+      "title": "Módulo 1: Novas Fronteiras do Vinho",
+      "description": "Descubra regiões vinícolas que estão surpreendendo o mundo com sua qualidade e originalidade.",
+      "lessons": [
+        {
+          "id": "lesson-6-1-1",
+          "type": "text",
+          "title": "Vinhos da Inglaterra: A Nova Champagne?",
+          "content": "Explore a ascensão dos espumantes britânicos de alta qualidade.",
+          "xp": 30
+        },
+        {
+          "id": "lesson-6-1-2",
+          "type": "text",
+          "title": "O Renascimento da Grécia e Geórgia",
+          "content": "Conheça as uvas autóctones e os métodos ancestrais dessas regiões históricas.",
+          "xp": 30
+        }
+      ]
+    },
+    {
+      "id": "module-6-2",
+      "title": "Módulo 2: Vinhos de Vanguarda",
+      "description": "Conheça os movimentos que estão redefinindo o que o vinho pode ser.",
+      "lessons": [
+        {
+          "id": "lesson-6-2-1",
+          "type": "text",
+          "title": "O Movimento dos Vinhos Naturais",
+          "content": "O que são vinhos naturais, de baixa intervenção e qual a sua filosofia.",
+          "xp": 30
+        },
+        {
+          "id": "lesson-6-2-2",
+          "type": "video",
+          "title": "Vinhos Laranja: Uma Quarta Cor",
+          "content": "Entenda a técnica de vinificar uvas brancas com suas cascas e o que esperar desses vinhos.",
+          "xp": 35
+        },
+        {
+          "id": "lesson-6-2-3",
+          "type": "text",
+          "title": "Entendendo Rótulos e Pontuações",
+          "content": "Como decifrar rótulos complexos e interpretar as pontuações dos críticos.",
+          "xp": 30
+        }
+      ]
+    }
+  ]
+}

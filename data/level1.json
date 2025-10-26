@@ -1,0 +1,57 @@
+
+{
+  "id": "level-1",
+  "title": "Nível 1: Primeiros Passos no Mundo do Vinho",
+  "description": "Comece sua jornada aprendendo os conceitos fundamentais que todo amante de vinho deve conhecer.",
+  "modules": [
+    {
+      "id": "module-1-1",
+      "title": "Módulo 1: O Básico",
+      "description": "O que é vinho e como ele é feito?",
+      "lessons": [
+        {
+          "id": "lesson-1-1-1",
+          "type": "text",
+          "title": "O que é Vinho?",
+          "content": "Vinho é uma bebida alcoólica feita a partir da fermentação de uvas...",
+          "xp": 5
+        },
+        {
+          "id": "lesson-1-1-2",
+          "type": "text",
+          "title": "Principais Tipos de Uva",
+          "content": "Conheça as uvas mais famosas como Cabernet Sauvignon, Merlot e Chardonnay.",
+          "xp": 5
+        },
+        {
+          "id": "lesson-1-1-3",
+          "type": "video",
+          "title": "O Processo de Vinificação",
+          "content": "Assista a um vídeo rápido sobre como as uvas se transformam em vinho.",
+          "xp": 10
+        }
+      ]
+    },
+    {
+      "id": "module-1-2",
+      "title": "Módulo 2: Degustação",
+      "description": "Aprenda a arte de degustar um vinho.",
+      "lessons": [
+        {
+          "id": "lesson-1-2-1",
+          "type": "text",
+          "title": "Os 3 Passos da Degustação",
+          "content": "Visual, Olfativo e Gustativo. Aprenda a analisar um vinho como um profissional.",
+          "xp": 5
+        },
+        {
+          "id": "lesson-1-2-2",
+          "type": "audio",
+          "title": "Áudio Guiado: Sua Primeira Degustação",
+          "content": "Pegue uma taça e siga nossa degustação guiada.",
+          "xp": 15
+        }
+      ]
+    }
+  ]
+}

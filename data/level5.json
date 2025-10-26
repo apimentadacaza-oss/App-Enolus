@@ -1,0 +1,56 @@
+{
+  "id": "level-5",
+  "title": "Nível 5: Viticultura e Vinificação - Da Terra à Garrafa",
+  "description": "Entenda os processos técnicos e as decisões cruciais no vinhedo e na adega que moldam o vinho que você bebe.",
+  "modules": [
+    {
+      "id": "module-5-1",
+      "title": "Módulo 1: O Trabalho no Vinhedo",
+      "description": "Aprenda como o 'terroir' e as práticas agrícolas definem o potencial da uva.",
+      "lessons": [
+        {
+          "id": "lesson-5-1-1",
+          "type": "text",
+          "title": "Terroir: O DNA do Vinho",
+          "content": "Um mergulho profundo em como solo, clima e topografia influenciam o vinho.",
+          "xp": 25
+        },
+        {
+          "id": "lesson-5-1-2",
+          "type": "text",
+          "title": "Viticultura Orgânica, Biodinâmica e Sustentável",
+          "content": "Entenda as filosofias por trás do cultivo de uvas com respeito à natureza.",
+          "xp": 25
+        },
+        {
+          "id": "lesson-5-1-3",
+          "type": "video",
+          "title": "O Ciclo Anual da Videira",
+          "content": "Acompanhe a jornada da videira, da poda de inverno à colheita de outono.",
+          "xp": 30
+        }
+      ]
+    },
+    {
+      "id": "module-5-2",
+      "title": "Módulo 2: Segredos da Adega",
+      "description": "Descubra as técnicas de vinificação que transformam uvas em vinhos extraordinários.",
+      "lessons": [
+        {
+          "id": "lesson-5-2-1",
+          "type": "text",
+          "title": "Vinificação em Tinto vs. Branco",
+          "content": "As diferenças fundamentais no processo, da maceração à prensagem.",
+          "xp": 25
+        },
+        {
+          "id": "lesson-5-2-2",
+          "type": "text",
+          "title": "O Papel do Carvalho",
+          "content": "A influência da madeira no aroma, sabor e textura do vinho. Tipos de carvalho, níveis de tosta e mais.",
+          "xp": 25
+        }
+      ]
+    }
+  ]
+}

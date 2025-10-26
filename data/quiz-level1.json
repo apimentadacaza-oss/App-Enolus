@@ -1,0 +1,56 @@
+{
+  "id": "quiz-l1",
+  "title": "Quiz: Fundamentos do Vinho (Nível 1)",
+  "questions": [
+    {
+      "question": "Qual é o ingrediente principal para a produção de vinho?",
+      "options": [
+        "Maçãs",
+        "Uvas",
+        "Cevada",
+        "Arroz"
+      ],
+      "correctAnswer": "Uvas"
+    },
+    {
+      "question": "Qual das seguintes uvas é uma famosa uva tinta mencionada no Nível 1?",
+      "options": [
+        "Chardonnay",
+        "Sauvignon Blanc",
+        "Riesling",
+        "Cabernet Sauvignon"
+      ],
+      "correctAnswer": "Cabernet Sauvignon"
+    },
+    {
+      "question": "Como se chama o processo que transforma o açúcar do suco da uva em álcool?",
+      "options": [
+        "Destilação",
+        "Pasteurização",
+        "Fermentação",
+        "Filtração"
+      ],
+      "correctAnswer": "Fermentação"
+    },
+    {
+      "question": "Quais são os três passos principais na análise sensorial de um vinho?",
+      "options": [
+        "Cheirar, Agitar, Beber",
+        "Visual, Olfativo, Gustativo",
+        "Comprar, Abrir, Servir",
+        "Esfriar, Decantar, Harmonizar"
+      ],
+      "correctAnswer": "Visual, Olfativo, Gustativo"
+    },
+    {
+      "question": "Qual destas uvas é um exemplo clássico de uva branca?",
+      "options": [
+        "Merlot",
+        "Malbec",
+        "Chardonnay",
+        "Syrah"
+      ],
+      "correctAnswer": "Chardonnay"
+    }
+  ]
+}

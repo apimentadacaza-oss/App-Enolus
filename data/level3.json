@@ -1,0 +1,91 @@
+{
+  "id": "level-3",
+  "title": "Nível 3: A Maestria do Sommelier",
+  "description": "Aprofunde seus conhecimentos com tópicos avançados e técnicas profissionais para dominar a arte do vinho.",
+  "modules": [
+    {
+      "id": "module-3-1",
+      "title": "Módulo 1: A Arte do Envelhecimento",
+      "description": "Desvende os segredos dos vinhos de guarda e sua evolução na garrafa.",
+      "lessons": [
+        {
+          "id": "lesson-3-1-1",
+          "type": "text",
+          "title": "Potencial de Guarda: Por que Vinhos Envelhecem?",
+          "content": "Explore os componentes do vinho como taninos, acidez e açúcar que permitem que ele evolua e melhore com o tempo.",
+          "xp": 15
+        },
+        {
+          "id": "lesson-3-1-2",
+          "type": "text",
+          "title": "Aromas Terciários: A Evolução na Garrafa",
+          "content": "Aprenda a identificar aromas complexos de envelhecimento, como couro, tabaco, cogumelos e nozes.",
+          "xp": 15
+        },
+        {
+          "id": "lesson-3-1-3",
+          "type": "video",
+          "title": "Como Montar e Manter sua Adega",
+          "content": "Dicas essenciais sobre temperatura, umidade, luz e posicionamento para armazenar seus vinhos corretamente.",
+          "xp": 20
+        }
+      ]
+    },
+    {
+      "id": "module-3-2",
+      "title": "Módulo 2: Harmonização Avançada",
+      "description": "Domine as combinações complexas de comida e vinho como um verdadeiro especialista.",
+      "lessons": [
+        {
+          "id": "lesson-3-2-1",
+          "type": "text",
+          "title": "Harmonização por Contraste vs. Similaridade",
+          "content": "Aprenda as duas principais filosofias de harmonização para criar combinações equilibradas ou ousadas.",
+          "xp": 15
+        },
+        {
+          "id": "lesson-3-2-2",
+          "type": "text",
+          "title": "Desafios de Harmonização: Pratos Difíceis",
+          "content": "Descubra quais vinhos funcionam com alimentos notoriamente difíceis de harmonizar, como aspargos, ovos e pratos picantes.",
+          "xp": 15
+        },
+        {
+          "id": "lesson-3-2-3",
+          "type": "audio",
+          "title": "Estudo de Caso: Montando um Jantar Harmonizado",
+          "content": "Siga um guia de áudio que planeja um menu de três pratos com as harmonizações de vinho perfeitas para cada um.",
+          "xp": 25
+        }
+      ]
+    },
+    {
+      "id": "module-3-3",
+      "title": "Módulo 3: O Serviço do Vinho Profissional",
+      "description": "Aprenda as técnicas que elevam a experiência da degustação a um novo patamar.",
+      "lessons": [
+        {
+          "id": "lesson-3-3-1",
+          "type": "text",
+          "title": "A Arte da Decantação: Quando e Por Quê?",
+          "content": "Entenda a diferença entre decantar para remover sedimentos e para aerar o vinho, e saiba quando cada técnica é necessária.",
+          "xp": 15
+        },
+        {
+          "id": "lesson-3-3-2",
+          "type": "video",
+          "title": "A Taça Certa para Cada Vinho",
+          "content": "Veja como o formato da taça afeta a percepção dos aromas e sabores de diferentes tipos de vinho.",
+          "xp": 20
+        },
+        {
+          "id": "lesson-3-3-3",
+          "type": "text",
+          "title": "Temperaturas de Serviço: A Chave do Sabor",
+          "content": "Um guia detalhado sobre as temperaturas ideais para servir vinhos espumantes, brancos, rosés e tintos.",
+          "xp": 15
+        }
+      ]
+    }
+  ]
+}

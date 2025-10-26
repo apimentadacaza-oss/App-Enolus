@@ -1,0 +1,18 @@
+
+[
+  {
+    "category": "Grapes",
+    "term": "Cabernet Sauvignon",
+    "description": "Uma das uvas tintas mais conhecidas do mundo, famosa por seus vinhos encorpados com notas de cassis, cereja preta e cedro. Originária de Bordeaux, França."
+  },
+  {
+    "category": "Grapes",
+    "term": "Chardonnay",
+    "description": "A uva branca mais popular do mundo, capaz de produzir vinhos com uma vasta gama de estilos, desde os frescos e minerais (sem carvalho) até os ricos e amanteigados (com carvalho)."
+  },
+  {
+    "category": "Grapes",
+    "term": "Pinot Noir",
+    "description": "Uma uva tinta delicada e de casca fina, que produz vinhos elegantes com aromas de frutas vermelhas (cereja, framboesa), flores e notas terrosas. Famosa na Borgonha, França."
+  }
+]

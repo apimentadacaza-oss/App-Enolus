@@ -1,0 +1,32 @@
+
+{
+  "id": "quiz-h1",
+  "title": "Quiz: Harmonização",
+  "questions": [
+    {
+      "question": "Qual vinho é uma escolha clássica para harmonizar com um bife grelhado?",
+      "options": ["Sauvignon Blanc", "Cabernet Sauvignon", "Riesling", "Pinot Grigio"],
+      "correctAnswer": "Cabernet Sauvignon"
+    },
+    {
+      "question": "Para frutos do mar, como ostras, qual vinho branco é geralmente recomendado?",
+      "options": ["Chardonnay com carvalho", "Merlot", "Sauvignon Blanc", "Syrah"],
+      "correctAnswer": "Sauvignon Blanc"
+    },
+    {
+      "question": "Queijos azuis, como Gorgonzola, harmonizam incrivelmente bem com qual tipo de vinho?",
+      "options": ["Vinho do Porto", "Vinho Rosé seco", "Pinot Noir", "Prosecco"],
+      "correctAnswer": "Vinho do Porto"
+    },
+    {
+      "question": "Qual uva é conhecida por ser versátil e harmonizar bem com pratos de frango e salmão?",
+      "options": ["Malbec", "Zinfandel", "Pinot Noir", "Cabernet Franc"],
+      "correctAnswer": "Pinot Noir"
+    },
+    {
+      "question": "Para uma sobremesa de chocolate amargo, qual vinho tinto seria uma boa pedida?",
+      "options": ["Beaujolais", "Zinfandel", "Chianti", "Vinho Branco"],
+      "correctAnswer": "Zinfandel"
+    }
+  ]
+}
