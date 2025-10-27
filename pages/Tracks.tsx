@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import type { Level, Module, Lesson, UserProgress } from '../types';
 
@@ -6,9 +7,10 @@ interface TracksPageProps {
   addXp: (amount: number) => void;
   addAchievement: (achievement: string) => void;
   completeLesson: (lessonId: string) => void;
+  isLessonCompleted: (lessonId: string) => boolean;
 }
 
-const TracksPage: React.FC<TracksPageProps> = ({ progress, addXp, addAchievement, completeLesson }) => {
+const TracksPage: React.FC<TracksPageProps> = ({ progress, addXp, addAchievement, completeLesson, isLessonCompleted }) => {
   const [levels, setLevels] = useState<Level[]>([]);
   const [expandedLevel, setExpandedLevel] = useState<string | null>(null);
   const [expandedModule, setExpandedModule] = useState<string | null>(null);
@@ -62,16 +64,16 @@ const TracksPage: React.FC<TracksPageProps> = ({ progress, addXp, addAchievement
     if (!level1) return;
 
     const level1LessonIds = level1.modules.flatMap(m => m.lessons.map(l => l.id));
-    const allLevel1LessonsCompleted = level1LessonIds.every(id => progress.completedLessons.includes(id));
+    const allLevel1LessonsCompleted = level1LessonIds.every(id => isLessonCompleted(id));
 
     if (allLevel1LessonsCompleted) {
       addAchievement(LEVEL_1_ACHIEVEMENT);
       alert('🎉 Conquista Desbloqueada: Aprendiz Enófilo!');
     }
-  }, [progress.completedLessons, levels, addAchievement, progress.achievements]);
+  }, [progress.completedLessons, levels, addAchievement, progress.achievements, isLessonCompleted]);
 
   const handleLessonClick = (lesson: Lesson) => {
-    if (!progress.completedLessons.includes(lesson.id)) {
+    if (!isLessonCompleted(lesson.id)) {
       alert(`Lição "${lesson.title}" concluída!\n+${lesson.xp} XP`);
       addXp(lesson.xp);
       completeLesson(lesson.id);
@@ -118,7 +120,7 @@ const TracksPage: React.FC<TracksPageProps> = ({ progress, addXp, addAchievement
           {expandedLevel === level.id && (
             <div className="mt-6 space-y-4 animate-fade-in">
               {level.modules.map((module: Module) => {
-                const completedLessonsInModule = module.lessons.filter(lesson => progress.completedLessons.includes(lesson.id)).length;
+                const completedLessonsInModule = module.lessons.filter(lesson => isLessonCompleted(lesson.id)).length;
                 const totalLessonsInModule = module.lessons.length;
                 const progressPercentage = totalLessonsInModule > 0 ? (completedLessonsInModule / totalLessonsInModule) * 100 : 0;
                 
@@ -153,7 +155,7 @@ const TracksPage: React.FC<TracksPageProps> = ({ progress, addXp, addAchievement
                   {expandedModule === module.id && (
                     <ul className="p-4 space-y-2">
                       {module.lessons.map((lesson: Lesson) => {
-                        const isCompleted = progress.completedLessons.includes(lesson.id);
+                        const isCompleted = isLessonCompleted(lesson.id);
                         return (
                           <li key={lesson.id}>
                             <button onClick={() => handleLessonClick(lesson)} className="w-full text-left flex items-center justify-between p-3 rounded-md hover:bg-champagne-light transition group">

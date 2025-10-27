@@ -47,5 +47,9 @@ export const useUserProgress = () => {
     });
   }, []);
 
-  return { progress, addXp, addAchievement, completeLesson };
+  const isLessonCompleted = useCallback((lessonId: string): boolean => {
+    return progress.completedLessons.includes(lessonId);
+  }, [progress.completedLessons]);
+
+  return { progress, addXp, addAchievement, completeLesson, isLessonCompleted };
 };

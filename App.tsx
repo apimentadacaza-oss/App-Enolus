@@ -1,3 +1,4 @@
+
 import React, { useState, useCallback, useEffect } from 'react';
 import BottomNav from './components/BottomNav';
 import ExplorePage from './pages/Explore';
@@ -14,7 +15,7 @@ const WELCOME_KEY = 'enolus_has_seen_welcome';
 const App: React.FC = () => {
   const [showWelcome, setShowWelcome] = useState<boolean>(true);
   const [activeTab, setActiveTab] = useState<Tab>('explore');
-  const { progress, addXp, addAchievement, completeLesson } = useUserProgress();
+  const { progress, addXp, addAchievement, completeLesson, isLessonCompleted } = useUserProgress();
 
   useEffect(() => {
     try {
@@ -47,6 +48,7 @@ const App: React.FC = () => {
                   addXp={addXp} 
                   addAchievement={addAchievement} 
                   completeLesson={completeLesson} 
+                  isLessonCompleted={isLessonCompleted}
                 />;
       case 'quiz':
         return <QuizPage addXp={addXp} addAchievement={addAchievement} />;
