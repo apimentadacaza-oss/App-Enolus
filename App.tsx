@@ -9,6 +9,8 @@ import ProfilePage from './pages/Profile';
 import WelcomeScreen from './components/WelcomeScreen';
 import { useUserProgress } from './hooks/useUserProgress';
 import type { Tab } from './types';
+import { progressService } from './services/ProgressService';
+
 
 const WELCOME_KEY = 'enolus_has_seen_welcome';
 
@@ -68,7 +70,7 @@ const App: React.FC = () => {
   if (showWelcome) {
     return <WelcomeScreen onStart={handleStartJourney} />;
   }
-
+  
   return (
     <div className="bg-champagne-light font-sans text-soft-graphite min-h-screen flex flex-col">
       <main className="flex-grow container mx-auto p-4 sm:p-6 pb-24">
