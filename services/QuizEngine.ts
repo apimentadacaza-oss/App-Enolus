@@ -99,6 +99,10 @@ export class QuizEngine {
         this.props.addAchievement("Mestre da Harmonização");
       } else if (this.quiz.id === 'quiz-l1') {
         this.props.addAchievement("Mestre dos Fundamentos");
+      } else if (this.quiz.id === 'quiz-l2') {
+        this.props.addAchievement("Explorador Global");
+      } else if (this.quiz.id === 'quiz-l3') {
+        this.props.addAchievement("Sommelier em Treinamento");
       }
     }
   }

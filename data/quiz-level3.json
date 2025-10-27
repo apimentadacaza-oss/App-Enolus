@@ -1,0 +1,31 @@
+{
+  "id": "quiz-l3",
+  "title": "Quiz: A Arte do Sommelier (Nível 3)",
+  "questions": [
+    {
+      "question": "Qual é o principal objetivo de decantar um vinho tinto antigo e maduro?",
+      "options": ["Esfriar o vinho rapidamente", "Separar o líquido dos sedimentos", "Deixá-lo mais doce", "Aumentar seu teor alcoólico"],
+      "correctAnswer": "Separar o líquido dos sedimentos"
+    },
+    {
+      "question": "Qual componente, presente principalmente nas cascas das uvas tintas, é crucial para o potencial de envelhecimento de um vinho?",
+      "options": ["Açúcar residual", "Acidez", "Álcool", "Taninos"],
+      "correctAnswer": "Taninos"
+    },
+    {
+      "question": "Um vinho tinto encorpado, como um Bordeaux, deve idealmente ser servido em qual faixa de temperatura?",
+      "options": ["Muito gelado (2-4°C)", "Frio (8-10°C)", "Levemente abaixo da temperatura ambiente (16-18°C)", "Quente (acima de 22°C)"],
+      "correctAnswer": "Levemente abaixo da temperatura ambiente (16-18°C)"
+    },
+    {
+      "question": "O que o termo francês 'terroir' engloba?",
+      "options": ["Apenas o tipo de solo do vinhedo", "O conjunto completo de fatores ambientais (solo, clima, topografia)", "A marca da vinícola", "O tipo de garrafa utilizada"],
+      "correctAnswer": "O conjunto completo de fatores ambientais (solo, clima, topografia)"
+    },
+    {
+      "question": "Por que se utilizam diferentes formatos de taça para diferentes tipos de vinho?",
+      "options": ["Apenas por estética", "Para direcionar o vinho para diferentes partes da língua e concentrar seus aromas", "Para que caibam diferentes volumes de líquido", "Para combinar com a cor do vinho"],
+      "correctAnswer": "Para direcionar o vinho para diferentes partes da língua e concentrar seus aromas"
+    }
+  ]
+}

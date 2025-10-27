@@ -14,21 +14,21 @@
           "type": "text",
           "title": "França: Bordeaux e Borgonha",
           "content": "Conheça as duas regiões mais icônicas da França e suas uvas emblemáticas.",
-          "xp": 10
+          "xp": 15
         },
         {
           "id": "lesson-2-1-2",
           "type": "text",
           "title": "Itália: Toscana e Piemonte",
           "content": "Explore os tesouros da Itália, do Chianti ao Barolo.",
-          "xp": 10
+          "xp": 15
         },
         {
           "id": "lesson-2-1-3",
           "type": "text",
           "title": "Espanha: Rioja e Ribera del Duero",
           "content": "Aprenda sobre a Tempranillo e os grandes vinhos tintos espanhóis.",
-          "xp": 10
+          "xp": 15
         }
       ]
     },
@@ -42,21 +42,21 @@
           "type": "text",
           "title": "EUA: Califórnia e Oregon",
           "content": "Dos potentes Cabernet de Napa aos elegantes Pinot Noir de Oregon.",
-          "xp": 10
+          "xp": 15
         },
         {
           "id": "lesson-2-2-2",
           "type": "text",
           "title": "América do Sul: Argentina e Chile",
           "content": "Descubra o Malbec de Mendoza e o Carménère do Vale Central.",
-          "xp": 10
+          "xp": 15
         },
         {
           "id": "lesson-2-2-3",
           "type": "video",
           "title": "Austrália e Nova Zelândia",
           "content": "Do Shiraz potente da Austrália ao Sauvignon Blanc vibrante da Nova Zelândia.",
-          "xp": 15
+          "xp": 25
         }
       ]
     }

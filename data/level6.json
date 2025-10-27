@@ -1,3 +1,4 @@
+
 {
   "id": "level-6",
   "title": "Nível 6: Tópicos Especiais e Tendências",
@@ -13,14 +14,14 @@
           "type": "text",
           "title": "Vinhos da Inglaterra: A Nova Champagne?",
           "content": "Explore a ascensão dos espumantes britânicos de alta qualidade.",
-          "xp": 30
+          "xp": 35
         },
         {
           "id": "lesson-6-1-2",
           "type": "text",
           "title": "O Renascimento da Grécia e Geórgia",
           "content": "Conheça as uvas autóctones e os métodos ancestrais dessas regiões históricas.",
-          "xp": 30
+          "xp": 35
         }
       ]
     },
@@ -34,21 +35,21 @@
           "type": "text",
           "title": "O Movimento dos Vinhos Naturais",
           "content": "O que são vinhos naturais, de baixa intervenção e qual a sua filosofia.",
-          "xp": 30
+          "xp": 35
         },
         {
           "id": "lesson-6-2-2",
           "type": "video",
           "title": "Vinhos Laranja: Uma Quarta Cor",
           "content": "Entenda a técnica de vinificar uvas brancas com suas cascas e o que esperar desses vinhos.",
-          "xp": 35
+          "xp": 45
         },
         {
           "id": "lesson-6-2-3",
           "type": "text",
           "title": "Entendendo Rótulos e Pontuações",
           "content": "Como decifrar rótulos complexos e interpretar as pontuações dos críticos.",
-          "xp": 30
+          "xp": 35
         }
       ]
     }

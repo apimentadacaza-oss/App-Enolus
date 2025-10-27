@@ -14,21 +14,21 @@
           "type": "text",
           "title": "O que é Vinho?",
           "content": "Vinho é uma bebida alcoólica feita a partir da fermentação de uvas...",
-          "xp": 5
+          "xp": 10
         },
         {
           "id": "lesson-1-1-2",
           "type": "text",
           "title": "Principais Tipos de Uva",
           "content": "Conheça as uvas mais famosas como Cabernet Sauvignon, Merlot e Chardonnay.",
-          "xp": 5
+          "xp": 10
         },
         {
           "id": "lesson-1-1-3",
           "type": "video",
           "title": "O Processo de Vinificação",
           "content": "Assista a um vídeo rápido sobre como as uvas se transformam em vinho.",
-          "xp": 10
+          "xp": 20
         }
       ]
     },
@@ -42,14 +42,14 @@
           "type": "text",
           "title": "Os 3 Passos da Degustação",
           "content": "Visual, Olfativo e Gustativo. Aprenda a analisar um vinho como um profissional.",
-          "xp": 5
+          "xp": 10
         },
         {
           "id": "lesson-1-2-2",
           "type": "audio",
           "title": "Áudio Guiado: Sua Primeira Degustação",
           "content": "Pegue uma taça e siga nossa degustação guiada.",
-          "xp": 15
+          "xp": 25
         }
       ]
     }

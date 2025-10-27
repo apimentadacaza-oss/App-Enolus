@@ -1,3 +1,4 @@
+
 {
   "id": "level-5",
   "title": "Nível 5: Viticultura e Vinificação - Da Terra à Garrafa",
@@ -13,21 +14,21 @@
           "type": "text",
           "title": "Terroir: O DNA do Vinho",
           "content": "Um mergulho profundo em como solo, clima e topografia influenciam o vinho.",
-          "xp": 25
+          "xp": 30
         },
         {
           "id": "lesson-5-1-2",
           "type": "text",
           "title": "Viticultura Orgânica, Biodinâmica e Sustentável",
           "content": "Entenda as filosofias por trás do cultivo de uvas com respeito à natureza.",
-          "xp": 25
+          "xp": 30
         },
         {
           "id": "lesson-5-1-3",
           "type": "video",
           "title": "O Ciclo Anual da Videira",
           "content": "Acompanhe a jornada da videira, da poda de inverno à colheita de outono.",
-          "xp": 30
+          "xp": 40
         }
       ]
     },
@@ -41,14 +42,14 @@
           "type": "text",
           "title": "Vinificação em Tinto vs. Branco",
           "content": "As diferenças fundamentais no processo, da maceração à prensagem.",
-          "xp": 25
+          "xp": 30
         },
         {
           "id": "lesson-5-2-2",
           "type": "text",
           "title": "O Papel do Carvalho",
           "content": "A influência da madeira no aroma, sabor e textura do vinho. Tipos de carvalho, níveis de tosta e mais.",
-          "xp": 25
+          "xp": 30
         }
       ]
     }

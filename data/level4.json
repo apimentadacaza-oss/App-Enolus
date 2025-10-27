@@ -1,3 +1,4 @@
+
 {
   "id": "level-4",
   "title": "Nível 4: Variedades e Estilos - A Diversidade do Vinho",
@@ -13,21 +14,21 @@
           "type": "text",
           "title": "Syrah/Shiraz: Duas Faces da Mesma Uva",
           "content": "Descubra as diferenças entre o Syrah do Rhône e o Shiraz australiano.",
-          "xp": 20
+          "xp": 25
         },
         {
           "id": "lesson-4-1-2",
           "type": "text",
           "title": "As Uvas Brancas Aromáticas",
           "content": "Explore a intensidade de aromas de Riesling, Gewürztraminer e Sauvignon Blanc.",
-          "xp": 20
+          "xp": 25
         },
         {
           "id": "lesson-4-1-3",
           "type": "video",
           "title": "As Jóias da Itália: Nebbiolo e Sangiovese",
           "content": "Um mergulho profundo nas uvas que dão origem ao Barolo e ao Brunello.",
-          "xp": 25
+          "xp": 35
         }
       ]
     },
@@ -41,21 +42,21 @@
           "type": "text",
           "title": "A Produção do Vinho Rosé",
           "content": "Aprenda sobre os métodos de maceração curta, sangria e corte.",
-          "xp": 20
+          "xp": 25
         },
         {
           "id": "lesson-4-2-2",
           "type": "text",
           "title": "Métodos de Produção de Espumantes",
           "content": "Compare o método tradicional (Champenoise) com o método Charmat.",
-          "xp": 20
+          "xp": 25
         },
         {
           "id": "lesson-4-2-3",
           "type": "audio",
           "title": "Degustando Espumantes: Champagne, Prosecco e Cava",
           "content": "Um guia de áudio para diferenciar os principais espumantes do mundo.",
-          "xp": 30
+          "xp": 40
         }
       ]
     }

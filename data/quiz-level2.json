@@ -1,0 +1,31 @@
+{
+  "id": "quiz-l2",
+  "title": "Quiz: Regiões Vinícolas (Nível 2)",
+  "questions": [
+    {
+      "question": "A região de Bordeaux, na França, é famosa por seus vinhos tintos, que geralmente são um 'blend' de quais uvas principais?",
+      "options": ["Pinot Noir e Gamay", "Sangiovese e Nebbiolo", "Cabernet Sauvignon e Merlot", "Syrah e Grenache"],
+      "correctAnswer": "Cabernet Sauvignon e Merlot"
+    },
+    {
+      "question": "Qual uva é a estrela da região da Toscana, na Itália, sendo a base para vinhos como o Chianti Classico?",
+      "options": ["Barbera", "Sangiovese", "Primitivo", "Nero d'Avola"],
+      "correctAnswer": "Sangiovese"
+    },
+    {
+      "question": "Napa Valley, na Califórnia, é mundialmente reconhecido pela alta qualidade de qual tipo de vinho?",
+      "options": ["Pinot Noir", "Zinfandel", "Chardonnay", "Cabernet Sauvignon"],
+      "correctAnswer": "Cabernet Sauvignon"
+    },
+    {
+      "question": "Qual é a uva tinta emblemática da Argentina, especialmente da região de Mendoza?",
+      "options": ["Carménère", "Tannat", "Malbec", "Bonarda"],
+      "correctAnswer": "Malbec"
+    },
+    {
+      "question": "O vibrante e aromático Sauvignon Blanc de Marlborough é um clássico de qual país do Novo Mundo?",
+      "options": ["África do Sul", "Austrália", "Chile", "Nova Zelândia"],
+      "correctAnswer": "Nova Zelândia"
+    }
+  ]
+}

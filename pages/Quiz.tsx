@@ -28,6 +28,8 @@ const QuizPage: React.FC<QuizPageProps> = ({ addXp, addAchievement }) => {
         const responses = await Promise.all([
           fetch('./data/quiz-harmonization.json'),
           fetch('./data/quiz-level1.json'),
+          fetch('./data/quiz-level2.json'),
+          fetch('./data/quiz-level3.json'),
         ]);
 
         for (const res of responses) {
@@ -141,6 +143,12 @@ const QuizPage: React.FC<QuizPageProps> = ({ addXp, addAchievement }) => {
         )}
         {isPerfect && quizId === 'quiz-l1' && (
            <p className="text-lg font-semibold text-aged-gold">🎉 Conquista Desbloqueada: Mestre dos Fundamentos!</p>
+        )}
+        {isPerfect && quizId === 'quiz-l2' && (
+           <p className="text-lg font-semibold text-aged-gold">🎉 Conquista Desbloqueada: Explorador Global!</p>
+        )}
+        {isPerfect && quizId === 'quiz-l3' && (
+           <p className="text-lg font-semibold text-aged-gold">🎉 Conquista Desbloqueada: Sommelier em Treinamento!</p>
         )}
         <p className="text-xl text-soft-graphite">
           Você acertou <span className="font-bold text-aged-gold">{score}</span> de <span className="font-bold text-vinifero-purple">{total}</span> perguntas.

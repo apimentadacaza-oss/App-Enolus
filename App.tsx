@@ -55,7 +55,7 @@ const App: React.FC = () => {
       case 'encyclopedia':
         return <EncyclopediaPage />;
       case 'profile':
-        return <ProfilePage progress={progress} />;
+        return <ProfilePage />;
       default:
         return <ExplorePage />;
     }
