@@ -29,6 +29,406 @@
         },
       };
     </script>
+    <style>
+      /* --- Correção permanente de overlays e z-index (Refatorado) --- */
+
+      /* 1. Garante que headers de seção e seus pseudo-elementos não capturem o mouse. */
+      .patentes-header,
+      .patentes-header::before,
+      .patentes-header::after {
+        pointer-events: none !important;
+        z-index: 0 !important;
+      }
+
+      /* 2. Garante que a área de conteúdo principal seja interativa. */
+      .patentes-section, .conquistas-section, .patentes-grid {
+        position: relative;
+        pointer-events: auto;
+        z-index: 1;
+      }
+      
+      /* 3. Neutraliza overlays, máscaras e sombras para que não capturem o mouse. */
+      .section-shadow, .mask, .backdrop, [class*="overlay"] {
+        max-height: 0;
+        pointer-events: none !important;
+      }
+
+      /* 4. Garante que qualquer overlay decorativo (incluindo pseudo-elementos) não capture o mouse. */
+      .patentes-section::before, .patentes-section::after,
+      .conquistas-section::before, .conquistas-section::after {
+        pointer-events: none !important;
+      }
+
+      /* 5. Estilos e interatividade dos cards de Patente (Refinado) */
+      .patente-card { 
+        position: relative; 
+        border-radius: 14px;
+        /* Transição mais suave e incluindo a cor da borda */
+        transition: transform 0.2s ease-out, box-shadow 0.2s ease-out, border-color 0.2s ease-out;
+      }
+      
+      /* Bloqueados: Visualmente distinto e não interativo */
+      .patente-card.is-locked { 
+        cursor: not-allowed; 
+        pointer-events: none; 
+        filter: grayscale(0.4); /* Levemente mais desaturado */
+        opacity: 0.65; /* Levemente mais transparente */
+      }
+
+      /* Ativos / Conquistados → clicáveis e com z-index para o hover */
+      .patente-card.is-active,
+      .patente-card.is-owned { 
+        cursor: pointer; 
+        pointer-events: auto; 
+        z-index: 2;
+      }
+      
+      /* Efeito de hover refinado para todos os cards clicáveis */
+      .patente-card.is-active:hover,
+      .patente-card.is-owned:hover {
+        transform: translateY(-4px); /* Elevação mais notável */
+        box-shadow: 0 12px 24px rgba(0,0,0,.1), 0 3px 8px rgba(0,0,0,.06); /* Sombra mais suave e difundida */
+      }
+      
+      /* Feedback adicional no hover para patentes já conquistadas */
+      .patente-card.is-owned:hover {
+        border-color: #C6A664; /* Highlight com a cor de ouro envelhecido */
+      }
+      
+      /* Acessibilidade de Foco: Anel de foco claro e visível com brilho adicional */
+      .patente-card.is-active:focus-visible,
+      .patente-card.is-owned:focus-visible {
+        outline: 2px solid #6b4a4a;
+        outline-offset: 3px;
+        box-shadow: 0 0 0 4px rgba(198, 166, 100, 0.3);
+      }
+
+      /* 6. Garante que elementos internos do card (badges) não capturem o clique. */
+      .patente-card .badge-bloqueado,
+      .patente-card .tooltip,
+      .patente-card [class*="overlay"],
+      .patente-card::before,
+      .patente-card::after { 
+        pointer-events: none !important; 
+      }
+
+      /* --- Estilos do Modal de Sucesso do Rito (Refatorado) --- */
+      .rite-success-backdrop {
+        position: fixed;
+        inset: 0;
+        z-index: 1000;
+        background: rgba(0, 0, 0, 0.6);
+        backdrop-filter: blur(3px);
+        animation: fade-in .25s ease-out;
+      }
+
+      .rite-success-layer {
+        position: fixed;
+        inset: 0;
+        z-index: 1001;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 1rem;
+        pointer-events: none;
+      }
+
+      .rite-success-card {
+        background: white;
+        color: #5C3D2E;
+        border-radius: 16px;
+        padding: 20px 22px;
+        max-width: 420px;
+        width: 100%;
+        box-shadow: 0 12px 32px rgba(0,0,0,.18), 0 2px 8px rgba(0,0,0,.08);
+        animation: fade-up .25s ease-out;
+        text-align: center;
+        pointer-events: auto;
+        line-height: 1.5;
+      }
+
+      .rite-success-card .header {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.75rem;
+        margin-bottom: 0.5rem;
+      }
+
+      .rite-success-card .header .icon {
+        font-size: 2.5rem;
+        line-height: 1;
+      }
+
+      .rite-success-card .title {
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: #3B1C1C;
+        margin: 0;
+      }
+
+      .rite-success-card .subtitle {
+        color: #8B5A2B;
+        font-weight: 600;
+        margin: 0.25rem 0 0.75rem;
+      }
+      
+      .rite-success-card .body-text {
+        margin: 1rem 0;
+      }
+
+      .rite-success-card .action-button {
+        width: 100%;
+        padding: 0.75rem 1rem;
+        border-radius: 0.75rem;
+        background: #432222;
+        color: #fff;
+        font-weight: 600;
+        transition: all 0.15s ease;
+        border: none;
+        cursor: pointer;
+        margin-top: 1rem;
+      }
+
+      .rite-success-card .action-button:hover,
+      .rite-success-card .action-button:focus-visible {
+        background: #5B2E2E;
+        transform: scale(1.02);
+      }
+
+      /* --- Estilos do Modal de Detalhes da Patente --- */
+      .patent-detail-backdrop {
+        position: fixed;
+        inset: 0;
+        z-index: 1000;
+        background: rgba(44, 44, 44, 0.7);
+        backdrop-filter: blur(4px);
+        animation: fade-in .3s ease-out;
+      }
+
+      .patent-detail-layer {
+        position: fixed;
+        inset: 0;
+        z-index: 1001;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 1rem;
+        overflow-y: auto;
+      }
+
+      .patent-detail-card {
+        background: #fff;
+        color: #2C2C2C;
+        border-radius: 16px;
+        padding: 24px 28px;
+        max-width: 500px;
+        width: 100%;
+        box-shadow: 0 16px 40px rgba(0,0,0,.2);
+        animation: fade-up .3s ease-out;
+        position: relative;
+        margin: 2rem 0;
+      }
+
+      .patent-detail-card .close-button {
+        position: absolute;
+        top: 12px;
+        right: 12px;
+        width: 32px;
+        height: 32px;
+        background: #f0f0f0;
+        border-radius: 50%;
+        border: none;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #555;
+        transition: all .2s ease;
+      }
+      .patent-detail-card .close-button:hover {
+        background: #e0e0e0;
+        transform: rotate(90deg);
+        color: #222;
+      }
+
+      .patent-detail-card .header {
+        text-align: center;
+        margin-bottom: 1.5rem;
+        padding-bottom: 1rem;
+        border-bottom: 1px solid #DAD1CA;
+      }
+
+      .patent-detail-card .header .icon {
+        font-size: 3rem;
+        line-height: 1;
+        margin-bottom: .5rem;
+      }
+
+      .patent-detail-card .header .title {
+        font-family: 'Playfair Display', serif;
+        font-size: 1.75rem;
+        font-weight: 700;
+        color: #51324E;
+        margin: 0;
+      }
+      
+      .patent-detail-card .header .subtitle {
+        color: #8B5A2B;
+        font-style: italic;
+        margin-top: .25rem;
+      }
+      
+      .patent-detail-card .content .section-title {
+        font-family: 'Playfair Display', serif;
+        font-size: 1.25rem;
+        color: #3B1C1C;
+        margin-bottom: .75rem;
+        padding-bottom: .25rem;
+        border-bottom: 2px solid #F4EFEA;
+      }
+
+      .patent-detail-card .content .rite-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        display: grid;
+        gap: 0.75rem;
+      }
+
+      .patent-detail-card .content .rite-item {
+        display: flex;
+        align-items: flex-start;
+        gap: 0.75rem;
+        padding: .75rem;
+        background-color: #F4EFEA80;
+        border-radius: 8px;
+        border: 1px solid #DAD1CA;
+      }
+      
+      .patent-detail-card .content .rite-item .icon {
+        font-size: 1.5rem;
+        margin-top: 2px;
+      }
+
+      .patent-detail-card .content .rite-item .text .title {
+        font-weight: 600;
+        color: #51324E;
+      }
+
+      .patent-detail-card .content .rite-item .text .description {
+        font-size: 0.875rem;
+        color: #5C3D2E;
+        opacity: 0.9;
+      }
+      
+      @keyframes fade-in {
+        from { opacity: 0 }
+        to { opacity: 1 }
+      }
+
+      @keyframes fade-up {
+        from { transform: translateY(16px); opacity: 0 }
+        to { transform: translateY(0); opacity: 1 }
+      }
+      
+      /* --- Estilos da Jornada (Journey Map) --- */
+      .journey-pulse {
+        animation: pulse 2s infinite cubic-bezier(0.4, 0, 0.6, 1);
+      }
+      
+      @keyframes pulse {
+        0%, 100% {
+          transform: scale(1);
+          opacity: 1;
+        }
+        50% {
+          transform: scale(1.1);
+          opacity: 0.7;
+        }
+      }
+      
+      /* --- Estilos do Lesson Hub (Modal/BottomSheet) --- */
+      .lesson-hub-backdrop {
+          position: fixed;
+          inset: 0;
+          z-index: 999;
+          background-color: rgba(46, 49, 66, 0.7);
+          backdrop-filter: blur(4px);
+          animation: fade-in 0.3s ease-out;
+      }
+
+      .lesson-hub-container {
+          position: fixed;
+          inset: 0;
+          z-index: 1000;
+          display: flex;
+          align-items: flex-end;
+          justify-content: center;
+          padding: 0; /* Remove padding for edge-to-edge modal */
+          pointer-events: none;
+      }
+
+      .lesson-hub-content {
+          background-color: #F4EFEA; /* Usando a cor de fundo da paleta */
+          color: #2E3142;
+          border-radius: 20px 20px 0 0;
+          padding: 16px;
+          padding-bottom: 24px;
+          width: 100%;
+          max-height: 90vh;
+          overflow-y: auto;
+          box-shadow: 0 -10px 40px rgba(0, 0, 0, 0.2);
+          animation: slide-up 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+          pointer-events: auto;
+          display: flex;
+          flex-direction: column;
+      }
+
+      .lesson-hub-content .drag-handle {
+          width: 40px;
+          height: 4px;
+          background-color: #DAD1CA;
+          border-radius: 2px;
+          margin: 0 auto 16px;
+      }
+      
+      .lesson-reader-view .prose {
+        line-height: 1.7;
+        color: #2E3142;
+      }
+      .lesson-reader-view .prose h1,
+      .lesson-reader-view .prose h2,
+      .lesson-reader-view .prose h3 {
+         font-family: 'Playfair Display', serif;
+         color: #51324E;
+         margin-bottom: 0.5em;
+      }
+      .lesson-reader-view .prose p {
+        margin-bottom: 1.2em;
+      }
+       .lesson-reader-view .prose strong {
+        color: #51324E;
+        font-weight: 700;
+      }
+      .lesson-reader-view .prose blockquote {
+        border-left-color: #C6A664;
+        color: #51324E;
+        font-style: italic;
+        padding-left: 1em;
+      }
+
+
+      @keyframes slide-up {
+          from {
+              transform: translateY(100%);
+          }
+          to {
+              transform: translateY(0);
+          }
+      }
+
+    </style>
   <script type="importmap">
 {
   "imports": {
@@ -36,10 +436,13 @@
     "react/": "https://aistudiocdn.com/react@^19.2.0/",
     "react": "https://aistudiocdn.com/react@^19.2.0",
     "@google/genai": "https://aistudiocdn.com/@google/genai@^1.27.0",
-    "fuse.js": "https://cdn.jsdelivr.net/npm/fuse.js@7.0.0/dist/fuse.mjs"
+    "fuse.js": "https://cdn.jsdelivr.net/npm/fuse.js@7.0.0/dist/fuse.mjs",
+    "react-dom": "https://aistudiocdn.com/react-dom@^19.2.0"
   }
 }
 </script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.12.2/lottie.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 </head>
   <body>
     <div id="root"></div>

@@ -1,45 +1,9 @@
-import React, { useState } from 'react';
-import { useUserProgress } from '../hooks/useUserProgress';
+import React, { useState, useEffect } from 'react';
+import type { UserProgress, Patent, Circle, Rite } from '../types';
+import RiteSuccessModal from '../components/RiteSuccessModal';
+import PatentDetailModal from '../components/PatentDetailModal';
 
-// --- Data Structures ---
-
-interface RiteStep {
-  title: string;
-  description: string;
-}
-
-interface Rite {
-  icon: string;
-  title: string;
-  description: string;
-  ritualPhrase: string;
-  introduction: string;
-  xp: number;
-  steps: RiteStep[];
-}
-
-interface CircleTheme {
-  bg: string;
-  text: string;
-  accent: string;
-  border: string;
-  sectionBg: string;
-  gradient: string;
-}
-
-interface Circle {
-  name: string;
-  minPatentLevel: number;
-  maxPatentLevel: number;
-  icon: string;
-  description: string;
-  ritual: string;
-  purpose: string;
-  theme: CircleTheme;
-  rites: Rite[];
-}
-
-const patentsData = [
+const patentsData: Patent[] = [
   { level: 1, name: 'Aprendiz da Videira', minXp: 0, icon: '🍇', ceremonialPhrase: 'Primeiros passos na arte do vinho.' },
   { level: 2, name: 'Discípulo do Cálice', minXp: 200, icon: '🍷', ceremonialPhrase: 'O aroma revela o que a alma entende.' },
   { level: 3, name: 'Guardião do Aroma', minXp: 400, icon: '🌹', ceremonialPhrase: 'Zela pelos segredos da taça.' },
@@ -121,6 +85,13 @@ const mockRanking = [
     { name: 'Mateus', xp: 1560 }, { name: 'Beatriz', xp: 1400 },
 ].sort((a, b) => b.xp - a.xp);
 
+const PRIMEIRA_TACA_ACHIEVEMENT = {
+  name: 'Primeira Taça',
+  description: 'Celebre seu início na arte do vinho — a primeira taça marca o começo da jornada.',
+  xp: 20,
+  icon: '🍷'
+};
+
 const getPatentByXp = (xp: number) => {
   return [...patentsData].reverse().find(p => xp >= p.minXp) || patentsData[0];
 };
@@ -129,6 +100,19 @@ const getNextPatent = (xp: number) => {
     const currentPatent = getPatentByXp(xp);
     return patentsData.find(p => p.level === currentPatent.level + 1) || null;
 }
+
+type PatentState = 'active' | 'owned' | 'locked';
+
+// Helper function to determine patent state
+const getPatentState = (patent: Patent, userXp: number, currentPatentLevel: number): PatentState => {
+  if (patent.level === currentPatentLevel) {
+    return 'active';
+  }
+  if (userXp >= patent.minXp) {
+    return 'owned';
+  }
+  return 'locked';
+};
 
 const AchievementIcon = ({ achievement, className }: { achievement: string; className?: string }) => {
   const icons: { [key: string]: React.ReactElement } = {
@@ -151,7 +135,7 @@ const MedalIcon = ({ rank, className }: { rank: number; className?: string }) =>
 
 const RiteDetailView = ({ rite, circle, onClose, onComplete }: { rite: Rite; circle: Circle; onClose: () => void; onComplete: (xp: number) => void }) => {
   const [completedSteps, setCompletedSteps] = useState<Set<number>>(new Set());
-  const [showCompletionPopup, setShowCompletionPopup] = useState(false);
+  const [showCompletionModal, setShowCompletionModal] = useState(false);
 
   const handleStepToggle = (stepIndex: number) => {
     setCompletedSteps(prev => {
@@ -169,113 +153,110 @@ const RiteDetailView = ({ rite, circle, onClose, onComplete }: { rite: Rite; cir
 
   const handleSaveRite = () => {
     if (allStepsCompleted) {
-      setShowCompletionPopup(true);
+      setShowCompletionModal(true);
     }
   };
 
   const handleFinalize = () => {
     onComplete(rite.xp);
-    onClose();
+    setShowCompletionModal(false); // Close modal first
+    onClose(); // Then close the detail view
   };
 
   return (
-    <div className="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 animate-fade-in overflow-y-auto" onClick={onClose}>
-        <div className={`w-full min-h-full bg-gradient-to-b ${circle.theme.gradient} ${circle.theme.text} pb-10`} onClick={e => e.stopPropagation()}>
-            <div className="container mx-auto p-4 sm:p-6 max-w-4xl space-y-8">
-                {showCompletionPopup && (
-                    <div className="fixed inset-0 bg-black/70 flex items-center justify-center z-60 animate-fade-in">
-                        <div className={`text-center p-8 rounded-xl shadow-2xl ${circle.theme.sectionBg} border-2 ${circle.theme.border} max-w-sm mx-4`}>
-                            <p className="text-6xl">{rite.icon}</p>
-                            <h2 className="font-serif text-2xl mt-4">Rito Concluído!</h2>
-                            <p className="italic text-base opacity-90 mt-2">“Seu cálice se enche de sabedoria. O tempo agora habita em sua taça.”</p>
-                            <p className={`font-bold text-lg mt-4 ${circle.theme.accent}`}>+{rite.xp} Sabedoria Acumulada</p>
-                            <button onClick={handleFinalize} className="mt-6 bg-vinifero-purple text-white font-bold py-2 px-6 rounded-lg hover:bg-opacity-90 transition-transform transform hover:scale-105">
-                                Brindar e Voltar à Confraria
-                            </button>
-                        </div>
-                    </div>
-                )}
+    <>
+      <RiteSuccessModal 
+        isOpen={showCompletionModal}
+        onClose={handleFinalize}
+        rite={rite}
+        circle={circle}
+      />
+      <div className="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 animate-fade-in overflow-y-auto" onClick={onClose}>
+          <div className={`w-full min-h-full bg-gradient-to-b ${circle.theme.gradient} ${circle.theme.text} pb-10`} onClick={e => e.stopPropagation()}>
+              <div className="container mx-auto p-4 sm:p-6 max-w-4xl space-y-8">
+                  <header className="relative text-center pt-12">
+                      <button onClick={onClose} className={`absolute top-4 left-4 ${circle.theme.accent} hover:opacity-70 transition flex items-center gap-2`}>
+                          <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" /></svg>
+                          <span className="font-semibold text-sm">Voltar ao Círculo</span>
+                      </button>
+                      <p className="text-6xl mb-4">{rite.icon}</p>
+                      <h1 className="font-serif text-4xl">{rite.title}</h1>
+                      <p className={`italic ${circle.theme.accent} mt-2`}>"{rite.ritualPhrase}"</p>
+                  </header>
 
-                <header className="relative text-center pt-12">
-                    <button onClick={onClose} className={`absolute top-4 left-4 ${circle.theme.accent} hover:opacity-70 transition flex items-center gap-2`}>
-                        <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" /></svg>
-                        <span className="font-semibold text-sm">Voltar ao Círculo</span>
-                    </button>
-                    <p className="text-6xl mb-4">{rite.icon}</p>
-                    <h1 className="font-serif text-4xl">{rite.title}</h1>
-                    <p className={`italic ${circle.theme.accent} mt-2`}>"{rite.ritualPhrase}"</p>
-                </header>
+                  <section className={`p-6 rounded-xl shadow-lg border ${circle.theme.border} ${circle.theme.sectionBg}`}>
+                      <p className="whitespace-pre-line text-base opacity-90">{rite.introduction}</p>
+                  </section>
 
-                <section className={`p-6 rounded-xl shadow-lg border ${circle.theme.border} ${circle.theme.sectionBg}`}>
-                    <p className="whitespace-pre-line text-base opacity-90">{rite.introduction}</p>
-                </section>
+                  <section>
+                      <h2 className="font-serif text-2xl text-center mb-5">Etapas do Rito</h2>
+                      <div className="space-y-3">
+                          {rite.steps.map((step, index) => (
+                              <div key={index} className={`p-4 rounded-lg border flex items-center gap-4 transition-all ${completedSteps.has(index) ? `opacity-50 ${circle.theme.sectionBg}` : `bg-white/50 ${circle.theme.border}`}`}>
+                                  <button onClick={() => handleStepToggle(index)} className={`w-8 h-8 rounded-full border-2 flex-shrink-0 flex items-center justify-center ${completedSteps.has(index) ? `${circle.theme.accent} border-current` : `border-velvet-gray`}`}>
+                                      {completedSteps.has(index) && <svg className="w-5 h-5 text-current" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" /></svg>}
+                                  </button>
+                                  <div>
+                                      <h3 className={`font-bold ${completedSteps.has(index) ? 'line-through' : ''}`}>{index + 1}. {step.title}</h3>
+                                      <p className={`text-sm opacity-80 ${completedSteps.has(index) ? 'line-through' : ''}`}>{step.description}</p>
+                                  </div>
+                              </div>
+                          ))}
+                      </div>
+                  </section>
 
-                <section>
-                    <h2 className="font-serif text-2xl text-center mb-5">Etapas do Rito</h2>
-                    <div className="space-y-3">
-                        {rite.steps.map((step, index) => (
-                            <div key={index} className={`p-4 rounded-lg border flex items-center gap-4 transition-all ${completedSteps.has(index) ? `opacity-50 ${circle.theme.sectionBg}` : `bg-white/50 ${circle.theme.border}`}`}>
-                                <button onClick={() => handleStepToggle(index)} className={`w-8 h-8 rounded-full border-2 flex-shrink-0 flex items-center justify-center ${completedSteps.has(index) ? `${circle.theme.accent} border-current` : `border-velvet-gray`}`}>
-                                    {completedSteps.has(index) && <svg className="w-5 h-5 text-current" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" /></svg>}
-                                </button>
-                                <div>
-                                    <h3 className={`font-bold ${completedSteps.has(index) ? 'line-through' : ''}`}>{index + 1}. {step.title}</h3>
-                                    <p className={`text-sm opacity-80 ${completedSteps.has(index) ? 'line-through' : ''}`}>{step.description}</p>
-                                </div>
-                            </div>
-                        ))}
-                    </div>
-                </section>
-
-                <section className={`p-6 rounded-xl shadow-lg border ${circle.theme.border} ${circle.theme.sectionBg}`}>
-                    <h2 className="font-serif text-2xl mb-4">Registro Sensorial</h2>
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        <div>
-                            <label className="block text-sm font-bold mb-1">Cor do Vinho</label>
-                            <select className="w-full p-2 rounded border border-current bg-transparent">
-                                <option>Rubi</option>
-                                <option>Granada</option>
-                                <option>Púrpura</option>
-                                <option>Dourado</option>
-                                <option>Palha</option>
-                            </select>
-                        </div>
-                        <div>
-                            <label className="block text-sm font-bold mb-1">Aroma Predominante</label>
-                            <select className="w-full p-2 rounded border border-current bg-transparent">
-                                <option>Frutado</option>
-                                <option>Floral</option>
-                                <option>Amadeirado</option>
-                                <option>Terroso</option>
-                            </select>
-                        </div>
-                         <div className="md:col-span-2">
-                             <label className="block text-sm font-bold mb-1">Observações Pessoais</label>
-                             <textarea rows={3} className="w-full p-2 rounded border border-current bg-transparent" placeholder="Notas de degustação, impressões..."></textarea>
-                         </div>
-                    </div>
-                </section>
-                
-                <footer className="text-center mt-8">
-                    <button 
-                        onClick={handleSaveRite}
-                        disabled={!allStepsCompleted}
-                        className="bg-vinifero-purple text-white font-bold py-3 px-8 rounded-lg hover:bg-opacity-90 transition-transform transform hover:scale-105 disabled:bg-velvet-gray disabled:cursor-not-allowed"
-                    >
-                        {allStepsCompleted ? 'Salvar e Concluir Rito' : 'Complete todas as etapas para salvar'}
-                    </button>
-                </footer>
-            </div>
-        </div>
-    </div>
+                  <section className={`p-6 rounded-xl shadow-lg border ${circle.theme.border} ${circle.theme.sectionBg}`}>
+                      <h2 className="font-serif text-2xl mb-4">Registro Sensorial</h2>
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                          <div>
+                              <label className="block text-sm font-bold mb-1">Cor do Vinho</label>
+                              <select className="w-full p-2 rounded border border-current bg-transparent">
+                                  <option>Rubi</option>
+                                  <option>Granada</option>
+                                  <option>Púrpura</option>
+                                  <option>Dourado</option>
+                                  <option>Palha</option>
+                              </select>
+                          </div>
+                          <div>
+                              <label className="block text-sm font-bold mb-1">Aroma Predominante</label>
+                              <select className="w-full p-2 rounded border border-current bg-transparent">
+                                  <option>Frutado</option>
+                                  <option>Floral</option>
+                                  <option>Amadeirado</option>
+                                  <option>Terroso</option>
+                              </select>
+                          </div>
+                           <div className="md:col-span-2">
+                               <label className="block text-sm font-bold mb-1">Observações Pessoais</label>
+                               <textarea rows={3} className="w-full p-2 rounded border border-current bg-transparent" placeholder="Notas de degustação, impressões..."></textarea>
+                           </div>
+                      </div>
+                  </section>
+                  
+                  <footer className="text-center mt-8">
+                      <button 
+                          onClick={handleSaveRite}
+                          disabled={!allStepsCompleted}
+                          className="bg-vinifero-purple text-white font-bold py-3 px-8 rounded-lg hover:bg-opacity-90 transition-transform transform hover:scale-105 disabled:bg-velvet-gray disabled:cursor-not-allowed"
+                      >
+                          {allStepsCompleted ? 'Salvar e Concluir Rito' : 'Complete todas as etapas para salvar'}
+                      </button>
+                  </footer>
+              </div>
+          </div>
+      </div>
+    </>
   );
 };
 
-const CircleDetailView = ({ circle, userPatentLevel, onClose, onRiteComplete }: { circle: Circle; userPatentLevel: number; onClose: () => void; onRiteComplete: (xp: number) => void; }) => {
+const CircleDetailView = ({ circle, userPatentLevel, onClose, onRiteComplete }: { circle: Circle; userPatentLevel: number; onClose: () => void; onRiteComplete: (xp: number, riteTitle: string) => void; }) => {
   const [selectedRite, setSelectedRite] = useState<Rite | null>(null);
 
   const handleRiteComplete = (xp: number) => {
-      onRiteComplete(xp);
+      if (selectedRite) {
+        onRiteComplete(xp, selectedRite.title);
+      }
       setSelectedRite(null);
   };
 
@@ -359,32 +340,75 @@ const CircleDetailView = ({ circle, userPatentLevel, onClose, onRiteComplete }: 
   );
 };
 
-const ProfilePage = () => {
-  const { progress, addXp } = useUserProgress();
+interface ProfilePageProps {
+  progress: UserProgress;
+  addXp: (amount: number) => void;
+  addAchievement: (achievement: string) => void;
+}
+
+const ProfilePage: React.FC<ProfilePageProps> = ({ progress, addXp, addAchievement }) => {
   const [selectedCircle, setSelectedCircle] = useState<Circle | null>(null);
+  const [selectedPatent, setSelectedPatent] = useState<{ patent: Patent; circle: Circle | null } | null>(null);
 
   const currentPatent = getPatentByXp(progress.xp);
   const nextPatent = getNextPatent(progress.xp);
-  const xpForNextPatent = nextPatent ? nextPatent.minXp : currentPatent.minXp;
-  const progressPercentage = nextPatent ? Math.max(0, (progress.xp / xpForNextPatent) * 100) : 100;
+
+  const xpForCurrentPatent = currentPatent.minXp;
+  const xpForNextPatent = nextPatent ? nextPatent.minXp : xpForCurrentPatent;
+  
+  const levelXpRange = xpForNextPatent - xpForCurrentPatent;
+  const xpInCurrentLevel = progress.xp - xpForCurrentPatent;
+  
+  const progressPercentage = (nextPatent && levelXpRange > 0)
+    ? (xpInCurrentLevel / levelXpRange) * 100
+    : 100;
   
   const userRanking = { ...mockRanking.find(u => u.name === 'Você'), xp: progress.xp };
   const finalRanking = mockRanking.filter(u => u.name !== 'Você').concat([userRanking]).sort((a, b) => b.xp - a.xp);
 
-  const handleRiteCompletionInProfile = (xp: number) => {
+  const handleRiteCompletionInProfile = (xp: number, riteTitle: string) => {
     addXp(xp);
+    
+    const circleDaVideira = circlesData.find(c => c.name === 'Círculo da Videira');
+    if (circleDaVideira && circleDaVideira.rites.some(r => r.title === riteTitle)) {
+      if (!progress.achievements.includes(PRIMEIRA_TACA_ACHIEVEMENT.name)) {
+        addXp(PRIMEIRA_TACA_ACHIEVEMENT.xp);
+        addAchievement(PRIMEIRA_TACA_ACHIEVEMENT.name);
+      }
+    }
+  };
+
+  const openPatent = (patentName: string) => {
+    // Temporary diagnostic logger
+    if (process.env.NODE_ENV !== 'production') {
+      console.debug('[patente] open', patentName);
+    }
+    const patentData = patentsData.find(p => p.name === patentName);
+    if (patentData) {
+      // Find the circle that this patent belongs to
+      const circleData = circlesData.find(c => patentData.level >= c.minPatentLevel && patentData.level <= c.maxPatentLevel) || null;
+      setSelectedPatent({ patent: patentData, circle: circleData });
+    }
   };
   
   const displayedAchievements = [...progress.achievements];
   if (progress.completedLessons.length > 0 && !displayedAchievements.includes('Rito da Videira Concluído')) {
-      // Add a placeholder for completing a rite once any lesson is done.
-      // This is a placeholder as rite completion isn't tracked globally yet.
       displayedAchievements.push('Rito da Videira Concluído');
   }
+
+  const isPrimeiraTacaUnlocked = progress.achievements.includes(PRIMEIRA_TACA_ACHIEVEMENT.name);
 
   return (
     <div className="animate-fade-in space-y-12">
         {selectedCircle && <CircleDetailView circle={selectedCircle} userPatentLevel={currentPatent.level} onClose={() => setSelectedCircle(null)} onRiteComplete={handleRiteCompletionInProfile} />}
+        {selectedPatent && (
+          <PatentDetailModal 
+            isOpen={!!selectedPatent}
+            onClose={() => setSelectedPatent(null)}
+            patent={selectedPatent.patent}
+            circle={selectedPatent.circle}
+          />
+        )}
       
       <header className="text-center">
         <h1 className="font-serif text-4xl md:text-5xl text-vinifero-purple">Confraria Enolus</h1>
@@ -415,57 +439,96 @@ const ProfilePage = () => {
             </p>
         </div>
         <p className="text-center italic text-soft-graphite/80 mt-4">"{currentPatent.ceremonialPhrase}"</p>
+        
+        {currentPatent.name === 'Aprendiz da Videira' && (
+          <div className="mt-6 border-t border-velvet-gray/50 pt-4">
+            <h3 className="text-center font-serif text-lg text-vinifero-purple mb-3">Conquistas da Patente</h3>
+            <div 
+              className={`relative flex items-center gap-4 p-3 rounded-lg transition-all max-w-sm mx-auto ${
+                isPrimeiraTacaUnlocked ? 'bg-aged-gold/10 cursor-pointer hover:bg-aged-gold/20' : 'bg-velvet-gray/20 opacity-70'
+              }`}
+              title={PRIMEIRA_TACA_ACHIEVEMENT.description}
+              onClick={isPrimeiraTacaUnlocked ? () => alert(`Conquista: ${PRIMEIRA_TACA_ACHIEVEMENT.name}\n\n${PRIMEIRA_TACA_ACHIEVEMENT.description}`) : undefined}
+              role={isPrimeiraTacaUnlocked ? "button" : undefined}
+              tabIndex={isPrimeiraTacaUnlocked ? 0 : -1}
+            >
+              <span className="text-3xl">{PRIMEIRA_TACA_ACHIEVEMENT.icon}</span>
+              <div>
+                <p className="font-bold text-soft-graphite">{PRIMEIRA_TACA_ACHIEVEMENT.name}</p>
+                <p className="text-sm text-aged-gold font-semibold">+{PRIMEIRA_TACA_ACHIEVEMENT.xp} XP</p>
+              </div>
+              {!isPrimeiraTacaUnlocked && (
+                <div className="absolute top-2 right-2 text-night-blue" aria-label="Bloqueada">
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                    <path fillRule="evenodd" d="M10 1a4.5 4.5 0 00-4.5 4.5V9H5a2 2 0 00-2 2v6a2 2 0 002 2h10a2 2 0 002 2v-6a2 2 0 00-2-2h-.5V5.5A4.5 4.5 0 0010 1zm3 8V5.5a3 3 0 10-6 0V9h6z" clipRule="evenodd" />
+                  </svg>
+                </div>
+              )}
+              {isPrimeiraTacaUnlocked && (
+                 <div className="absolute top-2 right-2 text-green-600" aria-label="Desbloqueada">
+                    <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                </div>
+              )}
+            </div>
+          </div>
+        )}
       </section>
 
-       <section>
-          <h2 className="font-serif text-3xl text-vinifero-purple text-center mb-2">Patentes da Confraria</h2>
-           <p className="text-center text-soft-graphite/70 mb-6">Continue sua jornada para alcançar o título de {nextPatent ? nextPatent.name : 'Grão-Sommelier'}.</p>
+       <section className="patentes-section">
+          <div className="patentes-header">
+            <h2 className="font-serif text-3xl text-vinifero-purple text-center mb-2">Patentes da Confraria</h2>
+             <p className="text-center text-soft-graphite/70 mb-6">Continue sua jornada para alcançar o título de {nextPatent ? nextPatent.name : 'Grão-Sommelier'}.</p>
+          </div>
           <div className="patentes-grid grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
               {patentsData.map(patent => {
-                  const isCurrent = patent.level === currentPatent.level;
-                  const isUnlocked = progress.xp >= patent.minXp;
-                  const isConquered = isUnlocked && !isCurrent;
-                  const isLocked = !isUnlocked;
+                  const state = getPatentState(patent, progress.xp, currentPatent.level);
+                  const isEnabled = state === 'active' || state === 'owned';
+                  const stateClass = `is-${state}`;
 
-                  const baseClasses = "patente-card relative p-4 rounded-lg text-center transition-all duration-300";
-                  let stateClasses = '';
-                  let tooltip = '';
-                  let ariaLabel = '';
-                  
-                  if (isCurrent) {
-                    stateClasses = 'is-active bg-white shadow-xl border-2 border-aged-gold scale-105 cursor-pointer';
-                    tooltip = 'Sua patente atual';
-                    ariaLabel = `Patente atual: ${patent.name}`;
-                  } else if (isConquered) {
-                    stateClasses = 'is-owned bg-white shadow border border-velvet-gray/30 hover:shadow-md hover:-translate-y-px cursor-pointer';
-                    tooltip = 'Patente conquistada';
-                    ariaLabel = `Patente conquistada: ${patent.name}`;
-                  } else { // isLocked
-                    stateClasses = 'is-locked bg-velvet-gray/30 opacity-60 cursor-not-allowed pointer-events-none';
-                    tooltip = `Bloqueado — requer ${patent.minXp} XP`;
-                    ariaLabel = `Patente bloqueada: ${patent.name}. Requer ${patent.minXp} XP.`;
-                  }
+                  const baseClasses = "patente-card relative p-4 text-center group";
+                  const styleClasses = state === 'active' 
+                    ? 'bg-white border-2 border-aged-gold' 
+                    : state === 'owned' 
+                      ? 'bg-white border border-velvet-gray/30' 
+                      : 'bg-velvet-gray/30';
 
                   return (
                       <div 
                           key={patent.name} 
-                          className={`${baseClasses} ${stateClasses}`}
-                          title={tooltip}
-                          aria-label={ariaLabel}
+                          className={`${baseClasses} ${stateClass} ${styleClasses} ${isEnabled ? 'active:scale-95' : ''}`}
+                          role={isEnabled ? 'button' : undefined}
+                          tabIndex={isEnabled ? 0 : -1}
+                          aria-disabled={!isEnabled}
+                          aria-label={isEnabled ? `Abrir detalhes da patente ${patent.name}` : `Patente bloqueada: ${patent.name}`}
+                          onClick={isEnabled ? () => openPatent(patent.name) : undefined}
+                          onKeyDown={isEnabled ? (e: React.KeyboardEvent<HTMLDivElement>) => {
+                              if (e.key === 'Enter' || e.key === ' ') {
+                                  e.preventDefault();
+                                  openPatent(patent.name);
+                              }
+                          } : undefined}
                       >
-                          {isLocked && (
+                          <span className="tooltip absolute bottom-full mb-2 w-max max-w-xs px-3 py-1.5 text-xs font-semibold text-white bg-night-blue rounded-md shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-30">
+                            {patent.name}
+                            <span className="block font-normal opacity-80">
+                                {state === 'active' ? 'Sua patente atual' : state === 'owned' ? 'Patente conquistada' : `Requer ${patent.minXp} XP`}
+                            </span>
+                          </span>
+                          {state === 'locked' && (
                             <span className="badge-bloqueado absolute top-2 right-2 z-10 pointer-events-none" aria-hidden="true">
                                 <div className="bg-night-blue/80 text-white flex items-center justify-center w-6 h-6 rounded-full shadow-md text-xs">
                                     🔒
                                 </div>
                             </span>
                           )}
-                          {isConquered && (
+                          {state === 'owned' && (
                             <span className="absolute bottom-1 right-1 bg-green-100 text-green-800 flex items-center justify-center w-5 h-5 rounded-full" aria-hidden="true">
                                 <svg xmlns="http://www.w3.org/2000/svg" className="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" /></svg>
                             </span>
                           )}
-                          <div className={`mx-auto w-12 h-12 rounded-full flex items-center justify-center text-2xl ${isUnlocked ? 'bg-champagne-light' : 'bg-velvet-gray'}`}>{patent.icon}</div>
+                          <div className={`mx-auto w-12 h-12 rounded-full flex items-center justify-center text-2xl ${isEnabled ? 'bg-champagne-light' : 'bg-velvet-gray'}`}>{patent.icon}</div>
                           <p className="font-semibold text-sm mt-2 text-vinifero-purple">{patent.name}</p>
                       </div>
                   )
@@ -479,20 +542,29 @@ const ProfilePage = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {circlesData.map(circle => {
             const isUnlocked = currentPatent.level >= circle.minPatentLevel;
+            const commonClasses = "bg-white p-6 rounded-xl shadow-lg border text-left flex flex-col items-start transition-all duration-300";
+            const stateClasses = isUnlocked
+              ? 'border-velvet-gray/50 hover:shadow-xl hover:-translate-y-1 cursor-pointer'
+              : 'opacity-50 bg-velvet-gray/20 cursor-not-allowed';
+
             return (
-              <button 
-                key={circle.name} 
-                onClick={() => setSelectedCircle(circle)}
-                className={`bg-white p-6 rounded-xl shadow-lg border text-left flex flex-col items-start transition-all duration-300 ${isUnlocked ? 'border-velvet-gray/50 hover:shadow-xl hover:-translate-y-1' : 'opacity-50 bg-velvet-gray/20 cursor-not-allowed'}`}
-                disabled={!isUnlocked}
+              <div
+                key={circle.name}
+                role={isUnlocked ? 'button' : undefined}
+                tabIndex={isUnlocked ? 0 : -1}
+                onClick={isUnlocked ? () => setSelectedCircle(circle) : undefined}
+                onKeyDown={isUnlocked ? (e) => (e.key === 'Enter' || e.key === ' ') && setSelectedCircle(circle) : undefined}
+                className={`${commonClasses} ${stateClasses}`}
+                aria-disabled={!isUnlocked}
+                aria-label={isUnlocked ? `Abrir Círculo: ${circle.name}` : `Círculo bloqueado: ${circle.name}`}
               >
-                  <p className="text-4xl">{circle.icon}</p>
-                  <h3 className="font-serif text-xl text-vinifero-purple mt-3">{circle.name}</h3>
-                  <p className="text-sm text-soft-graphite/70 mt-1 flex-grow">{circle.description}</p>
-                  <p className="text-xs italic text-aged-gold mt-4">"{circle.ritual}"</p>
-                  {!isUnlocked && <div className="absolute inset-0 bg-champagne-light/50 flex items-center justify-center font-bold text-vinifero-purple rounded-xl opacity-0">BLOQUEADO</div>}
-              </button>
-            )
+                <p className="text-4xl">{circle.icon}</p>
+                <h3 className="font-serif text-xl text-vinifero-purple mt-3">{circle.name}</h3>
+                <p className="text-sm text-soft-graphite/70 mt-1 flex-grow">{circle.description}</p>
+                <p className="text-xs italic text-aged-gold mt-4">"{circle.ritual}"</p>
+                {!isUnlocked && <div className="absolute inset-0 bg-champagne-light/50 flex items-center justify-center font-bold text-vinifero-purple rounded-xl opacity-0" aria-hidden="true">BLOQUEADO</div>}
+              </div>
+            );
           })}
         </div>
         <p className="text-center italic text-soft-graphite/70 mt-8">A sabedoria se multiplica quando partilhada. — Dom Sommelius</p>
@@ -520,7 +592,7 @@ const ProfilePage = () => {
         </div>
       </section>
 
-      <section>
+      <section className="conquistas-section">
           <h2 className="font-serif text-3xl text-vinifero-purple text-center mb-6">📜 Conquistas Cerimoniais</h2>
           {displayedAchievements.length > 0 ? (
               <div className="flex flex-wrap justify-center gap-4">
