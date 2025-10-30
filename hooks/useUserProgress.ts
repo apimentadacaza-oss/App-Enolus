@@ -13,10 +13,11 @@ const getInitialProgress = (): UserProgress => {
       completedLessons: parsed.completedLessons || [],
       completedActivities: parsed.completedActivities || [],
       currentLessonId: parsed.currentLessonId || '1_oque-e-vinho',
+      favoriteArticles: parsed.favoriteArticles || [],
     };
   } catch (error) {
     console.error('Error reading from localStorage', error);
-    return { xp: 0, achievements: [], completedLessons: [], completedActivities: [], currentLessonId: '1_oque-e-vinho' };
+    return { xp: 0, achievements: [], completedLessons: [], completedActivities: [], currentLessonId: '1_oque-e-vinho', favoriteArticles: [] };
   }
 };
 
@@ -26,6 +27,7 @@ const sanitizeProgressForStorage = (progress: UserProgress): UserProgress => ({
   completedLessons: Array.isArray(progress.completedLessons) ? progress.completedLessons.filter(item => typeof item === 'string') : [],
   completedActivities: Array.isArray(progress.completedActivities) ? progress.completedActivities.filter(item => typeof item === 'string') : [],
   currentLessonId: typeof progress.currentLessonId === 'string' ? progress.currentLessonId : null,
+  favoriteArticles: Array.isArray(progress.favoriteArticles) ? progress.favoriteArticles.filter(item => typeof item === 'string') : [],
 });
 
 
@@ -92,6 +94,21 @@ export const useUserProgress = () => {
     setProgress(prev => ({ ...prev, currentLessonId: lessonId }));
   }, []);
 
+  const isArticleFavorite = useCallback((slug: string): boolean => {
+    return progress.favoriteArticles.includes(slug);
+  }, [progress.favoriteArticles]);
+
+  const toggleFavoriteArticle = useCallback((slug: string) => {
+    setProgress(prev => {
+      const favorites = prev.favoriteArticles || [];
+      const isFavorited = favorites.includes(slug);
+      const newFavorites = isFavorited
+        ? favorites.filter(s => s !== slug)
+        : [...favorites, slug];
+      return { ...prev, favoriteArticles: newFavorites };
+    });
+  }, []);
+
   return { 
     progress, 
     addXp, 
@@ -100,6 +117,8 @@ export const useUserProgress = () => {
     isLessonCompleted,
     isActivityCompleted,
     completeActivity,
-    setCurrentLessonId
+    setCurrentLessonId,
+    isArticleFavorite,
+    toggleFavoriteArticle,
   };
 };

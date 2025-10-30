@@ -1,0 +1,20 @@
+{
+  "title": "Learning Tracks",
+  "subtitle": "Follow the paths of knowledge and become a master.",
+  "loading": "Loading tracks...",
+  "progress": "Progress",
+  "back_to_map": "Back to Map",
+  "choose_activity": "Choose an activity to begin.",
+  "read": "Read",
+  "listen": "Listen",
+  "pause_audio": "Pause Audio",
+  "watch": "Watch",
+  "quiz": "Quiz",
+  "completed": "Completed ✓",
+  "complete_to_earn_xp": "Complete to earn +{{xp}} XP",
+  "back": "Back",
+  "reading": "Reading",
+  "mark_as_completed": "Mark as Completed",
+  "lesson_locked": "Lesson locked: {{title}}",
+  "open_lesson": "Open lesson: {{title}}"
+}

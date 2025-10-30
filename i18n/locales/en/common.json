@@ -1,0 +1,10 @@
+{
+  "nav": {
+    "explore": "Home",
+    "tracks": "Tracks",
+    "quiz": "Quiz",
+    "encyclopedia": "Encyclopedia",
+    "profile": "Profile",
+    "settings": "Settings"
+  }
+}

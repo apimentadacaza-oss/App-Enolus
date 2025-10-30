@@ -1,22 +1,26 @@
 
 import React from 'react';
 import type { Tab } from '../types';
-import { ExploreIcon, TracksIcon, QuizIcon, EncyclopediaIcon, ProfileIcon } from './icons/NavIcons';
+import { ExploreIcon, TracksIcon, QuizIcon, EncyclopediaIcon, ProfileIcon, SettingsIcon } from './icons/NavIcons';
+import { useTranslation } from 'react-i18next';
 
 interface BottomNavProps {
   activeTab: Tab;
   onTabChange: (tab: Tab) => void;
 }
 
-const navItems: { id: Tab; label: string; icon: React.FC<any> }[] = [
-  { id: 'explore', label: 'Início', icon: ExploreIcon },
-  { id: 'tracks', label: 'Trilhas', icon: TracksIcon },
-  { id: 'quiz', label: 'Quiz', icon: QuizIcon },
-  { id: 'encyclopedia', label: 'Enciclopédia', icon: EncyclopediaIcon },
-  { id: 'profile', label: 'Perfil', icon: ProfileIcon },
-];
-
 const BottomNav: React.FC<BottomNavProps> = ({ activeTab, onTabChange }) => {
+  const { t } = useTranslation('common');
+
+  const navItems: { id: Tab; label: string; icon: React.FC<any> }[] = [
+    { id: 'explore', label: t('nav.explore'), icon: ExploreIcon },
+    { id: 'tracks', label: t('nav.tracks'), icon: TracksIcon },
+    { id: 'quiz', label: t('nav.quiz'), icon: QuizIcon },
+    { id: 'encyclopedia', label: t('nav.encyclopedia'), icon: EncyclopediaIcon },
+    { id: 'profile', label: t('nav.profile'), icon: ProfileIcon },
+    { id: 'settings', label: t('nav.settings'), icon: SettingsIcon },
+  ];
+
   return (
     <footer className="fixed bottom-0 left-0 right-0 bg-white/80 backdrop-blur-sm shadow-[0_-2px_10px_rgba(0,0,0,0.05)] border-t border-velvet-gray z-30">
       <nav className="flex justify-around items-center max-w-2xl mx-auto h-[72px]">

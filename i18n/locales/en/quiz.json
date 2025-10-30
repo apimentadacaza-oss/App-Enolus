@@ -1,0 +1,26 @@
+{
+  "title": "Quiz Challenges",
+  "subtitle": "Choose a quiz and test your knowledge.",
+  "loading": "Loading quizzes...",
+  "load_error": "Could not load quizzes. Please try reloading the page.",
+  "question_load_error": "An error occurred while loading the question.",
+  "test_your_knowledge": "Test your knowledge.",
+  "question_progress": "Question {{current}} of {{total}}",
+  "score": "Score: {{score}}",
+  "confirm": "Confirm",
+  "next_question": "Next Question",
+  "view_result": "View Result",
+  "quiz_finished": "Quiz Finished!",
+  "achievement_unlocked": "🎉 Achievement Unlocked: {{achievement}}!",
+  "results_summary": "You answered {{score}} out of {{total}} questions correctly.",
+  "choose_another_quiz": "Choose another Quiz",
+  "banks": {
+    "intro": {
+      "title": "Intro Module",
+      "count": "{{count}} questions"
+    }
+  },
+  "actions": {
+    "start": "Start"
+  }
+}

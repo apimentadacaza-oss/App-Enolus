@@ -5,6 +5,7 @@ import TracksPage from './pages/Tracks';
 import QuizPage from './pages/Quiz';
 import EncyclopediaPage from './pages/Encyclopedia';
 import ProfilePage from './pages/Profile';
+import SettingsPage from './pages/Settings';
 import WelcomeScreen from './components/WelcomeScreen';
 import { useUserProgress } from './hooks/useUserProgress';
 import type { Tab } from './types';
@@ -14,6 +15,8 @@ const WELCOME_KEY = 'enolus_has_seen_welcome';
 const App: React.FC = () => {
   const [showWelcome, setShowWelcome] = useState<boolean>(true);
   const [activeTab, setActiveTab] = useState<Tab>('explore');
+  const [selectedArticleSlug, setSelectedArticleSlug] = useState<string | null>(null);
+  
   const { 
     progress, 
     addXp, 
@@ -22,7 +25,9 @@ const App: React.FC = () => {
     isLessonCompleted,
     isActivityCompleted,
     completeActivity,
-    setCurrentLessonId
+    setCurrentLessonId,
+    isArticleFavorite,
+    toggleFavoriteArticle,
   } = useUserProgress();
 
   useEffect(() => {
@@ -46,6 +51,11 @@ const App: React.FC = () => {
     setShowWelcome(false);
   };
   
+  const handleSelectFavoriteArticle = (slug: string) => {
+    setSelectedArticleSlug(slug);
+    setActiveTab('encyclopedia');
+  };
+  
   const renderContent = () => {
     switch (activeTab) {
       case 'explore':
@@ -64,15 +74,30 @@ const App: React.FC = () => {
       case 'quiz':
         return <QuizPage addXp={addXp} addAchievement={addAchievement} />;
       case 'encyclopedia':
-        return <EncyclopediaPage />;
+        return <EncyclopediaPage 
+                  isArticleFavorite={isArticleFavorite}
+                  toggleFavoriteArticle={toggleFavoriteArticle}
+                  selectedSlug={selectedArticleSlug}
+                  setSelectedSlug={setSelectedArticleSlug}
+                />;
       case 'profile':
-        return <ProfilePage progress={progress} addXp={addXp} addAchievement={addAchievement} />;
+        return <ProfilePage 
+                  progress={progress} 
+                  addXp={addXp} 
+                  addAchievement={addAchievement} 
+                  onSelectFavorite={handleSelectFavoriteArticle}
+                />;
+      case 'settings':
+        return <SettingsPage />;
       default:
         return <ExplorePage />;
     }
   };
   
   const handleTabChange = useCallback((tab: Tab) => {
+      if (tab !== 'encyclopedia') {
+        setSelectedArticleSlug(null);
+      }
       setActiveTab(tab);
   }, []);
 

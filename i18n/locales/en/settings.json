@@ -1,0 +1,15 @@
+{
+  "title": "Settings",
+  "subtitle": "Manage your application preferences.",
+  "language": {
+    "title": "Language",
+    "description": "Choose the language for the application interface.",
+    "pt": "Português",
+    "en": "English"
+  },
+  "coverage": {
+    "title": "Translation Coverage",
+    "description": "Status of translation for different app modules (PT-BR vs EN).",
+    "keys_translated": "{{ptKeys}} / {{enKeys}} keys translated"
+  }
+}

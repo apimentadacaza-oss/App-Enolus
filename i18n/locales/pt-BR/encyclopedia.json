@@ -1,0 +1,18 @@
+{
+    "title": "Enciclopédia do Vinho",
+    "subtitle": "Sua biblioteca de referência, sempre à mão.",
+    "search_placeholder": "Buscar termo... (ex: 'cabernet')",
+    "all_categories": "Todos",
+    "no_results": "Nenhum resultado encontrado para \"{{term}}\".",
+    "loading": "Carregando enciclopédia...",
+    "select_an_article": "Selecione um artigo para ler.",
+    "back_to_list": "Voltar à lista",
+    "loading_article": "Carregando artigo...",
+    "article_load_error": "Não foi possível carregar o artigo. Tente novamente.",
+    "fallback_notice_title": "Aviso de Tradução",
+    "fallback_notice_body": "Este artigo ainda não está disponível no seu idioma. Exibindo a versão em Português.",
+    "favorites": {
+      "add": "Adicionar aos favoritos",
+      "remove": "Remover dos favoritos"
+    }
+}

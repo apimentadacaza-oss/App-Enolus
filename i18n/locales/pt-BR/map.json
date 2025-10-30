@@ -1,0 +1,20 @@
+{
+  "title": "Trilhas de Aprendizado",
+  "subtitle": "Siga os caminhos do conhecimento e torne-se um mestre.",
+  "loading": "Carregando trilhas...",
+  "progress": "Progresso",
+  "back_to_map": "Voltar para o Mapa",
+  "choose_activity": "Escolha uma atividade para começar.",
+  "read": "Ler",
+  "listen": "Ouvir",
+  "pause_audio": "Pausar Áudio",
+  "watch": "Assistir",
+  "quiz": "Quiz",
+  "completed": "Concluído ✓",
+  "complete_to_earn_xp": "Concluir para ganhar +{{xp}} XP",
+  "back": "Voltar",
+  "reading": "Leitura",
+  "mark_as_completed": "Marcar como Concluído",
+  "lesson_locked": "Lição bloqueada: {{title}}",
+  "open_lesson": "Abrir lição: {{title}}"
+}

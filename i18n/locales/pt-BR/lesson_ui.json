@@ -1,0 +1,11 @@
+{
+  "title_with_icon": "{{title}}",
+  "subtitle": "Escolha uma atividade para começar.",
+  "actions": {
+    "read": "Ler",
+    "read_xp": "Conclua para ganhar +{{xp}} XP",
+    "listen": "Ouvir",
+    "listen_xp": "Conclua para ganhar +{{xp}} XP",
+    "back": "Voltar ao Mapa"
+  }
+}

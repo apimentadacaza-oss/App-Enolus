@@ -1,0 +1,4 @@
+{
+  "info": "This is an inventory of missing i18n keys. Run the `i18n-inventory` script to populate this file.",
+  "missing_keys": []
+}

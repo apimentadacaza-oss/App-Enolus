@@ -1,0 +1,26 @@
+{
+  "title": "Desafios de Quiz",
+  "subtitle": "Escolha um quiz e teste seus conhecimentos.",
+  "loading": "Carregando quizzes...",
+  "load_error": "Não foi possível carregar os quizzes. Tente recarregar a página.",
+  "question_load_error": "Ocorreu um erro ao carregar a pergunta.",
+  "test_your_knowledge": "Teste seus conhecimentos.",
+  "question_progress": "Pergunta {{current}} de {{total}}",
+  "score": "Pontuação: {{score}}",
+  "confirm": "Confirmar",
+  "next_question": "Próxima Pergunta",
+  "view_result": "Ver Resultado",
+  "quiz_finished": "Quiz Finalizado!",
+  "achievement_unlocked": "🎉 Conquista Desbloqueada: {{achievement}}!",
+  "results_summary": "Você acertou {{score}} de {{total}} perguntas.",
+  "choose_another_quiz": "Escolher outro Quiz",
+  "banks": {
+    "intro": {
+      "title": "Módulo Introdutório",
+      "count": "{{count}} perguntas"
+    }
+  },
+  "actions": {
+    "start": "Começar"
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "title": "Ajustes",
+  "subtitle": "Gerencie as preferências do seu aplicativo.",
+  "language": {
+    "title": "Idioma",
+    "description": "Escolha o idioma para a interface do aplicativo.",
+    "pt": "Português",
+    "en": "Inglês"
+  },
+  "coverage": {
+    "title": "Cobertura de Tradução",
+    "description": "Status da tradução para diferentes módulos do aplicativo (PT-BR vs EN).",
+    "keys_translated": "{{ptKeys}} / {{enKeys}} chaves traduzidas"
+  }
+}

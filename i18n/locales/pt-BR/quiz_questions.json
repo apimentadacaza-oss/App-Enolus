@@ -1,0 +1,126 @@
+{
+  "q_bank": {
+    "intro": {
+      "basics_q01": {
+        "stem": "Qual é o principal composto responsável pela cor dos vinhos tintos?",
+        "choices": {
+          "a": "Antocianinas",
+          "b": "Taninos",
+          "c": "Resveratrol",
+          "d": "Carotenoides"
+        },
+        "expl": "As antocianinas são pigmentos fenólicos encontrados na casca das uvas tintas e são responsáveis pela sua coloração rubi ou violácea."
+      },
+      "basics_q02": {
+        "stem": "Qual uva tinta elegante é a estrela da Borgonha, na França?",
+        "choices": {
+          "a": "Merlot",
+          "b": "Syrah",
+          "c": "Pinot Noir",
+          "d": "Gamay"
+        },
+        "expl": "A Pinot Noir é famosa por produzir os vinhos tintos mais cobiçados da Borgonha, conhecidos por sua elegância e complexidade."
+      },
+      "basics_q03": {
+        "stem": "Qual é o papel principal da fermentação na vinificação?",
+        "choices": {
+          "a": "Clarificar o vinho",
+          "b": "Converter açúcar em álcool",
+          "c": "Adicionar sabores de carvalho",
+          "d": "Esfriar o suco da uva"
+        },
+        "expl": "As leveduras consomem o açúcar presente no suco da uva (mosto) e o convertem em álcool e dióxido de carbono, o processo fundamental da vinificação."
+      },
+      "basics_q04": {
+        "stem": "Quais são os três passos principais na degustação de vinhos?",
+        "choices": {
+          "a": "Visual, Olfativo, Gustativo",
+          "b": "Gelar, Abrir, Servir",
+          "c": "Comprar, Armazenar, Servir",
+          "d": "Girar, Cheirar, Cuspir"
+        },
+        "expl": "O método profissional para degustar vinhos envolve analisar sua aparência (Visual), seus aromas (Olfativo) e seus sabores e textura (Gustativo)."
+      },
+      "basics_q05": {
+        "stem": "Qual uva branca é famosa por seus aromas vibrantes, herbáceos e cítricos?",
+        "choices": {
+          "a": "Chardonnay",
+          "b": "Pinot Grigio",
+          "c": "Riesling",
+          "d": "Sauvignon Blanc"
+        },
+        "expl": "A Sauvignon Blanc é renomada por sua alta acidez e perfil aromático, frequentemente com notas de maracujá, limão e grama cortada."
+      },
+      "basics_q06": {
+        "stem": "Qual sensação os taninos causam principalmente na boca?",
+        "choices": {
+          "a": "Doçura",
+          "b": "Secura ou adstringência",
+          "c": "Acidez",
+          "d": "Amargor"
+        },
+        "expl": "Taninos são compostos que se ligam às proteínas da sua saliva, criando uma sensação de secura na boca, crucial para a estrutura do vinho tinto."
+      },
+      "basics_q07": {
+        "stem": "Qual o principal propósito de envelhecer vinhos em barris de carvalho?",
+        "choices": {
+          "a": "Torná-lo mais alcoólico",
+          "b": "Filtrar o vinho",
+          "c": "Adicionar complexidade, aromas e textura",
+          "d": "Deixá-lo mais tinto"
+        },
+        "expl": "Barris de carvalho permitem uma lenta oxigenação e conferem sabores como baunilha, especiarias e tosta, adicionando camadas de complexidade e suavizando a textura do vinho."
+      },
+      "basics_q08": {
+        "stem": "Malbec é a uva tinta emblemática de qual país?",
+        "choices": {
+          "a": "Argentina",
+          "b": "Chile",
+          "c": "Espanha",
+          "d": "África do Sul"
+        },
+        "expl": "Embora originária da França, a Malbec encontrou sua expressão mais famosa em Mendoza, Argentina, produzindo vinhos ricos e de frutas escuras."
+      },
+      "basics_q09": {
+        "stem": "A que se refere o termo francês 'terroir'?",
+        "choices": {
+          "a": "Ao tipo de uva",
+          "b": "À marca da vinícola",
+          "c": "À idade do vinho",
+          "d": "Ao ambiente natural completo (solo, clima, etc.)"
+        },
+        "expl": "'Terroir' engloba todos os fatores ambientais de um vinhedo que dão ao vinho seu caráter único, seu 'senso de lugar'."
+      },
+      "basics_q10": {
+        "stem": "Por que giramos o vinho na taça antes de cheirá-lo?",
+        "choices": {
+          "a": "Para aquecê-lo",
+          "b": "Para liberar seus compostos aromáticos",
+          "c": "É apenas por exibição",
+          "d": "Para verificar se há sedimentos"
+        },
+        "expl": "Girar o vinho aumenta sua área de superfície e incorpora oxigênio, o que ajuda a volatilizar e liberar os aromas complexos para que você possa senti-los."
+      },
+      "basics_q11": {
+        "stem": "Uma harmonização clássica para um vinho branco fresco e de alta acidez como o Sauvignon Blanc é...",
+        "choices": {
+          "a": "Um bolo de chocolate denso",
+          "b": "Um bife grelhado",
+          "c": "Ostras ou queijo de cabra",
+          "d": "Um curry apimentado"
+        },
+        "expl": "A alta acidez do Sauvignon Blanc corta a gordura do queijo de cabra e complementa perfeitamente o caráter salino das ostras."
+      },
+      "basics_q12": {
+        "stem": "Qual é a principal diferença entre a produção de vinho tinto e vinho branco?",
+        "choices": {
+          "a": "O tinto fermenta com as cascas da uva, o branco não",
+          "b": "O tinto usa mais açúcar",
+          "c": "O branco sempre envelhece em tanques de aço",
+          "d": "Não há grande diferença"
+        },
+        "expl": "No vinho tinto, o suco fermenta em contato com as cascas da uva, o que confere cor, taninos e sabor. Na maioria dos brancos, o suco é separado das cascas antes da fermentação."
+      }
+    }
+  }
+}
