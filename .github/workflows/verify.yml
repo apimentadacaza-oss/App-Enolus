@@ -1,0 +1,40 @@
+# .github/workflows/verify.yml
+name: Verify Build and Linting
+
+on:
+  push:
+    branches: [ main ] # Or your primary branch
+  pull_request:
+    branches: [ main ] # Or your primary branch
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [18.x] # Use a specific LTS version
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
+    - name: Set up Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v4
+      with:
+        node-version: ${{ matrix.node-version }}
+        cache: 'npm'
+
+    - name: Install dependencies
+      run: npm ci
+
+    - name: Generate i18n types
+      run: npm run i18n:types
+
+    - name: Run linter
+      run: npm run lint
+
+    - name: Run TypeScript check
+      # Assumes `tsc` is available via `typescript` in devDependencies
+      # and a `tsconfig.json` is present.
+      run: npx tsc --noEmit

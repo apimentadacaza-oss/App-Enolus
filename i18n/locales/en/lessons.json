@@ -1,0 +1,33 @@
+{
+  "what_is_wine": {
+    "title": "What is Wine?",
+    "sections": [
+      {
+        "heading": "What is Wine?",
+        "paragraphs": [
+          "Wine is, above all, nature expressed through human craftsmanship.",
+          "It is not born in a lab, nor is it the result of mere chance.",
+          "It emerges from a precise meeting of soil, climate, grape, and time.",
+          "An alchemy that has crossed millennia."
+        ]
+      },
+      {
+        "heading": "The Vine and Terroir",
+        "paragraphs": [
+          "Everything begins in the vineyard.",
+          "Each grape variety responds differently to sun, rain, soil type, and altitude.",
+          "These factors, which we call terroir, shape a wine’s character even before harvest.",
+          "Limestone tends to yield more mineral wines; clay-rich soils often produce fuller, denser reds."
+        ]
+      },
+      {
+        "heading": "Fermentation",
+        "paragraphs": [
+          "Once the grapes are ripe, the winemaker chooses the right moment to harvest.",
+          "The fruit is pressed and the juice — the must — begins to ferment.",
+          "Yeasts transform sugar into alcohol and create complex, unique, and unrepeatable aromas."
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "id": "intro",
+  "titleKey": "banks.intro.title",
+  "questions": [
+    { "id": "basics_q01", "correct": "a", "choices": ["a", "b", "c", "d"] },
+    { "id": "basics_q02", "correct": "c", "choices": ["a", "b", "c", "d"] },
+    { "id": "basics_q03", "correct": "b", "choices": ["a", "b", "c", "d"] },
+    { "id": "basics_q04", "correct": "a", "choices": ["a", "b", "c", "d"] },
+    { "id": "basics_q05", "correct": "d", "choices": ["a", "b", "c", "d"] },
+    { "id": "basics_q06", "correct": "b", "choices": ["a", "b", "c", "d"] },
+    { "id": "basics_q07", "correct": "c", "choices": ["a", "b", "c", "d"] },
+    { "id": "basics_q08", "correct": "a", "choices": ["a", "b", "c", "d"] },
+    { "id": "basics_q09", "correct": "d", "choices": ["a", "b", "c", "d"] },
+    { "id": "basics_q10", "correct": "b", "choices": ["a", "b", "c", "d"] },
+    { "id": "basics_q11", "correct": "c", "choices": ["a", "b", "c", "d"] },
+    { "id": "basics_q12", "correct": "a", "choices": ["a", "b", "c", "d"] }
+  ]
+}

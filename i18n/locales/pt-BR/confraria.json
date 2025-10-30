@@ -1,0 +1,161 @@
+{
+  "title": "Confraria Enolus",
+  "subtitle": "Sua jornada entre taças, saberes e conquistas.",
+  "stats": {
+    "current_patent": "Patente Atual",
+    "accumulated_wisdom": "Sabedoria Acumulada",
+    "completed_rites": "Ritos Completos"
+  },
+  "progress_bar": {
+    "label": "{{currentXp}} / {{nextXp}} XP para a próxima patente.",
+    "max_level": "Você alcançou a patente máxima!"
+  },
+  "patents": {
+    "title": "Patentes da Confraria",
+    "subtitle": "Continue sua jornada para alcançar o título de {{nextPatentName}}.",
+    "subtitle_max": "Continue sua jornada para alcançar o título de Grão-Sommelier.",
+    "tooltip": {
+      "current": "Sua patente atual",
+      "owned": "Patente conquistada",
+      "locked": "Requer {{xp}} XP"
+    },
+    "achievement_title": "Conquistas da Patente",
+    "locked_aria_label": "Bloqueada",
+    "unlocked_aria_label": "Desbloqueada",
+    "open_details_aria": "Abrir detalhes da patente {{patentName}}",
+    "locked_details_aria": "Patente bloqueada: {{patentName}}"
+  },
+  "circles": {
+    "title": "Círculos da Confraria",
+    "subtitle": "Encontre seu círculo e conecte-se com confrades do mesmo grau.",
+    "open_aria": "Abrir Círculo: {{circleName}}",
+    "locked_aria": "Círculo bloqueado: {{circleName}}",
+    "locked_label": "BLOQUEADO"
+  },
+  "ranking": {
+    "title": "Salão dos Confrades",
+    "subtitle": "Os confrades mais ativos desta safra.",
+    "you": "Você"
+  },
+  "achievements": {
+    "title": "📜 Conquistas Cerimoniais",
+    "empty": "Continue sua jornada para desbloquear conquistas!"
+  },
+  "favorites": {
+    "title": "Artigos Favoritos",
+    "empty": "Você ainda não favoritou nenhum artigo. Explore a Enciclopédia para salvar seus preferidos!"
+  },
+  "footer": {
+    "quote": "“O vinho ensina, o tempo revela.”",
+    "author": "— Dom Sommelius"
+  },
+  "circle_detail": {
+    "back_to_guild": "Voltar à Confraria",
+    "locked_title": "Círculo Bloqueado",
+    "locked_body": "Este círculo será revelado quando você alcançar a patente de",
+    "locked_cta": "Voltar à Confraria",
+    "purpose_title": "Propósito do Círculo",
+    "rites_title": "Desafios e Ritos Atuais",
+    "rites_empty": "Novos ritos serão revelados em breve...",
+    "members_title": "Confrades do Círculo",
+    "start_rite": "Iniciar Rito →",
+    "footer_quote": "\"Aqui, o vinho se torna palavra, e a palavra se torna amizade.\""
+  },
+  "rite_detail": {
+    "back_to_circle": "Voltar ao Círculo",
+    "steps_title": "Etapas do Rito",
+    "log_title": "Registro Sensorial",
+    "log_color_label": "Cor do Vinho",
+    "log_aroma_label": "Aroma Predominante",
+    "log_notes_label": "Observações Pessoais",
+    "log_notes_placeholder": "Notas de degustação, impressões...",
+    "cta_complete": "Salvar e Concluir Rito",
+    "cta_disabled": "Complete todas as etapas para salvar"
+  },
+  "rite_success_modal": {
+    "title": "Rito Concluído",
+    "subtitle": "+{{xp}} Sabedoria Acumulada",
+    "body": "Seu cálice se enche de sabedoria. O tempo agora habita em sua taça.",
+    "cta": "Brindar e Voltar à Confraria"
+  },
+  "patent_detail_modal": {
+    "close_aria": "Fechar modal",
+    "rites_title": "Ritos Dominados",
+    "rites_empty": "Os ritos que levaram a esta conquista serão revelados em breve."
+  },
+  "ritual": {
+    "start": "Iniciar Rito",
+    "in_progress": "Rito em progresso...",
+    "completed": "Parabéns! Você completou o rito e ganhou a patente de nível {{level}}.",
+    "failed": "O rito não pôde ser concluído. Por favor, tente novamente."
+  },
+  "errors": {
+    "generic": "Ocorreu um erro inesperado. Por favor, tente novamente mais tarde.",
+    "network": "Não foi possível conectar. Por favor, verifique sua conexão com a internet."
+  },
+  "data": {
+    "patents": {
+      "p1": { "name": "Aprendiz da Videira", "phrase": "Primeiros passos na arte do vinho." },
+      "p2": { "name": "Discípulo do Cálice", "phrase": "O aroma revela o que a alma entende." },
+      "p3": { "name": "Guardião do Aroma", "phrase": "Zela pelos segredos da taça." },
+      "p4": { "name": "Iniciado do Terroir", "phrase": "O solo ensina, o tempo aperfeiçoa." },
+      "p5": { "name": "Custódio da Safra", "phrase": "A paciência é o melhor vinho." },
+      "p6": { "name": "Sábio da Fermentação", "phrase": "Transforma o fruto em essência." },
+      "p7": { "name": "Cavaleiro da Taça", "phrase": "Defende o saber e honra a mesa." },
+      "p8": { "name": "Curador do Cálice", "phrase": "A luz da taça guia os confrades." },
+      "p9": { "name": "Guardião das Castas", "phrase": "Conhece o vinho como um irmão." },
+      "p10": { "name": "Mestre da Harmonização", "phrase": "Une sabores, tempos e pessoas." },
+      "p11": { "name": "Enólogo da Palavra", "phrase": "Ensina com a taça, fala com o tempo." },
+      "p12": { "name": "Sommelier do Tempo", "phrase": "Cada gole é um instante eterno." },
+      "p13": { "name": "Embaixador do Vinho", "phrase": "Leva o nome da Confraria ao mundo." },
+      "p14": { "name": "Grão-Sommelier da Ordem", "phrase": "Mestre eterno do vinho e da sabedoria." }
+    },
+    "circles": {
+      "c1": { "name": "Círculo da Videira", "description": "Iniciantes da arte do vinho, descobrindo uvas e aromas.", "ritual": "Toda taça começa na raiz." },
+      "c2": { "name": "Círculo do Cálice", "description": "Adeptos do paladar e da fermentação.", "ritual": "A taça é a mestra da paciência." },
+      "c3": { "name": "Círculo do Terroir", "description": "Confrades que exploram as regiões e a origem do vinho.", "ritual": "O solo guarda a memória do tempo." },
+      "c4": { "name": "Círculo da Mesa", "description": "Mestres da harmonização e cultura da mesa.", "ritual": "Onde o vinho e o pão se tornam celebração." },
+      "c5": { "name": "Círculo dos Mestres", "description": "Guardiões do saber, mentores e embaixadores da Confraria.", "ritual": "O vinho é eterno, e o saber também." }
+    },
+    "rites": {
+        "c1_r1": {
+          "title": "Rito da Uva", "description": "Descubra as principais castas tintas e brancas.",
+          "phrase": "A essência do vinho nasce na fruta que o tempo escolhe.",
+          "intro": "Neste rito, você conhecerá as principais castas tintas e brancas, compreendendo como cada uva guarda uma personalidade única. Observe, compare, deguste e registre suas percepções — o vinho é a voz da terra.",
+          "step1_title": "As Uvas Tintas", "step1_desc": "Aprenda as principais variedades e suas características: Cabernet Sauvignon, Merlot e Pinot Noir.",
+          "step2_title": "As Uvas Brancas", "step2_desc": "Descubra aromas e notas de Chardonnay, Sauvignon Blanc e Riesling.",
+          "step3_title": "Registro Sensorial", "step3_desc": "Escolha um vinho de uma das uvas estudadas e anote suas impressões."
+        },
+        "c1_r2": {
+          "title": "Rito do Cálice", "description": "Aprenda a segurar, girar e sentir o vinho.",
+          "phrase": "O cálice é o altar onde o vinho se revela.",
+          "intro": "A forma como interagimos com a taça transforma a degustação. Este rito ensina os gestos fundamentais para liberar os aromas e preparar o paladar para a experiência completa.",
+          "step1_title": "A Pega Correta", "step1_desc": "Entenda por que seguramos a taça pela haste e pratique a postura correta.",
+          "step2_title": "O Giro Ritualístico", "step2_desc": "Aprenda a girar o vinho na taça para oxigená-lo e liberar seus aromas complexos.",
+          "step3_title": "Análise Visual", "step3_desc": "Incline a taça contra um fundo branco e observe a cor, a limpidez e as lágrimas do vinho."
+        },
+        "c1_r3": {
+          "title": "Rito do Aroma", "description": "Identifique notas florais e frutadas em uma degustação guiada.",
+          "phrase": "Cada aroma é uma memória esperando para ser despertada.",
+          "intro": "O nariz é o nosso portal para a complexidade do vinho. Neste rito, treinaremos o olfato para identificar as famílias de aromas primários, aqueles que vêm diretamente da uva.",
+          "step1_title": "Aromas Primários", "step1_desc": "Conheça a roda de aromas e as principais categorias: frutas, flores e ervas.",
+          "step2_title": "Degustação Cega", "step2_desc": "Com um vinho em mãos, feche os olhos e tente identificar pelo menos três aromas distintos.",
+          "step3_title": "Anotação Olfativa", "step3_desc": "Use a seção de registro para descrever os aromas que você encontrou."
+        },
+        "c2_r1": {
+          "title": "Rito da Fermentação", "description": "Entenda como o açúcar se transforma em álcool e sabor.",
+          "phrase": "A magia acontece no silêncio da adega.",
+          "intro": "A fermentação é o coração da vinificação. Vamos explorar como as leveduras trabalham para criar a bebida que amamos.",
+          "step1_title": "Leveduras", "step1_desc": "Entenda o papel das leveduras.",
+          "step2_title": "Temperatura", "step2_desc": "Veja como a temperatura afeta o resultado."
+        },
+        "c2_r2": {
+            "title": "Rito do Carvalho", "description": "Compare um vinho maturado em carvalho com um sem.",
+            "phrase": "A madeira ensina ao vinho a sabedoria do tempo.",
+            "intro": "O carvalho é mais que um recipiente; é um ingrediente. Descubra os aromas e texturas que ele confere ao vinho.",
+            "step1_title": "Tipos de Carvalho", "step1_desc": "Francês vs. Americano.",
+            "step2_title": "Níveis de Tosta", "step2_desc": "Como a queima da madeira impacta o sabor."
+        }
+    }
+  }
+}

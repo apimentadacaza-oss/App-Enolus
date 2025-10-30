@@ -1,9 +1,10 @@
-
-
 import React, { useState, useEffect, useMemo, useCallback, useRef } from 'react';
 import ReactDOM from 'react-dom';
 import type { Level, Module, Lesson, UserProgress, TrailNode, UnlockRule } from '../types';
 import { resolveMedia, resolveText } from '../utils/assetResolver';
+import { tLessonTitle } from '../i18n';
+import { useTranslation } from 'react-i18next';
+import i18n from '../i18n/i18n';
 
 // Due to platform constraints, Lottie and Marked are loaded from CDN in index.html
 declare const lottie: any;
@@ -36,6 +37,7 @@ interface JourneyMapProps extends TracksPageProps {
 
 // --- MAIN PAGE COMPONENT ---
 const TracksPage: React.FC<TracksPageProps> = (props) => {
+  const { t } = useTranslation(['map', 'tracks']);
   const [levels, setLevels] = useState<Level[]>([]);
   const [expandedLevel, setExpandedLevel] = useState<string | null>(null);
   const [expandedModule, setExpandedModule] = useState<string | null>(null);
@@ -108,24 +110,24 @@ const TracksPage: React.FC<TracksPageProps> = (props) => {
   if (loading) {
     return (
         <div className="flex justify-center items-center h-full pt-20">
-            <p className="text-soft-graphite/70 text-lg">Carregando trilhas...</p>
+            <p className="text-soft-graphite/70 text-lg">{t('map:loading')}</p>
         </div>
     );
   }
 
   return (
-    <div className="animate-fade-in space-y-6">
+    <div key={i18n.language} className="animate-fade-in space-y-6">
       <header>
-        <h1 className="font-serif text-4xl text-vinifero-purple">Trilhas de Aprendizado</h1>
-        <p className="mt-1 text-lg text-soft-graphite/80">Siga os caminhos do conhecimento e torne-se um mestre.</p>
+        <h1 className="font-serif text-4xl text-vinifero-purple">{t('tracks:title')}</h1>
+        <p className="mt-1 text-lg text-soft-graphite/80">{t('tracks:subtitle')}</p>
       </header>
 
       {levels.map(level => (
         <div key={level.id} className="bg-white p-6 rounded-xl shadow-lg border border-velvet-gray/50">
           <button onClick={() => toggleLevel(level.id)} className="w-full text-left flex justify-between items-center">
             <div>
-              <h2 className="font-serif text-2xl text-vinifero-purple">{level.title}</h2>
-              <p className="text-soft-graphite/70 mt-1">{level.description}</p>
+              <h2 className="font-serif text-2xl text-vinifero-purple">{level.id === 'level-1' ? t('tracks:level1.title') : level.title}</h2>
+              <p className="text-soft-graphite/70 mt-1">{level.id === 'level-1' ? t('tracks:level1.subtitle') : level.description}</p>
             </div>
             <svg className={`w-8 h-8 transform transition-transform text-vinifero-purple ${expandedLevel === level.id ? 'rotate-180' : ''}`} fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
@@ -150,12 +152,12 @@ const TracksPage: React.FC<TracksPageProps> = (props) => {
                     className="w-full text-left p-4 bg-champagne-light/50 hover:bg-velvet-gray/50 transition flex justify-between items-center"
                   >
                     <div className="flex-grow pr-4">
-                      <h3 className="font-semibold text-lg text-vinifero-purple">{module.title}</h3>
+                      <h3 className="font-semibold text-lg text-vinifero-purple">{module.id === 'module-1-1' ? t('tracks:module1.title') : module.title}</h3>
                       <p className="text-sm text-soft-graphite/60 mb-2">{module.description}</p>
 
                       <div className="w-full">
                         <div className="flex justify-between items-center text-xs font-medium text-soft-graphite/70 mb-1">
-                          <span className="font-semibold">Progresso</span>
+                          <span className="font-semibold">{t('map:progress')}</span>
                           <span>{completedLessonsInModule} / {totalLessonsInModule}</span>
                         </div>
                         <div className="w-full bg-velvet-gray/50 rounded-full h-1.5">
@@ -183,7 +185,7 @@ const TracksPage: React.FC<TracksPageProps> = (props) => {
                                   {isCompleted && <svg className="w-4 h-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" /></svg>}
                                 </div>
                                 <div>
-                                  <p className={`font-medium ${isCompleted ? 'text-soft-graphite/50 line-through' : 'text-soft-graphite'}`}>{lesson.title}</p>
+                                  <p className={`font-medium ${isCompleted ? 'text-soft-graphite/50 line-through' : 'text-soft-graphite'}`}>{tLessonTitle(lesson.id)}</p>
                                   <span className="text-xs text-aged-gold font-semibold">{lesson.xp} XP</span>
                                 </div>
                               </div>
@@ -215,6 +217,7 @@ const JourneyMap: React.FC<JourneyMapProps> = (props) => {
     const [activeLesson, setActiveLesson] = useState<Lesson | null>(null);
     const lottieRef = useRef<HTMLDivElement>(null);
     const anim = useRef<any>(null);
+    const { t } = useTranslation(['map', 'tracks']);
 
     useEffect(() => {
         const metaMap = module.lessons.reduce((acc, lesson) => {
@@ -292,7 +295,7 @@ const JourneyMap: React.FC<JourneyMapProps> = (props) => {
 
     return (
         <div className="border border-velvet-gray rounded-lg p-4 bg-champagne-light/50">
-             <h3 className="font-semibold text-lg text-vinifero-purple mb-2">{module.title}</h3>
+             <h3 className="font-semibold text-lg text-vinifero-purple mb-2">{module.id === 'module-1-1' ? t('tracks:module1.title') : module.title}</h3>
             <div className="relative w-full aspect-[4/3] max-w-xl mx-auto">
                 <TrailMapSvg />
                 {lessonNodes.map(node => (
@@ -319,6 +322,7 @@ const JourneyMap: React.FC<JourneyMapProps> = (props) => {
 };
 
 const LessonNode: React.FC<{ node: any; onClick: () => void | Promise<void> }> = ({ node, onClick }) => {
+    const { t } = useTranslation('map');
     const isLocked = node.state === 'locked';
     let bgClass = 'bg-aged-gold/20 border-aged-gold';
     let textClass = 'text-aged-gold';
@@ -330,6 +334,8 @@ const LessonNode: React.FC<{ node: any; onClick: () => void | Promise<void> }> =
         textClass = 'text-soft-graphite/50';
     }
     
+    const title = tLessonTitle(node.lesson.id);
+
     return (
          <div 
             className="absolute transform -translate-x-1/2 -translate-y-1/2"
@@ -339,16 +345,26 @@ const LessonNode: React.FC<{ node: any; onClick: () => void | Promise<void> }> =
                 onClick={onClick}
                 disabled={isLocked}
                 className={`w-20 h-20 rounded-full flex flex-col items-center justify-center text-center p-1 border-2 transition-transform duration-200 ${bgClass} ${!isLocked && 'hover:scale-110 active:scale-100'} ${node.lesson.id === node.progress?.currentLessonId ? 'journey-pulse' : ''}`}
-                aria-label={isLocked ? `Lição bloqueada: ${node.lesson.title}` : `Abrir lição: ${node.lesson.title}`}
+                aria-label={isLocked ? t('lesson_locked', { title }) : t('open_lesson', { title })}
             >
                 <span className="text-2xl">{node.state === 'done' ? '✔' : node.state === 'locked' ? '🔒' : node.lesson.icon}</span>
-                <span className={`text-xs font-semibold leading-tight mt-1 ${textClass}`}>{node.lesson.title}</span>
+                <span className={`text-xs font-semibold leading-tight mt-1 ${textClass}`}>{title}</span>
             </button>
         </div>
     )
 }
 
+function stripLeadingMarkdownTitle(s: string | null | undefined): string {
+    if (!s) return '';
+    const lines = s.split(/\r?\n/);
+    if (lines.length > 0 && /^\s*#\s+/.test(lines[0])) {
+        lines.shift();
+    }
+    return lines.join('\n').trimStart();
+}
+
 const LessonHubModal = ({ lesson, onClose, onActivityComplete, isActivityCompleted }: { lesson: Lesson; onClose: () => void; onActivityComplete: (lesson: Lesson, activity: any) => void; isActivityCompleted: (activityId: string) => boolean; }) => {
+    const { t } = useTranslation(['lesson_ui', 'map']);
     const [view, setView] = useState<'hub' | 'reader'>('hub');
     const [isPlaying, setIsPlaying] = useState(false);
     const audioRef = useRef<HTMLAudioElement | null>(null);
@@ -393,6 +409,10 @@ const LessonHubModal = ({ lesson, onClose, onActivityComplete, isActivityComplet
         if (type === 'read') action = () => setView('reader');
         if (type === 'listen') action = handleListenClick;
 
+        const xpTextKey = (type === 'read' || type === 'listen')
+          ? `lesson_ui:actions.${type}_xp`
+          : 'map:complete_to_earn_xp';
+
         return (
             <button
                 onClick={action}
@@ -402,13 +422,13 @@ const LessonHubModal = ({ lesson, onClose, onActivityComplete, isActivityComplet
                     ? 'bg-green-100 text-green-800' 
                     : 'bg-white hover:bg-velvet-gray/30'
                 }`}
-                aria-label={`${title}: ${isDone ? 'Concluído' : `Ganhe +${activity.xp} XP`}`}
+                aria-label={`${title}: ${isDone ? t('map:completed') : t(xpTextKey as any, { xp: activity.xp })}`}
             >
                 <span className="text-3xl mr-4">{icon}</span>
                 <div className="flex-grow">
                     <p className="font-semibold text-lg text-vinifero-purple">{title}</p>
                     <p className={`text-sm ${isDone ? 'text-green-700' : 'text-aged-gold'}`}>
-                        {isDone ? 'Concluído ✓' : `Concluir para ganhar +${activity.xp} XP`}
+                        {isDone ? t('map:completed') : t(xpTextKey as any, { xp: activity.xp })}
                     </p>
                 </div>
                 {!isDone && <span className="text-2xl text-aged-gold">›</span>}
@@ -416,8 +436,28 @@ const LessonHubModal = ({ lesson, onClose, onActivityComplete, isActivityComplet
         )
     }
     
-    const textContent = view === 'reader' ? resolveText(lesson.id) : null;
-    const parsedContent = textContent ? marked.parse(textContent) : null;
+    const readerContent = useMemo(() => {
+        if (view !== 'reader') return { type: 'empty' as const, content: null };
+
+        if (lesson.id === '1_oque-e-vinho') {
+            const text = resolveText(lesson.id);
+            return { type: 'pre-wrap' as const, content: text };
+        }
+
+        const rawMarkdown = lesson.activities?.read?.content;
+        const bodyContent = stripLeadingMarkdownTitle(rawMarkdown);
+        
+        if (!bodyContent) {
+            return { type: 'empty' as const, content: null };
+        }
+        
+        return {
+            type: 'html' as const,
+            content: marked.parse(bodyContent),
+        };
+    }, [view, lesson, i18n.language]);
+    
+    const headerTitle = tLessonTitle(lesson.id);
 
     return ReactDOM.createPortal(
         <>
@@ -430,17 +470,17 @@ const LessonHubModal = ({ lesson, onClose, onActivityComplete, isActivityComplet
                         <>
                             <header className="text-center mb-6">
                                 <span className="text-5xl">{lesson.icon}</span>
-                                <h2 className="font-serif text-3xl text-vinifero-purple mt-2">{lesson.title}</h2>
-                                <p className="text-soft-graphite/70">Escolha uma atividade para começar.</p>
+                                <h2 className="font-serif text-3xl text-vinifero-purple mt-2">{headerTitle}</h2>
+                                <p className="text-soft-graphite/70">{t('lesson_ui:subtitle')}</p>
                             </header>
                             <div className="space-y-3 mb-6">
-                                <ActivityCard type="read" icon="📝" title="Ler" />
-                                <ActivityCard type="listen" icon="🎧" title={isPlaying ? 'Pausar Áudio' : 'Ouvir'} />
-                                <ActivityCard type="watch" icon="▶️" title="Assistir" />
-                                <ActivityCard type="quiz" icon="❓" title="Quiz" />
+                                <ActivityCard type="read" icon="📝" title={t('lesson_ui:actions.read')} />
+                                <ActivityCard type="listen" icon="🎧" title={t('lesson_ui:actions.listen')} />
+                                <ActivityCard type="watch" icon="▶️" title={t('map:watch')} />
+                                <ActivityCard type="quiz" icon="❓" title={t('map:quiz')} />
                             </div>
                             <button onClick={onClose} className="w-full bg-vinifero-purple text-white font-bold py-3 px-5 rounded-lg hover:bg-opacity-90 mt-auto">
-                                Voltar para o Mapa
+                                {t('lesson_ui:actions.back')}
                             </button>
                         </>
                     )}
@@ -450,13 +490,20 @@ const LessonHubModal = ({ lesson, onClose, onActivityComplete, isActivityComplet
                             <header className="flex items-center justify-between mb-4">
                                <button onClick={() => setView('hub')} className="text-vinifero-purple font-semibold flex items-center">
                                  <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" /></svg>
-                                 Voltar
+                                 {t('map:back')}
                                </button>
-                               <h2 className="font-serif text-xl text-vinifero-purple">Leitura</h2>
+                               <h2 className="font-serif text-xl text-vinifero-purple text-center flex-1 px-2 truncate">{headerTitle}</h2>
                                <div className="w-16"></div>
                             </header>
                             <div className="flex-grow overflow-y-auto pr-2 -mr-2 lesson-reader-view">
-                               {parsedContent && <div className="prose max-w-none" dangerouslySetInnerHTML={{ __html: parsedContent }} />}
+                               {readerContent.type === 'pre-wrap' && (
+                                   <div className="prose max-w-none" style={{ whiteSpace: 'pre-wrap' }}>
+                                       {readerContent.content}
+                                   </div>
+                               )}
+                               {readerContent.type === 'html' && readerContent.content && (
+                                   <div className="prose max-w-none" dangerouslySetInnerHTML={{ __html: readerContent.content }} />
+                               )}
                             </div>
                             <div className="mt-6 pt-4 border-t border-velvet-gray">
                                 <button
@@ -466,7 +513,7 @@ const LessonHubModal = ({ lesson, onClose, onActivityComplete, isActivityComplet
                                     }}
                                     className="w-full bg-aged-gold text-white font-bold py-3 px-5 rounded-lg hover:bg-opacity-90"
                                 >
-                                    Marcar como Concluído
+                                    {t('map:mark_as_completed')}
                                 </button>
                             </div>
                          </div>

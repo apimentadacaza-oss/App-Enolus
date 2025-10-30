@@ -1,0 +1,18 @@
+{
+    "title": "Wine Encyclopedia",
+    "subtitle": "Your reference library, always at hand.",
+    "search_placeholder": "Search term... (e.g., 'cabernet')",
+    "all_categories": "All",
+    "no_results": "No results found for \"{{term}}\".",
+    "loading": "Loading encyclopedia...",
+    "select_an_article": "Select an article to read.",
+    "back_to_list": "Back to list",
+    "loading_article": "Loading article...",
+    "article_load_error": "Could not load the article. Please try again.",
+    "fallback_notice_title": "Translation Notice",
+    "fallback_notice_body": "This article is not yet available in your language. Showing the Portuguese version.",
+    "favorites": {
+      "add": "Add to favorites",
+      "remove": "Remove from favorites"
+    }
+}

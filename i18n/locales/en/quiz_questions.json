@@ -1,0 +1,126 @@
+{
+  "q_bank": {
+    "intro": {
+      "basics_q01": {
+        "stem": "What is the main compound responsible for the color of red wines?",
+        "choices": {
+          "a": "Anthocyanins",
+          "b": "Tannins",
+          "c": "Resveratrol",
+          "d": "Carotenoids"
+        },
+        "expl": "Anthocyanins are phenolic pigments found in the skins of red grapes and are responsible for their ruby or violet coloring."
+      },
+      "basics_q02": {
+        "stem": "Which elegant red grape is the star of Burgundy, France?",
+        "choices": {
+          "a": "Merlot",
+          "b": "Syrah",
+          "c": "Pinot Noir",
+          "d": "Gamay"
+        },
+        "expl": "Pinot Noir is famous for producing the highly sought-after red wines of Burgundy, known for their elegance and complexity."
+      },
+      "basics_q03": {
+        "stem": "What is the primary role of fermentation in winemaking?",
+        "choices": {
+          "a": "To clarify the wine",
+          "b": "To convert sugar into alcohol",
+          "c": "To add oak flavors",
+          "d": "To cool down the grape juice"
+        },
+        "expl": "Yeast consumes the sugar present in grape juice (must) and converts it into alcohol and carbon dioxide, the fundamental process of winemaking."
+      },
+      "basics_q04": {
+        "stem": "What are the three main steps in wine tasting?",
+        "choices": {
+          "a": "Visual, Olfactory, Gustatory (See, Smell, Taste)",
+          "b": "Chill, Open, Pour",
+          "c": "Buy, Store, Serve",
+          "d": "Swirl, Sniff, Spit"
+        },
+        "expl": "The professional method for tasting wine involves analyzing its appearance (Visual), its aromas (Olfactory), and its flavors and texture (Gustatory)."
+      },
+      "basics_q05": {
+        "stem": "Which white grape is famous for its vibrant, grassy, and citrusy aromas?",
+        "choices": {
+          "a": "Chardonnay",
+          "b": "Pinot Grigio",
+          "c": "Riesling",
+          "d": "Sauvignon Blanc"
+        },
+        "expl": "Sauvignon Blanc is renowned for its high acidity and aromatic profile, often featuring notes of grapefruit, lime, and fresh-cut grass."
+      },
+      "basics_q06": {
+        "stem": "What sensation do tannins primarily cause in the mouth?",
+        "choices": {
+          "a": "Sweetness",
+          "b": "Dryness or astringency",
+          "c": "Acidity",
+          "d": "Bitterness"
+        },
+        "expl": "Tannins are compounds that bind to proteins in your saliva, creating a drying or puckering sensation in the mouth, crucial for the structure of red wine."
+      },
+      "basics_q07": {
+        "stem": "What is the main purpose of aging wine in oak barrels?",
+        "choices": {
+          "a": "To make it more alcoholic",
+          "b": "To filter the wine",
+          "c": "To add complexity, aromas, and texture",
+          "d": "To make it redder"
+        },
+        "expl": "Oak barrels allow for slow oxygenation and impart flavors like vanilla, spice, and toast, adding layers of complexity and softening the wine's texture."
+      },
+      "basics_q08": {
+        "stem": "Malbec is the signature red grape of which country?",
+        "choices": {
+          "a": "Argentina",
+          "b": "Chile",
+          "c": "Spain",
+          "d": "South Africa"
+        },
+        "expl": "While originating in France, Malbec found its most famous expression in Mendoza, Argentina, producing rich, dark-fruited wines."
+      },
+      "basics_q09": {
+        "stem": "What does the French term 'terroir' refer to?",
+        "choices": {
+          "a": "The type of grape",
+          "b": "The brand of the winery",
+          "c": "The age of the wine",
+          "d": "The complete natural environment (soil, climate, etc.)"
+        },
+        "expl": "'Terroir' encompasses all the environmental factors of a vineyard that give a wine its unique character, its 'sense of place'."
+      },
+      "basics_q10": {
+        "stem": "Why do you swirl wine in the glass before smelling it?",
+        "choices": {
+          "a": "To warm it up",
+          "b": "To release its aromatic compounds",
+          "c": "It's just for show",
+          "d": "To check for sediment"
+        },
+        "expl": "Swirling increases the wine's surface area and incorporates oxygen, which helps volatilize and release the complex aromas for you to smell."
+      },
+      "basics_q11": {
+        "stem": "A classic food pairing for a crisp, high-acid white wine like Sauvignon Blanc is...",
+        "choices": {
+          "a": "A rich chocolate cake",
+          "b": "A grilled steak",
+          "c": "Oysters or goat cheese",
+          "d": "A spicy curry"
+        },
+        "expl": "The high acidity in Sauvignon Blanc cuts through the richness of goat cheese and complements the briny character of oysters perfectly."
+      },
+      "basics_q12": {
+        "stem": "What is a key difference between making red wine and white wine?",
+        "choices": {
+          "a": "Red wine is fermented with the grape skins, white is not",
+          "b": "Red wine uses more sugar",
+          "c": "White wine is always aged in steel tanks",
+          "d": "There is no major difference"
+        },
+        "expl": "For red wine, the juice ferments in contact with the grape skins, which imparts color, tannins, and flavor. For most white wines, the juice is pressed off the skins before fermentation."
+      }
+    }
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "what_is_wine": {
+    "title": "O que é Vinho?",
+    "sections": [
+      {
+        "heading": "O que é Vinho?",
+        "paragraphs": [
+          "O vinho é, antes de tudo, uma expressão da natureza interpretada pelo homem.",
+          "Ele não nasce em laboratório, nem é fruto do acaso.",
+          "É o resultado de um encontro preciso entre terra, clima, uva e tempo.",
+          "Uma alquimia que atravessa milênios."
+        ]
+      },
+      {
+        "heading": "A videira e o terroir",
+        "paragraphs": [
+          "Tudo começa na videira.",
+          "Cada variedade de uva reage de forma diferente ao sol, à chuva, ao tipo de solo e à altitude.",
+          "Esses fatores, que chamamos de terroir, moldam o caráter do vinho antes mesmo da colheita.",
+          "Um solo calcário gera vinhos mais minerais; um solo argiloso produz tintos encorpados e densos."
+        ]
+      },
+      {
+        "heading": "A fermentação",
+        "paragraphs": [
+          "Quando a uva amadurece, o enólogo decide o momento certo da colheita.",
+          "As frutas são prensadas, e o suco — o mosto — começa a fermentar.",
+          "As leveduras transformam o açúcar em álcool e criam aromas complexos, únicos e irrepetíveis."
+        ]
+      }
+    ]
+  }
+}

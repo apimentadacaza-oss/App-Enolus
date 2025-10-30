@@ -1,0 +1,161 @@
+{
+  "title": "Enolus Guild",
+  "subtitle": "Your journey through glasses, knowledge, and achievements.",
+  "stats": {
+    "current_patent": "Current Patent",
+    "accumulated_wisdom": "Accumulated Wisdom",
+    "completed_rites": "Completed Rites"
+  },
+  "progress_bar": {
+    "label": "{{currentXp}} / {{nextXp}} XP for the next patent.",
+    "max_level": "You have reached the maximum patent!"
+  },
+  "patents": {
+    "title": "Guild Patents",
+    "subtitle": "Continue your journey to achieve the title of {{nextPatentName}}.",
+    "subtitle_max": "Continue your journey to achieve the title of Grand Sommelier.",
+    "tooltip": {
+      "current": "Your current patent",
+      "owned": "Patent achieved",
+      "locked": "Requires {{xp}} XP"
+    },
+    "achievement_title": "Patent Achievements",
+    "locked_aria_label": "Locked",
+    "unlocked_aria_label": "Unlocked",
+    "open_details_aria": "Open details for patent {{patentName}}",
+    "locked_details_aria": "Locked patent: {{patentName}}"
+  },
+  "circles": {
+    "title": "Guild Circles",
+    "subtitle": "Find your circle and connect with fellow members of the same rank.",
+    "open_aria": "Open Circle: {{circleName}}",
+    "locked_aria": "Locked Circle: {{circleName}}",
+    "locked_label": "LOCKED"
+  },
+  "ranking": {
+    "title": "Hall of Members",
+    "subtitle": "The most active members of this vintage.",
+    "you": "You"
+  },
+  "achievements": {
+    "title": "📜 Ceremonial Achievements",
+    "empty": "Continue your journey to unlock achievements!"
+  },
+  "favorites": {
+    "title": "Favorite Articles",
+    "empty": "You haven't favorited any articles yet. Explore the Encyclopedia to save your favorites!"
+  },
+  "footer": {
+    "quote": "\"Wine teaches, time reveals.\"",
+    "author": "— Dom Sommelius"
+  },
+  "circle_detail": {
+    "back_to_guild": "Back to Guild",
+    "locked_title": "Circle Locked",
+    "locked_body": "This circle will be revealed when you achieve the patent of",
+    "locked_cta": "Back to the Guild",
+    "purpose_title": "Purpose of the Circle",
+    "rites_title": "Current Challenges and Rites",
+    "rites_empty": "New rites will be revealed soon...",
+    "members_title": "Circle Members",
+    "start_rite": "Start Rite →",
+    "footer_quote": "\"Here, wine becomes word, and word becomes friendship.\""
+  },
+  "rite_detail": {
+    "back_to_circle": "Back to Circle",
+    "steps_title": "Steps of the Rite",
+    "log_title": "Sensory Log",
+    "log_color_label": "Wine Color",
+    "log_aroma_label": "Predominant Aroma",
+    "log_notes_label": "Personal Observations",
+    "log_notes_placeholder": "Tasting notes, impressions...",
+    "cta_complete": "Save and Complete Rite",
+    "cta_disabled": "Complete all steps to save"
+  },
+  "rite_success_modal": {
+    "title": "Rite Completed",
+    "subtitle": "+{{xp}} Accumulated Wisdom",
+    "body": "Your chalice fills with wisdom. Time now dwells in your glass.",
+    "cta": "Toast and Return to the Guild"
+  },
+  "patent_detail_modal": {
+    "close_aria": "Close modal",
+    "rites_title": "Dominated Rites",
+    "rites_empty": "The rites that led to this achievement will be revealed soon."
+  },
+  "ritual": {
+    "start": "Start Rite",
+    "in_progress": "Rite in progress...",
+    "completed": "Congratulations! You have completed the rite and earned the patent of level {{level}}.",
+    "failed": "The rite could not be completed. Please try again."
+  },
+  "errors": {
+    "generic": "An unexpected error occurred. Please try again later.",
+    "network": "Could not connect. Please check your network connection."
+  },
+  "data": {
+    "patents": {
+      "p1": { "name": "Vine Apprentice", "phrase": "First steps in the art of wine." },
+      "p2": { "name": "Chalice Disciple", "phrase": "The aroma reveals what the soul understands." },
+      "p3": { "name": "Aroma Guardian", "phrase": "Guards the secrets of the glass." },
+      "p4": { "name": "Terroir Initiate", "phrase": "The soil teaches, time perfects." },
+      "p5": { "name": "Vintage Custodian", "phrase": "Patience is the best wine." },
+      "p6": { "name": "Sage of Fermentation", "phrase": "Transforms the fruit into essence." },
+      "p7": { "name": "Knight of the Glass", "phrase": "Defends knowledge and honors the table." },
+      "p8": { "name": "Chalice Curator", "phrase": "The light of the glass guides the members." },
+      "p9": { "name": "Guardian of Varietals", "phrase": "Knows the wine like a sibling." },
+      "p10": { "name": "Master of Pairing", "phrase": "Unites flavors, times, and people." },
+      "p11": { "name": "Enologist of the Word", "phrase": "Teaches with the glass, speaks with time." },
+      "p12": { "name": "Sommelier of Time", "phrase": "Every sip is an eternal moment." },
+      "p13": { "name": "Wine Ambassador", "phrase": "Carries the Guild's name to the world." },
+      "p14": { "name": "Grand Sommelier of the Order", "phrase": "Eternal master of wine and wisdom." }
+    },
+    "circles": {
+      "c1": { "name": "Circle of the Vine", "description": "Beginners in the art of wine, discovering grapes and aromas.", "ritual": "Every glass begins at the root." },
+      "c2": { "name": "Circle of the Chalice", "description": "Adepts of taste and fermentation.", "ritual": "The glass is the master of patience." },
+      "c3": { "name": "Circle of Terroir", "description": "Members who explore regions and the origin of wine.", "ritual": "The soil holds the memory of time." },
+      "c4": { "name": "Circle of the Table", "description": "Masters of pairing and table culture.", "ritual": "Where wine and bread become celebration." },
+      "c5": { "name": "Circle of Masters", "description": "Guardians of knowledge, mentors, and ambassadors of the Guild.", "ritual": "Wine is eternal, and so is knowledge." }
+    },
+    "rites": {
+        "c1_r1": {
+          "title": "Rite of the Grape", "description": "Discover the main red and white varietals.",
+          "phrase": "The essence of wine is born in the fruit that time chooses.",
+          "intro": "In this rite, you will learn about the main red and white varietals, understanding how each grape holds a unique personality. Observe, compare, taste, and record your perceptions—wine is the voice of the earth.",
+          "step1_title": "The Red Grapes", "step1_desc": "Learn the main varieties and their characteristics: Cabernet Sauvignon, Merlot, and Pinot Noir.",
+          "step2_title": "The White Grapes", "step2_desc": "Discover aromas and notes of Chardonnay, Sauvignon Blanc, and Riesling.",
+          "step3_title": "Sensory Log", "step3_desc": "Choose a wine from one of the studied grapes and write down your impressions."
+        },
+        "c1_r2": {
+          "title": "Rite of the Chalice", "description": "Learn to hold, swirl, and sense the wine.",
+          "phrase": "The chalice is the altar where the wine reveals itself.",
+          "intro": "The way we interact with the glass transforms the tasting. This rite teaches the fundamental gestures to release aromas and prepare the palate for the full experience.",
+          "step1_title": "The Correct Grip", "step1_desc": "Understand why we hold the glass by the stem and practice the correct posture.",
+          "step2_title": "The Ritualistic Swirl", "step2_desc": "Learn to swirl the wine in the glass to oxygenate it and release its complex aromas.",
+          "step3_title": "Visual Analysis", "step3_desc": "Tilt the glass against a white background and observe the wine's color, clarity, and legs."
+        },
+        "c1_r3": {
+          "title": "Rite of the Aroma", "description": "Identify floral and fruity notes in a guided tasting.",
+          "phrase": "Every aroma is a memory waiting to be awakened.",
+          "intro": "The nose is our portal to the complexity of wine. In this rite, we will train our sense of smell to identify the families of primary aromas, those that come directly from the grape.",
+          "step1_title": "Primary Aromas", "step1_desc": "Get to know the aroma wheel and the main categories: fruits, flowers, and herbs.",
+          "step2_title": "Blind Tasting", "step2_desc": "With a wine in hand, close your eyes and try to identify at least three distinct aromas.",
+          "step3_title": "Olfactory Notes", "step3_desc": "Use the log section to describe the aromas you found."
+        },
+        "c2_r1": {
+          "title": "Rite of Fermentation", "description": "Understand how sugar turns into alcohol and flavor.",
+          "phrase": "Magic happens in the silence of the cellar.",
+          "intro": "Fermentation is the heart of winemaking. We will explore how yeasts work to create the beverage we love.",
+          "step1_title": "Yeasts", "step1_desc": "Understand the role of yeasts.",
+          "step2_title": "Temperature", "step2_desc": "See how temperature affects the result."
+        },
+        "c2_r2": {
+            "title": "Rite of the Oak", "description": "Compare an oak-aged wine with an unoaked one.",
+            "phrase": "The wood teaches the wine the wisdom of time.",
+            "intro": "Oak is more than a container; it's an ingredient. Discover the aromas and textures it imparts to the wine.",
+            "step1_title": "Types of Oak", "step1_desc": "French vs. American.",
+            "step2_title": "Toast Levels", "step2_desc": "How the charring of the wood impacts the flavor."
+        }
+    }
+  }
+}

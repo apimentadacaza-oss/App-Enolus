@@ -1,0 +1,18 @@
+{
+  "hero": {
+    "title": "Welcome to Enolus",
+    "subtitle": "Your journey through the world of wine begins here."
+  },
+  "mission": {
+    "title": "Mission of the Day",
+    "body": "Learn about the {{grape}} grape and earn {{xp}} XP!",
+    "cta": "Start Mission"
+  },
+  "recs": {
+    "title": "Recommendations for you",
+    "track_title": "Track: First Steps",
+    "track_desc": "Ideal for beginners. Discover the fundamentals of wine.",
+    "quiz_title": "Quiz: Pairing",
+    "quiz_desc": "Test your knowledge of wine and food combinations."
+  }
+}
