@@ -369,6 +369,8 @@ const LessonHubModal = ({ lesson, onClose, onActivityComplete, isActivityComplet
     const [isPlaying, setIsPlaying] = useState(false);
     const audioRef = useRef<HTMLAudioElement | null>(null);
 
+    const hasAudio = !!resolveMedia(lesson.id, 'audio');
+
     const handleListenClick = () => {
         const audioUrl = resolveMedia(lesson.id, 'audio');
         if (!audioUrl) return;
@@ -493,7 +495,17 @@ const LessonHubModal = ({ lesson, onClose, onActivityComplete, isActivityComplet
                                  {t('map:back')}
                                </button>
                                <h2 className="font-serif text-xl text-vinifero-purple text-center flex-1 px-2 truncate">{headerTitle}</h2>
-                               <div className="w-16"></div>
+                               <div className="w-16 flex justify-end items-center">
+                                  {hasAudio && (
+                                    <button
+                                      onClick={() => console.warn('Áudio pronto. Etapa 2: adicionar player.')}
+                                      aria-label={t('map:listen_narration')}
+                                      className="bg-vinifero-purple text-white w-10 h-10 rounded-full flex items-center justify-center hover:bg-opacity-80 transition"
+                                    >
+                                      🎧
+                                    </button>
+                                  )}
+                               </div>
                             </header>
                             <div className="flex-grow overflow-y-auto pr-2 -mr-2 lesson-reader-view">
                                {readerContent.type === 'pre-wrap' && (
