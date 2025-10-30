@@ -1,4 +1,3 @@
-
 import React, { useState, useCallback, useEffect } from 'react';
 import BottomNav from './components/BottomNav';
 import ExplorePage from './pages/Explore';
@@ -17,7 +16,16 @@ const WELCOME_KEY = 'enolus_has_seen_welcome';
 const App: React.FC = () => {
   const [showWelcome, setShowWelcome] = useState<boolean>(true);
   const [activeTab, setActiveTab] = useState<Tab>('explore');
-  const { progress, addXp, addAchievement, completeLesson, isLessonCompleted } = useUserProgress();
+  const { 
+    progress, 
+    addXp, 
+    addAchievement, 
+    completeLesson, 
+    isLessonCompleted,
+    isActivityCompleted,
+    completeActivity,
+    setCurrentLessonId
+  } = useUserProgress();
 
   useEffect(() => {
     try {
@@ -51,13 +59,16 @@ const App: React.FC = () => {
                   addAchievement={addAchievement} 
                   completeLesson={completeLesson} 
                   isLessonCompleted={isLessonCompleted}
+                  isActivityCompleted={isActivityCompleted}
+                  completeActivity={completeActivity}
+                  setCurrentLessonId={setCurrentLessonId}
                 />;
       case 'quiz':
         return <QuizPage addXp={addXp} addAchievement={addAchievement} />;
       case 'encyclopedia':
         return <EncyclopediaPage />;
       case 'profile':
-        return <ProfilePage />;
+        return <ProfilePage progress={progress} addXp={addXp} addAchievement={addAchievement} />;
       default:
         return <ExplorePage />;
     }
@@ -73,7 +84,7 @@ const App: React.FC = () => {
   
   return (
     <div className="bg-champagne-light font-sans text-soft-graphite min-h-screen flex flex-col">
-      <main className="flex-grow container mx-auto p-4 sm:p-6 pb-24">
+      <main className="flex-grow container mx-auto p-4 sm:p-6 pb-[104px]">
         {renderContent()}
       </main>
       <BottomNav activeTab={activeTab} onTabChange={handleTabChange} />

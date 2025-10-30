@@ -8,27 +8,59 @@
       "id": "module-1-1",
       "title": "Módulo 1: O Básico",
       "description": "O que é vinho e como ele é feito?",
+      "trail": {
+        "nodes": [
+          { "id": "1_oque-e-vinho", "x": 18, "y": 20 },
+          { "id": "2_principais-uvas", "x": 50, "y": 75 },
+          { "id": "3_processo-vinificacao", "x": 82, "y": 30 }
+        ],
+        "unlockRules": [
+          { "target": "2_principais-uvas", "requires": "1_oque-e-vinho", "minXp": 10 },
+          { "target": "3_processo-vinificacao", "requires": "2_principais-uvas", "minXp": 25 }
+        ]
+      },
       "lessons": [
         {
-          "id": "lesson-1-1-1",
+          "id": "1_oque-e-vinho",
           "type": "text",
           "title": "O que é Vinho?",
           "content": "Vinho é uma bebida alcoólica feita a partir da fermentação de uvas...",
-          "xp": 10
+          "icon": "🍇",
+          "xp": 25,
+          "activities": {
+            "read": { 
+              "xp": 10
+            },
+            "listen": { "xp": 15, "file": "audio.mp3" }
+          }
         },
         {
-          "id": "lesson-1-1-2",
+          "id": "2_principais-uvas",
           "type": "text",
-          "title": "Principais Tipos de Uva",
+          "title": "Principais Uvas",
           "content": "Conheça as uvas mais famosas como Cabernet Sauvignon, Merlot e Chardonnay.",
-          "xp": 10
+          "icon": "🌿",
+          "xp": 15,
+           "activities": {
+            "read": { 
+              "xp": 15, 
+              "content": "## As Uvas Nobres\n\nExistem milhares de variedades de uvas, mas algumas se destacam pela sua qualidade e popularidade mundial. Elas são conhecidas como 'castas nobres'.\n\n### Uvas Tintas Famosas:\n\n*   **Cabernet Sauvignon:** Encorpada, com notas de frutas pretas (cassis, amora) e taninos firmes. A rainha de Bordeaux.\n*   **Merlot:** Mais macia e frutada que a Cabernet, com notas de ameixa e cereja. É aveludada no paladar.\n*   **Pinot Noir:** Elegante e delicada, com aromas de frutas vermelhas (morango, framboesa) e notas terrosas. A estrela da Borgonha.\n\n### Uvas Brancas Famosas:\n\n*   **Chardonnay:** Versátil, pode ser fresca e mineral ou rica e amanteigada, dependendo se fermenta ou não em barris de carvalho.\n*   **Sauvignon Blanc:** Conhecida por sua alta acidez e aromas cítricos e herbáceos (maracujá, grama cortada)."
+            }
+          }
         },
         {
-          "id": "lesson-1-1-3",
+          "id": "3_processo-vinificacao",
           "type": "video",
-          "title": "O Processo de Vinificação",
+          "title": "A Vinificação",
           "content": "Assista a um vídeo rápido sobre como as uvas se transformam em vinho.",
-          "xp": 20
+          "icon": "⚗️",
+          "xp": 20,
+           "activities": {
+            "watch": { 
+              "xp": 20, 
+              "content": "## O Processo Mágico da Vinificação\n\n*(Este conteúdo seria um vídeo, mas aqui está um resumo em texto.)*\n\n1.  **Colheita:** As uvas são colhidas no ponto ideal de maturação.\n2.  **Esmagamento:** As uvas são esmagadas para liberar o suco (mosto).\n3.  **Fermentação:** O mosto é colocado em tanques (de aço inox ou madeira) e as leveduras iniciam a transformação do açúcar em álcool. Para tintos, as cascas ficam em contato; para brancos, não.\n4.  **Prensagem:** Após a fermentação, o líquido é separado das partes sólidas.\n5.  **Maturação:** O vinho pode 'descansar' em barris de carvalho ou tanques de inox para desenvolver mais complexidade.\n6.  **Engarrafamento:** O vinho é filtrado e engarrafado, pronto para ser apreciado ou guardado."
+            }
+          }
         }
       ]
     },

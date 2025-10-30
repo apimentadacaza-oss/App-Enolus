@@ -18,8 +18,8 @@ const navItems: { id: Tab; label: string; icon: React.FC<any> }[] = [
 
 const BottomNav: React.FC<BottomNavProps> = ({ activeTab, onTabChange }) => {
   return (
-    <footer className="fixed bottom-0 left-0 right-0 bg-white/80 backdrop-blur-sm shadow-[0_-2px_10px_rgba(0,0,0,0.05)] border-t border-velvet-gray">
-      <nav className="flex justify-around items-center max-w-2xl mx-auto h-16">
+    <footer className="fixed bottom-0 left-0 right-0 bg-white/80 backdrop-blur-sm shadow-[0_-2px_10px_rgba(0,0,0,0.05)] border-t border-velvet-gray z-30">
+      <nav className="flex justify-around items-center max-w-2xl mx-auto h-[72px]">
         {navItems.map((item) => (
           <button
             key={item.id}
