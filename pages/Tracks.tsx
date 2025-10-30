@@ -373,7 +373,10 @@ const LessonHubModal = ({ lesson, onClose, onActivityComplete, isActivityComplet
 
     const handleListenClick = () => {
         const audioUrl = resolveMedia(lesson.id, 'audio');
-        if (!audioUrl) return;
+        if (!audioUrl) {
+            console.error(`[AudioPlayer] Audio file not found for lesson ID: ${lesson.id}`);
+            return;
+        }
 
         if (audioRef.current && !audioRef.current.paused) {
             audioRef.current.pause();
@@ -498,11 +501,11 @@ const LessonHubModal = ({ lesson, onClose, onActivityComplete, isActivityComplet
                                <div className="w-16 flex justify-end items-center">
                                   {hasAudio && (
                                     <button
-                                      onClick={() => console.warn('Áudio pronto. Etapa 2: adicionar player.')}
-                                      aria-label={t('map:listen_narration')}
-                                      className="bg-vinifero-purple text-white w-10 h-10 rounded-full flex items-center justify-center hover:bg-opacity-80 transition"
+                                      onClick={handleListenClick}
+                                      aria-label={isPlaying ? t('map:pause_audio') : t('map:listen_narration')}
+                                      className="bg-vinifero-purple text-white w-10 h-10 rounded-full flex items-center justify-center hover:bg-opacity-80 transition text-2xl"
                                     >
-                                      🎧
+                                      {isPlaying ? '⏸️' : '▶️'}
                                     </button>
                                   )}
                                </div>
