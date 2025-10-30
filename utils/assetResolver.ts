@@ -5,7 +5,8 @@ import i18n from '../i18n/i18n';
 // A map to hold the paths to media assets.
 // These paths are relative to the public directory.
 const mediaMap: Record<string, string> = {
-  '1_oque-e-vinho:audio': './data/trilhas/nivel1/modulo1/lessons/1_oque-e-vinho/audio.mp3',
+  '1_oque-e-vinho:audio:pt': '/trilhas/nivel1/modulo1/lessons/1_oque-e-vinho/pt-BR/audio.mp3',
+  '1_oque-e-vinho:audio:en': '/trilhas/nivel1/modulo1/lessons/1_oque-e-vinho/en/audio.mp3',
 };
 
 // A map to hold text content imported as modules, now with language support.
