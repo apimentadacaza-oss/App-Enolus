@@ -1,7 +1,6 @@
 import React from 'react';
 import { WineGlassIcon } from './icons/NavIcons';
 
-
 interface WelcomeScreenProps {
   onStart: () => void;
 }
