@@ -208,78 +208,242 @@ const WineAwakening = () => {
     );
 };
 
-// --- Terroir Wind Component ---
-const TerroirWind = () => {
+// --- Earth and Fire Fusion Component ---
+const EarthAndFireFusion = () => {
     const [showMessage, setShowMessage] = useState(false);
-    const [sceneKey, setSceneKey] = useState(0);
-    const holdTimeoutRef = useRef<number | null>(null);
+    const [sceneKey, setSceneKey] = useState(Date.now());
     const containerRef = useRef<HTMLDivElement>(null);
-    const lastPos = useRef({ x: 0, y: 0 });
+    const bubblesRef = useRef<Set<HTMLDivElement>>(new Set());
+    const holdTimeoutRef = useRef<number | null>(null);
+    const audioRef = useRef<{
+        ctx: AudioContext;
+        masterGain: GainNode;
+        hum: OscillatorNode;
+        isInitialized: boolean;
+    } | null>(null);
+
+    const initAudio = () => {
+        if (audioRef.current && audioRef.current.ctx.state !== 'closed') return;
+        const ctx = new (window.AudioContext || (window as any).webkitAudioContext)();
+        const masterGain = ctx.createGain();
+        masterGain.gain.setValueAtTime(0, ctx.currentTime);
+        masterGain.connect(ctx.destination);
+
+        const hum = ctx.createOscillator();
+        hum.type = 'sine';
+        hum.frequency.setValueAtTime(40, ctx.currentTime);
+        hum.connect(masterGain);
+        hum.start();
+
+        audioRef.current = { ctx, masterGain, hum, isInitialized: true };
+    };
+
+    const playBubbleSound = () => {
+        if (!audioRef.current) return;
+        const { ctx, masterGain } = audioRef.current;
+        const bubbleGain = ctx.createGain();
+        const osc = ctx.createOscillator();
+        osc.type = 'sine';
+        osc.frequency.setValueAtTime(800 + Math.random() * 400, ctx.currentTime);
+        bubbleGain.gain.setValueAtTime(0, ctx.currentTime);
+        bubbleGain.gain.linearRampToValueAtTime(0.3, ctx.currentTime + 0.02);
+        bubbleGain.gain.linearRampToValueAtTime(0, ctx.currentTime + 0.15);
+        osc.connect(bubbleGain).connect(masterGain);
+        osc.start();
+        osc.stop(ctx.currentTime + 0.2);
+    };
+
+    const createBubble = (container: HTMLDivElement) => {
+        const bubble = document.createElement('div');
+        bubble.className = 'fusion-bubble';
+        const size = Math.random() * 30 + 10;
+        bubble.style.width = `${size}px`;
+        bubble.style.height = `${size}px`;
+        bubble.style.left = `${Math.random() * 100}%`;
+        bubble.style.setProperty('--duration', `${Math.random() * 8 + 6}s`);
+        bubble.style.setProperty('--delay', `-${Math.random() * 14}s`);
+        bubble.style.setProperty('--sway', `${(Math.random() - 0.5) * 80}px`);
+
+        bubble.addEventListener('animationiteration', () => {
+            bubble.style.left = `${Math.random() * 100}%`;
+        });
+
+        bubble.addEventListener('click', (e) => {
+            e.stopPropagation();
+            bubble.classList.add('exploding');
+            playBubbleSound();
+            bubble.addEventListener('animationend', () => {
+                bubble.remove();
+                bubblesRef.current.delete(bubble);
+                if (containerRef.current) createBubble(containerRef.current);
+            }, { once: true });
+        });
+
+        container.appendChild(bubble);
+        bubblesRef.current.add(bubble);
+    };
 
     useEffect(() => {
         const container = containerRef.current;
         if (!container) return;
+        
+        bubblesRef.current.forEach(b => b.remove());
+        bubblesRef.current.clear();
 
-        // Clear previous elements on reset
-        container.querySelectorAll('.terroir-leaf, .terroir-petal').forEach(el => el.remove());
-
-        // Create new particles
-        const PARTICLE_COUNT = 30;
-        for (let i = 0; i < PARTICLE_COUNT; i++) {
-            const isLeaf = Math.random() > 0.4;
-            const p = document.createElement('div');
-            p.className = isLeaf ? 'terroir-leaf' : 'terroir-petal';
-            p.style.top = `${Math.random() * 100}%`;
-            p.style.left = `${Math.random() * 100}%`;
-            p.style.setProperty('--sway-amp', `${Math.random() * 30 + 10}px`);
-            p.style.setProperty('--sway-speed', `${Math.random() * 4 + 3}s`);
-            p.style.setProperty('--float-speed', `${Math.random() * 10 + 8}s`);
-            p.style.setProperty('--float-delay', `-${Math.random() * 18}s`);
-            p.style.setProperty('--spin-speed', `${Math.random() * 15 + 10}s`);
-            p.style.transform = `scale(${Math.random() * 0.5 + 0.5})`;
-            container.appendChild(p);
+        for (let i = 0; i < 20; i++) {
+            createBubble(container);
         }
+
+        return () => {
+            if (audioRef.current && audioRef.current.ctx.state === 'running') {
+                audioRef.current.ctx.close();
+                audioRef.current = null;
+            }
+        };
     }, [sceneKey]);
 
-    const handleInteractionStart = (clientX: number, clientY: number) => {
-        lastPos.current = { x: clientX, y: clientY };
-        holdTimeoutRef.current = window.setTimeout(() => setShowMessage(true), 2000);
+    const handleInteractionStart = (e: React.MouseEvent | React.TouchEvent) => {
+        if (!audioRef.current) initAudio();
+        audioRef.current?.ctx.resume();
+        audioRef.current?.masterGain.gain.linearRampToValueAtTime(0.1, audioRef.current.ctx.currentTime + 0.5);
+
+        holdTimeoutRef.current = window.setTimeout(() => {
+            setShowMessage(true);
+        }, 2000);
     };
 
     const handleInteractionEnd = () => {
-        if (holdTimeoutRef.current) clearTimeout(holdTimeoutRef.current);
+        if (audioRef.current) {
+            audioRef.current.masterGain.gain.linearRampToValueAtTime(0, audioRef.current.ctx.currentTime + 0.5);
+        }
+        if (holdTimeoutRef.current) {
+            clearTimeout(holdTimeoutRef.current);
+        }
         setShowMessage(false);
-        containerRef.current?.style.setProperty('--wind-x', '0');
-        containerRef.current?.style.setProperty('--wind-y', '0');
     };
 
-    const handleInteractionMove = (clientX: number, clientY: number) => {
-        const container = containerRef.current;
-        if (!container) return;
-
-        const deltaX = clientX - lastPos.current.x;
-        const deltaY = clientY - lastPos.current.y;
-        lastPos.current = { x: clientX, y: clientY };
-
-        const currentWindX = parseFloat(container.style.getPropertyValue('--wind-x')) || 0;
-        const currentWindY = parseFloat(container.style.getPropertyValue('--wind-y')) || 0;
-        
-        const newWindX = currentWindX + deltaX;
-        const newWindY = currentWindY + deltaY;
-
-        container.style.setProperty('--wind-x', `${Math.max(-100, Math.min(100, newWindX))}`);
-        container.style.setProperty('--wind-y', `${Math.max(-50, Math.min(50, newWindY))}`);
-    };
-    
     const resetScene = () => {
         setShowMessage(false);
-        setSceneKey(prev => prev + 1);
+        setSceneKey(Date.now());
     };
 
     return (
         <div
             ref={containerRef}
-            className="terroir-container"
+            className="earth-fire-container"
+            key={sceneKey}
+            onMouseDown={handleInteractionStart}
+            onMouseUp={handleInteractionEnd}
+            onMouseLeave={handleInteractionEnd}
+            onTouchStart={handleInteractionStart}
+            onTouchEnd={handleInteractionEnd}
+        >
+            <div className="heat-distortion-layer" />
+            {showMessage && (
+                <div className="fusion-message">
+                    A terra ferve. O vinho nasce.
+                </div>
+            )}
+            <button onClick={(e) => { e.stopPropagation(); resetScene(); }} className="fusion-reset-btn">
+                Observar a Transformação
+            </button>
+        </div>
+    );
+};
+
+// --- Terroir Wind Component ---
+const TerroirWind = () => {
+    const [showMessage, setShowMessage] = useState(false);
+    const [sceneKey, setSceneKey] = useState(Date.now());
+    const containerRef = useRef<HTMLDivElement>(null);
+    const particlesRef = useRef<HTMLDivElement[]>([]);
+    const holdTimeoutRef = useRef<number | null>(null);
+    const lastPos = useRef({ x: 0, y: 0 });
+    const isInteracting = useRef(false);
+
+    useEffect(() => {
+        const container = containerRef.current;
+        if (!container) return;
+        
+        particlesRef.current.forEach(p => p.remove());
+        particlesRef.current = [];
+
+        const PARTICLE_COUNT = 30;
+        for (let i = 0; i < PARTICLE_COUNT; i++) {
+            const p = document.createElement('div');
+            const type = Math.floor(Math.random() * 3);
+            p.className = `terroir-particle p-type-${type}`;
+            p.style.left = `${-10 + Math.random() * 120}%`;
+            p.style.top = `${Math.random() * 100}%`;
+            p.style.animationDuration = `${Math.random() * 10 + 10}s`;
+            p.style.animationDelay = `-${Math.random() * 20}s`;
+            container.appendChild(p);
+            particlesRef.current.push(p);
+        }
+    }, [sceneKey]);
+
+    const handleInteractionStart = (clientX: number, clientY: number) => {
+        isInteracting.current = true;
+        lastPos.current = { x: clientX, y: clientY };
+        holdTimeoutRef.current = window.setTimeout(() => {
+            setShowMessage(true);
+        }, 2000);
+    };
+
+    const handleInteractionEnd = () => {
+        isInteracting.current = false;
+        if (holdTimeoutRef.current) {
+            clearTimeout(holdTimeoutRef.current);
+        }
+        setShowMessage(false);
+        particlesRef.current.forEach(p => {
+            p.style.transform = ''; // Reset transform to let CSS animation take over
+        });
+    };
+
+    const handleInteractionMove = (clientX: number, clientY: number) => {
+        if (!isInteracting.current || !containerRef.current) return;
+
+        const dx = clientX - lastPos.current.x;
+        const dy = clientY - lastPos.current.y;
+        lastPos.current = { x: clientX, y: clientY };
+
+        const rect = containerRef.current.getBoundingClientRect();
+        const cursorX = clientX - rect.left;
+        const cursorY = clientY - rect.top;
+
+        particlesRef.current.forEach(p => {
+            const pRect = p.getBoundingClientRect();
+            const pX = pRect.left - rect.left + pRect.width / 2;
+            const pY = pRect.top - rect.top + pRect.height / 2;
+
+            const dist = Math.hypot(cursorX - pX, cursorY - pY);
+            const INTERACTION_RADIUS = 120;
+
+            if (dist < INTERACTION_RADIUS) {
+                const force = (INTERACTION_RADIUS - dist) / INTERACTION_RADIUS;
+                // Get the current transform from the animation
+                const computedStyle = window.getComputedStyle(p);
+                const matrix = new DOMMatrix(computedStyle.transform);
+                // Apply the gust of wind from drag
+                const newX = matrix.e + dx * force * 2;
+                const newY = matrix.f + dy * force * 2;
+                // We directly set transform to override the animation for a moment
+                p.style.transform = `translate(${newX}px, ${newY}px) rotate(${matrix.a}, ${matrix.b})`;
+            }
+        });
+    };
+
+    const resetScene = (e: React.MouseEvent) => {
+        e.stopPropagation();
+        setShowMessage(false);
+        setSceneKey(Date.now());
+    };
+
+    return (
+        <div
+            ref={containerRef}
+            className="terroir-wind-container"
             key={sceneKey}
             onMouseDown={(e) => handleInteractionStart(e.clientX, e.clientY)}
             onMouseUp={handleInteractionEnd}
@@ -287,15 +451,12 @@ const TerroirWind = () => {
             onTouchStart={(e) => handleInteractionStart(e.touches[0].clientX, e.touches[0].clientY)}
             onTouchEnd={handleInteractionEnd}
             onMouseMove={(e) => handleInteractionMove(e.clientX, e.clientY)}
-            onTouchMove={(e) => {
-                e.preventDefault();
-                handleInteractionMove(e.touches[0].clientX, e.touches[0].clientY);
-            }}
+            onTouchMove={(e) => handleInteractionMove(e.touches[0].clientX, e.touches[0].clientY)}
         >
-            <div className="terroir-light-beam" />
             <div className="terroir-fog" />
-            <div className="terroir-fog" style={{animationDelay: '-10s', opacity: 0.5}} />
-             {showMessage && (
+            <div className="terroir-fog" style={{ animationDelay: '-10s', opacity: 0.6, animationDuration: '45s' }} />
+            <div className="terroir-light-beam" />
+            {showMessage && (
                 <div className="terroir-message">
                     Toda videira respira. Cada sopro guarda uma origem.
                 </div>
@@ -307,6 +468,322 @@ const TerroirWind = () => {
     );
 };
 
+// --- Aroma Birth Component ---
+const AromaBirth = () => {
+    const [showMessage, setShowMessage] = useState(false);
+    const [sceneKey, setSceneKey] = useState(Date.now());
+    const containerRef = useRef<HTMLDivElement>(null);
+    const holdTimeoutRef = useRef<number | null>(null);
+    const audioRef = useRef<{
+        ctx: AudioContext;
+        masterGain: GainNode;
+        isInitialized: boolean;
+    } | null>(null);
+
+    const initAudio = () => {
+        if (audioRef.current?.isInitialized) {
+            audioRef.current.ctx.resume();
+            return;
+        };
+        const ctx = new (window.AudioContext || (window as any).webkitAudioContext)();
+        const masterGain = ctx.createGain();
+        masterGain.gain.setValueAtTime(0, ctx.currentTime);
+        masterGain.connect(ctx.destination);
+
+        const osc1 = ctx.createOscillator();
+        osc1.type = 'sine';
+        osc1.frequency.setValueAtTime(120, ctx.currentTime);
+        osc1.connect(masterGain);
+        osc1.start();
+        
+        const osc2 = ctx.createOscillator();
+        osc2.type = 'triangle';
+        osc2.frequency.setValueAtTime(240, ctx.currentTime);
+        const osc2Gain = ctx.createGain();
+        osc2Gain.gain.value = 0.5;
+        osc2.connect(osc2Gain).connect(masterGain);
+        osc2.start();
+
+        const lfo = ctx.createOscillator();
+        lfo.type = 'sine';
+        lfo.frequency.setValueAtTime(0.2, ctx.currentTime);
+        const lfoGain = ctx.createGain();
+        lfoGain.gain.setValueAtTime(5, ctx.currentTime);
+        lfo.connect(lfoGain).connect(osc2.frequency);
+        lfo.start();
+
+        audioRef.current = { ctx, masterGain, isInitialized: true };
+    };
+    
+    useEffect(() => {
+        const container = containerRef.current;
+        if (!container) return;
+        
+        // Clear previous elements
+        Array.from(container.children).forEach(child => {
+            const element = child as Element;
+            if (element.classList.contains('aroma-wave') || element.classList.contains('aroma-particle')) {
+                element.remove();
+            }
+        });
+
+        // Create waves
+        for (let i = 0; i < 5; i++) {
+            const wave = document.createElement('div');
+            wave.className = 'aroma-wave';
+            wave.style.left = `${10 + i * 20}%`;
+            wave.style.animationDelay = `-${i * 1.5}s`;
+            container.appendChild(wave);
+        }
+
+        // Create particles
+        for (let i = 0; i < 30; i++) {
+            const p = document.createElement('div');
+            p.className = 'aroma-particle';
+            p.style.left = `${Math.random() * 100}%`;
+            p.style.bottom = `-10%`;
+            p.style.animationDuration = `${Math.random() * 15 + 10}s`;
+            p.style.animationDelay = `-${Math.random() * 25}s`;
+            container.appendChild(p);
+        }
+
+    }, [sceneKey]);
+    
+    useEffect(() => {
+        return () => {
+            if (audioRef.current && audioRef.current.ctx.state === 'running') {
+                audioRef.current.ctx.close();
+            }
+        };
+    }, []);
+
+    const handleInteractionStart = () => {
+        initAudio();
+        audioRef.current?.masterGain.gain.linearRampToValueAtTime(0.1, audioRef.current.ctx.currentTime + 1);
+        containerRef.current?.classList.add('is-interacting');
+        holdTimeoutRef.current = window.setTimeout(() => setShowMessage(true), 2000);
+    };
+    
+    const handleInteractionEnd = () => {
+        audioRef.current?.masterGain.gain.linearRampToValueAtTime(0, audioRef.current.ctx.currentTime + 1);
+        containerRef.current?.classList.remove('is-interacting');
+        if (holdTimeoutRef.current) clearTimeout(holdTimeoutRef.current);
+        setShowMessage(false);
+    };
+
+    const handleInteractionMove = (clientX: number) => {
+        const container = containerRef.current;
+        if (!container) return;
+        const rect = container.getBoundingClientRect();
+        const cursorX = (clientX - rect.left) / rect.width;
+        container.style.setProperty('--cursor-x', `${cursorX}`);
+    };
+
+    const resetScene = (e: React.MouseEvent) => {
+        e.stopPropagation();
+        setShowMessage(false);
+        setSceneKey(Date.now());
+        initAudio(); // Also trigger audio on button click
+        audioRef.current?.masterGain.gain.linearRampToValueAtTime(0.1, audioRef.current.ctx.currentTime + 0.5);
+    };
+
+    return (
+        <div
+            ref={containerRef}
+            className="aroma-birth-container"
+            key={sceneKey}
+            onMouseDown={handleInteractionStart}
+            onMouseUp={handleInteractionEnd}
+            onMouseLeave={handleInteractionEnd}
+            onTouchStart={handleInteractionStart}
+            onTouchEnd={handleInteractionEnd}
+            onMouseMove={(e) => handleInteractionMove(e.clientX)}
+            onTouchMove={(e) => handleInteractionMove(e.touches[0].clientX)}
+        >
+            <div className="aroma-light-beam" />
+            {/* Waves and particles are created in useEffect */}
+            {showMessage && (
+                <div className="aroma-message">
+                    O vinho fala. O ar traduz.
+                </div>
+            )}
+            <button onClick={resetScene} className="aroma-reset-btn">
+                Escutar o Aroma
+            </button>
+        </div>
+    );
+};
+
+// --- Trail Breath Component ---
+const TrailBreath = () => {
+    const [showMessage, setShowMessage] = useState(false);
+    const [isMuted, setIsMuted] = useState(true);
+    const containerRef = useRef<HTMLDivElement>(null);
+    const particlesRef = useRef<HTMLDivElement[]>([]);
+    const holdTimeoutRef = useRef<number | null>(null);
+    const audioRef = useRef<{
+        ctx: AudioContext;
+        masterGain: GainNode;
+        windGain: GainNode;
+        isInitialized: boolean;
+    } | null>(null);
+
+    const initAudio = () => {
+        if (audioRef.current?.isInitialized) {
+            audioRef.current.ctx.resume();
+            return;
+        }
+        const ctx = new (window.AudioContext || (window as any).webkitAudioContext)();
+        const masterGain = ctx.createGain();
+        masterGain.gain.setValueAtTime(isMuted ? 0 : 0.1, ctx.currentTime);
+        masterGain.connect(ctx.destination);
+
+        // Harmonic notes
+        const osc1 = ctx.createOscillator();
+        osc1.type = 'sine';
+        osc1.frequency.setValueAtTime(100, ctx.currentTime);
+        osc1.connect(masterGain);
+        osc1.start();
+
+        // Wind sound
+        const bufferSize = ctx.sampleRate * 2;
+        const buffer = ctx.createBuffer(1, bufferSize, ctx.sampleRate);
+        const output = buffer.getChannelData(0);
+        for (let i = 0; i < bufferSize; i++) {
+            output[i] = Math.random() * 2 - 1;
+        }
+        const whiteNoise = ctx.createBufferSource();
+        whiteNoise.buffer = buffer;
+        whiteNoise.loop = true;
+
+        const windFilter = ctx.createBiquadFilter();
+        windFilter.type = 'lowpass';
+        windFilter.frequency.value = 400;
+        windFilter.Q.value = 8;
+        
+        const windGain = ctx.createGain();
+        windGain.gain.value = 0.2;
+
+        whiteNoise.connect(windFilter).connect(windGain).connect(masterGain);
+        whiteNoise.start();
+        
+        audioRef.current = { ctx, masterGain, windGain, isInitialized: true };
+    };
+
+    useEffect(() => {
+        const container = containerRef.current;
+        if (!container) return;
+        
+        Array.from(container.children).forEach(child => {
+            const el = child as Element;
+            if (el.classList.contains('trail-particle-wrapper') || el.classList.contains('trail-fog')) {
+                el.remove();
+            }
+        });
+        particlesRef.current = [];
+        
+        // Particles
+        for (let i = 0; i < 25; i++) {
+            const wrapper = document.createElement('div');
+            wrapper.className = 'trail-particle-wrapper';
+            const core = document.createElement('div');
+            core.className = 'trail-particle-core';
+            wrapper.appendChild(core);
+
+            const duration = Math.random() * 20 + 15;
+            const zPos = (Math.random() - 0.5) * 250;
+            wrapper.style.animationDuration = `${duration}s`;
+            wrapper.style.animationDelay = `-${Math.random() * duration}s`;
+            wrapper.style.setProperty('--z', `${zPos}px`);
+
+            container.appendChild(wrapper);
+            particlesRef.current.push(core);
+        }
+
+        // Fog layers
+        for (let i = 0; i < 2; i++) {
+            const fog = document.createElement('div');
+            fog.className = 'trail-fog';
+            fog.style.animationDuration = `${30 + i * 15}s`;
+            fog.style.opacity = `${0.6 - i * 0.2}`;
+            container.appendChild(fog);
+        }
+    }, []);
+    
+    useEffect(() => {
+        return () => audioRef.current?.ctx.close();
+    }, []);
+
+    const toggleMute = (e: React.MouseEvent) => {
+        e.stopPropagation();
+        if (!audioRef.current?.isInitialized) initAudio();
+        
+        const newMutedState = !isMuted;
+        setIsMuted(newMutedState);
+        
+        if (audioRef.current) {
+            const newGain = newMutedState ? 0 : 0.1;
+            audioRef.current.masterGain.gain.linearRampToValueAtTime(newGain, audioRef.current.ctx.currentTime + 0.5);
+        }
+    };
+    
+    const handleInteractionStart = () => {
+        holdTimeoutRef.current = window.setTimeout(() => setShowMessage(true), 2000);
+    };
+
+    const handleInteractionEnd = () => {
+        if (holdTimeoutRef.current) clearTimeout(holdTimeoutRef.current);
+        setShowMessage(false);
+    };
+
+    const handleInteractionMove = (clientX: number, clientY: number) => {
+        if (!containerRef.current) return;
+        const rect = containerRef.current.getBoundingClientRect();
+        const mouseX = clientX - rect.left;
+        const mouseY = clientY - rect.top;
+
+        const scrollDir = (mouseX / rect.width - 0.5);
+        containerRef.current.style.setProperty('--scroll-dir', `${scrollDir}`);
+
+        const INTERACTION_RADIUS = 100;
+        particlesRef.current.forEach(core => {
+            const wrapper = core.parentElement as HTMLDivElement;
+            const pX = wrapper.offsetLeft + wrapper.offsetWidth / 2;
+            const pY = wrapper.offsetTop + wrapper.offsetHeight / 2;
+            const dist = Math.hypot(mouseX - pX, mouseY - pY);
+
+            const zMove = dist < INTERACTION_RADIUS
+              ? ((INTERACTION_RADIUS - dist) / INTERACTION_RADIUS) * 80
+              : 0;
+            
+            core.style.transform = `translateZ(${zMove}px)`;
+        });
+    };
+
+    return (
+        <div
+            ref={containerRef}
+            className="trail-breath-container"
+            onMouseDown={handleInteractionStart}
+            onMouseUp={handleInteractionEnd}
+            onMouseLeave={handleInteractionEnd}
+            onTouchStart={handleInteractionStart}
+            onTouchEnd={handleInteractionEnd}
+            onMouseMove={(e) => handleInteractionMove(e.clientX, e.clientY)}
+            onTouchMove={(e) => handleInteractionMove(e.touches[0].clientX, e.touches[0].clientY)}
+        >
+            {/* Particles and fog are created in useEffect */}
+            {showMessage && (
+                <div className="trail-message">
+                    A jornada não é o destino. É o que desperta em você durante o caminho.
+                </div>
+            )}
+            <button onClick={toggleMute} className="trail-mute-btn" aria-label={isMuted ? "Ativar som" : "Silenciar"}>
+                {isMuted ? '🔇' : '🔊'}
+            </button>
+        </div>
+    );
+};
 
 // --- Main Lab Component ---
 export default function Lab() {
@@ -389,17 +866,48 @@ export default function Lab() {
             </div>
           </div>
         </div>
-        
-        <div className="lab-card terroir-wind-card">
-            <h3>O Sopro do Terroir</h3>
-            <p>Uma cena poética que simula o vento atravessando um vinhedo.</p>
-            <TerroirWind />
-        </div>
 
         <div className="lab-card wine-awakening-card">
             <h3>O Despertar do Vinho</h3>
             <p>Um ambiente sensorial com animações fluidas e interação sutil.</p>
             <WineAwakening />
+        </div>
+
+        <div className="lab-card earth-fire-card">
+            <h3>A Fusão da Terra e do Fogo</h3>
+            <p>Símbolo da transformação do vinho, com calor e vida emergente.</p>
+            <EarthAndFireFusion />
+        </div>
+
+        <div className="lab-card terroir-wind-card">
+            <h3>O Sopro do Terroir</h3>
+            <p>Cena poética que simula o vento atravessando um vinhedo.</p>
+            <TerroirWind />
+        </div>
+
+        <div className="lab-card conceptual-road-card">
+          <h3>Estrada Conceitual</h3>
+          <p>Teste de linha do tempo com marcadores interativos e animações.</p>
+          <div className="conceptual-road-container">
+            <div className="conceptual-road-line"></div>
+            <div className="road-marker" style={{ left: '15%' }} role="button" tabIndex={0} aria-label="Marcador da estrada"></div>
+            <div className="road-marker" style={{ left: '35%' }} role="button" tabIndex={0} aria-label="Marcador da estrada"></div>
+            <div className="road-marker" style={{ left: '55%' }} role="button" tabIndex={0} aria-label="Marcador da estrada"></div>
+            <div className="road-marker" style={{ left: '75%' }} role="button" tabIndex={0} aria-label="Marcador da estrada"></div>
+            <button className="road-end-btn">Ir até o fim da estrada</button>
+          </div>
+        </div>
+        
+        <div className="lab-card aroma-birth-card">
+            <h3>O Nascimento do Aroma</h3>
+            <p>Experiência sensorial que representa o vinho liberando seus aromas.</p>
+            <AromaBirth />
+        </div>
+        
+        <div className="lab-card trail-breath-card">
+            <h3>O Sopro das Trilhas</h3>
+            <p>Cenário vivo e meditativo para o fundo das trilhas de aprendizado.</p>
+            <TrailBreath />
         </div>
 
         <div className="lab-card micro-animations-card">
