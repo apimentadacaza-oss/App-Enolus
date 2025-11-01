@@ -1,0 +1,132 @@
+
+{
+  "id": "level-5",
+  "title": "Level 5: Sommelier Excellence and Iconic Wines",
+  "description": "Achieve the highest level of knowledge in the world of wine. Master professional tasting, strategic management, and the world's most emblematic wines.",
+  "modules": [
+    {
+      "id": "module-5-1",
+      "title": "Module 1: Professional and Blind Tasting",
+      "description": "Learn the analytical and sensory techniques of elite sommeliers.",
+      "trail": {
+        "nodes": [
+          { "id": "lesson-5-1-1", "x": 20, "y": 30 },
+          { "id": "lesson-5-1-2", "x": 50, "y": 70 },
+          { "id": "lesson-5-1-3", "x": 80, "y": 40 }
+        ],
+        "unlockRules": [
+          { "target": "lesson-5-1-2", "requires": "lesson-5-1-1" },
+          { "target": "lesson-5-1-3", "requires": "lesson-5-1-2" }
+        ]
+      },
+      "lessons": [
+        {
+          "id": "lesson-5-1-1",
+          "type": "text",
+          "title": "The Advanced Deductive Method",
+          "content": "How to analyze visuals, aromas, and flavors to deduce variety, region, and vintage with professional precision.",
+          "xp": 20,
+          "icon": "🔎",
+          "activities": { "read": { "xp": 10, "content": "How to analyze visuals, aromas, and flavors to deduce variety, region, and vintage with professional precision." } }
+        },
+        {
+          "id": "lesson-5-1-2",
+          "type": "text",
+          "title": "Common Mistakes and Sensory Training",
+          "content": "Recognize perception flaws, cognitive biases, and techniques to consistently calibrate your palate.",
+          "xp": 25,
+          "icon": "🎯",
+          "activities": { "read": { "xp": 10, "content": "Recognize perception flaws, cognitive biases, and techniques to consistently calibrate your palate." } }
+        },
+        {
+          "id": "lesson-5-1-3",
+          "type": "text",
+          "title": "Practical Blind Tasting",
+          "content": "A guided simulation of deductive evaluation with white and red wines from different regions.",
+          "xp": 30,
+          "icon": "📋",
+          "activities": { "read": { "xp": 10, "content": "A guided simulation of deductive evaluation with white and red wines from different regions." } }
+        }
+      ]
+    },
+    {
+      "id": "module-5-2",
+      "title": "Module 2: Iconic and Classic Wines of the World",
+      "description": "Study the legendary labels and most revered regions in wine history.",
+      "trail": {
+        "nodes": [
+          { "id": "lesson-5-2-1", "x": 20, "y": 50 },
+          { "id": "lesson-5-2-2", "x": 50, "y": 25 },
+          { "id": "lesson-5-2-3", "x": 80, "y": 60 }
+        ],
+        "unlockRules": [
+          { "target": "lesson-5-2-2", "requires": "lesson-5-2-1" },
+          { "target": "lesson-5-2-3", "requires": "lesson-5-2-2" }
+        ]
+      },
+      "lessons": [
+        {
+          "id": "lesson-5-2-1",
+          "type": "text",
+          "title": "Grands Crus of France",
+          "content": "Bordeaux, Burgundy, Champagne, and Rhône — the landmarks of French excellence.",
+          "xp": 20,
+          "icon": "🏰",
+          "activities": { "read": { "xp": 10, "content": "Bordeaux, Burgundy, Champagne, and Rhône — the landmarks of French excellence." } }
+        },
+        {
+          "id": "lesson-5-2-2",
+          "type": "text",
+          "title": "Icons of Italy, Spain, and Portugal",
+          "content": "Brunello, Barolo, Rioja, Priorat, and Douro — tradition and complexity in the most emblematic glasses of the Iberian Peninsula and Italy.",
+          "xp": 25,
+          "icon": "🏛️",
+          "activities": { "read": { "xp": 10, "content": "Brunello, Barolo, Rioja, Priorat, and Douro — tradition and complexity in the most emblematic glasses of the Iberian Peninsula and Italy." } }
+        },
+        {
+          "id": "lesson-5-2-3",
+          "type": "text",
+          "title": "Legends of the New World",
+          "content": "Napa Valley, Mendoza, Barossa, and Marlborough — how the New World redefined the concept of prestige.",
+          "xp": 25,
+          "icon": "🌄",
+          "activities": { "read": { "xp": 10, "content": "Napa Valley, Mendoza, Barossa, and Marlborough — how the New World redefined the concept of prestige." } }
+        }
+      ]
+    },
+    {
+      "id": "module-5-3",
+      "title": "Module 3: Wine Management, Communication, and Market",
+      "description": "From the restaurant floor to consulting, learn to operate with mastery in the global wine market.",
+      "trail": {
+        "nodes": [
+          { "id": "lesson-5-3-1", "x": 30, "y": 40 },
+          { "id": "lesson-5-3-2", "x": 70, "y": 60 }
+        ],
+        "unlockRules": [
+          { "target": "lesson-5-3-2", "requires": "lesson-5-3-1", "minXp": 20 }
+        ]
+      },
+      "lessons": [
+        {
+          "id": "lesson-5-3-1",
+          "type": "text",
+          "title": "Strategic Wine List and Inventory Management",
+          "content": "Purchase planning, margin, rotation, pricing, and storytelling on the wine list.",
+          "xp": 20,
+          "icon": "🏦",
+          "activities": { "read": { "xp": 10, "content": "Purchase planning, margin, rotation, pricing, and storytelling on the wine list." } }
+        },
+        {
+          "id": "lesson-5-3-2",
+          "type": "text",
+          "title": "The Contemporary Sommelier",
+          "content": "Consulting, digital communication, professional ethics, and the role of the sommelier as an educator and ambassador of wine culture.",
+          "xp": 25,
+          "icon": "🌐",
+          "activities": { "read": { "xp": 10, "content": "Consulting, digital communication, professional ethics, and the role of the sommelier as an educator and ambassador of wine culture." } }
+        }
+      ]
+    }
+  ]
+}

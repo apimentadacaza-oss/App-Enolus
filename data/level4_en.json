@@ -1,0 +1,132 @@
+
+{
+  "id": "level-4",
+  "title": "Level 4: Wine Styles and Trends",
+  "description": "Delve into wine styles, new production approaches, and the trends shaping the future of the wine world.",
+  "modules": [
+    {
+      "id": "module-4-1",
+      "title": "Module 1: Advanced Varieties and Styles",
+      "description": "Explore the diversity of grapes and styles that define the identity of great wines.",
+      "trail": {
+        "nodes": [
+          { "id": "lesson-4-1-1", "x": 20, "y": 30 },
+          { "id": "lesson-4-1-2", "x": 50, "y": 70 },
+          { "id": "lesson-4-1-3", "x": 80, "y": 40 }
+        ],
+        "unlockRules": [
+          { "target": "lesson-4-1-2", "requires": "lesson-4-1-1" },
+          { "target": "lesson-4-1-3", "requires": "lesson-4-1-2" }
+        ]
+      },
+      "lessons": [
+        {
+          "id": "lesson-4-1-1",
+          "type": "text",
+          "title": "Beyond the Classic Grapes",
+          "content": "Discover lesser-known varieties and how they expand wine's sensory repertoire.",
+          "xp": 15,
+          "icon": "🧐",
+          "activities": { "read": { "xp": 10, "content": "Discover lesser-known varieties and how they expand wine's sensory repertoire." } }
+        },
+        {
+          "id": "lesson-4-1-2",
+          "type": "text",
+          "title": "The World of Rosé and Sparkling Wines",
+          "content": "Styles, production methods, and how to identify the quality of modern rosés and sparkling wines.",
+          "xp": 20,
+          "icon": "🥂",
+          "activities": { "read": { "xp": 10, "content": "Styles, production methods, and how to identify the quality of modern rosés and sparkling wines." } }
+        },
+        {
+          "id": "lesson-4-1-3",
+          "type": "text",
+          "title": "Age-Worthy Wines and Aging",
+          "content": "How time transforms aroma, texture, and complexity; factors that determine longevity.",
+          "xp": 25,
+          "icon": "⏳",
+          "activities": { "read": { "xp": 10, "content": "How time transforms aroma, texture, and complexity; factors that determine longevity." } }
+        }
+      ]
+    },
+    {
+      "id": "module-4-2",
+      "title": "Module 2: Modern Viticulture and Alternative Winemaking",
+      "description": "Sustainable techniques and innovations that are redefining wine production.",
+      "trail": {
+        "nodes": [
+          { "id": "lesson-4-2-1", "x": 20, "y": 30 },
+          { "id": "lesson-4-2-2", "x": 50, "y": 70 },
+          { "id": "lesson-4-2-3", "x": 80, "y": 40 }
+        ],
+        "unlockRules": [
+          { "target": "lesson-4-2-2", "requires": "lesson-4-2-1" },
+          { "target": "lesson-4-2-3", "requires": "lesson-4-2-2" }
+        ]
+      },
+      "lessons": [
+        {
+          "id": "lesson-4-2-1",
+          "type": "text",
+          "title": "Organic, Natural, and Biodynamic Wines",
+          "content": "Conceptual differences, agricultural practices, certifications, and sensory impact.",
+          "xp": 20,
+          "icon": "🍃",
+          "activities": { "read": { "xp": 10, "content": "Conceptual differences, agricultural practices, certifications, and sensory impact." } }
+        },
+        {
+          "id": "lesson-4-2-2",
+          "type": "text",
+          "title": "Alternative Vinification and Technical Innovations",
+          "content": "Amphorae, raw cement, neutral barrels, native yeast fermentations, and emerging technologies.",
+          "xp": 20,
+          "icon": "⚗️",
+          "activities": { "read": { "xp": 10, "content": "Amphorae, raw cement, neutral barrels, native yeast fermentations, and emerging technologies." } }
+        },
+        {
+          "id": "lesson-4-2-3",
+          "type": "text",
+          "title": "Sustainability and the Future of Wine",
+          "content": "How producers and consumers are shaping a new paradigm of environmental and social responsibility.",
+          "xp": 25,
+          "icon": "♻️",
+          "activities": { "read": { "xp": 10, "content": "How producers and consumers are shaping a new paradigm of environmental and social responsibility." } }
+        }
+      ]
+    },
+    {
+      "id": "module-4-3",
+      "title": "Module 3: Special Topics and New Frontiers",
+      "description": "Discover the most innovative movements and emerging regions that are redefining the wine map.",
+      "trail": {
+        "nodes": [
+          { "id": "lesson-4-3-1", "x": 30, "y": 40 },
+          { "id": "lesson-4-3-2", "x": 70, "y": 60 }
+        ],
+        "unlockRules": [
+          { "target": "lesson-4-3-2", "requires": "lesson-4-3-1", "minXp": 15 }
+        ]
+      },
+      "lessons": [
+        {
+          "id": "lesson-4-3-1",
+          "type": "text",
+          "title": "New Wine Regions",
+          "content": "China, England, Premium Brazil, Lebanon, and other countries surprising with their quality and originality.",
+          "xp": 20,
+          "icon": "🧭",
+          "activities": { "read": { "xp": 10, "content": "China, England, Premium Brazil, Lebanon, and other countries surprising with their quality and originality." } }
+        },
+        {
+          "id": "lesson-4-3-2",
+          "type": "text",
+          "title": "Market Trends and Consumer Behavior",
+          "content": "Low-alcohol, canned wines, minimalist labeling, diversity, and inclusion in the wine world.",
+          "xp": 25,
+          "icon": "📈",
+          "activities": { "read": { "xp": 10, "content": "Low-alcohol, canned wines, minimalist labeling, diversity, and inclusion in the wine world." } }
+        }
+      ]
+    }
+  ]
+}

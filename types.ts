@@ -1,7 +1,8 @@
 
 
+
 // FIX: Removed circular import and redefined Tab type to resolve self-referencing error.
-export type Tab = 'explore' | 'tracks' | 'quiz' | 'encyclopedia' | 'profile' | 'settings';
+export type Tab = 'explore' | 'tracks' | 'quiz' | 'encyclopedia' | 'profile' | 'settings' | 'lab';
 
 export interface UserProgress {
   xp: number;

@@ -1,0 +1,166 @@
+
+{
+  "id": "level-3",
+  "title": "Level 3: The Mastery of the Sommelier",
+  "description": "Delve into advanced viticulture and enology, professional service, and less common regions.",
+  "modules": [
+    {
+      "id": "module-3-1",
+      "title": "Module 1: The Science Behind the Wine",
+      "description": "A technical approach to viticulture, enology, and wine flaws.",
+      "trail": {
+        "nodes": [
+          { "id": "lesson-3-1-1", "x": 20, "y": 50 },
+          { "id": "lesson-3-1-2", "x": 50, "y": 25 },
+          { "id": "lesson-3-1-3", "x": 80, "y": 60 }
+        ],
+        "unlockRules": [
+          { "target": "lesson-3-1-2", "requires": "lesson-3-1-1" },
+          { "target": "lesson-3-1-3", "requires": "lesson-3-1-2" }
+        ]
+      },
+      "lessons": [
+        {
+          "id": "lesson-3-1-1",
+          "type": "text",
+          "title": "Advanced Viticulture",
+          "content": "In-depth terroir, clones, vine training, density, pruning, irrigation, and vine health.",
+          "xp": 20,
+          "icon": "🌿",
+          "activities": { "read": { "xp": 10, "content": "In-depth terroir, clones, vine training, density, pruning, irrigation, and vine health." } }
+        },
+        {
+          "id": "lesson-3-1-2",
+          "type": "text",
+          "title": "Advanced Enology",
+          "content": "Fermentations (wild/selected, MLF), maceration (pump-over/punch-down/délestage), barrels, and toast levels.",
+          "xp": 25,
+          "icon": "🔬",
+          "activities": { "read": { "xp": 10, "content": "Fermentations (wild/selected, MLF), maceration (pump-over/punch-down/délestage), barrels, and toast levels." } }
+        },
+        {
+          "id": "lesson-3-1-3",
+          "type": "text",
+          "title": "Wine Flaws",
+          "content": "Oxidation, reduction, Brettanomyces, TCA, volatile acidity; prevention and corrections.",
+          "xp": 20,
+          "icon": "⚠️",
+          "activities": { "read": { "xp": 10, "content": "Oxidation, reduction, Brettanomyces, TCA, volatile acidity; prevention and corrections." } }
+        }
+      ]
+    },
+    {
+      "id": "module-3-2",
+      "title": "Module 2: Exploring Less Obvious Regions",
+      "description": "Treasures from the Loire, Rhône, Alsace, Jura, and the Mediterranean.",
+      "trail": {
+        "nodes": [
+          { "id": "lesson-3-2-1", "x": 30, "y": 50 },
+          { "id": "lesson-3-2-2", "x": 70, "y": 50 }
+        ],
+        "unlockRules": [
+          { "target": "lesson-3-2-2", "requires": "lesson-3-2-1", "minXp": 15 }
+        ]
+      },
+      "lessons": [
+        {
+          "id": "lesson-3-2-1",
+          "type": "text",
+          "title": "Alternative France: Loire, Rhône, Alsace & Jura",
+          "content": "Sancerre/Pouilly-Fumé; Côte-Rôtie/Hermitage; Riesling/Gewürztraminer; Vin Jaune/Vin de Paille.",
+          "xp": 20,
+          "icon": "🗺️",
+          "activities": { "read": { "xp": 10, "content": "Sancerre/Pouilly-Fumé; Côte-Rôtie/Hermitage; Riesling/Gewürztraminer; Vin Jaune/Vin de Paille." } }
+        },
+        {
+          "id": "lesson-3-2-2",
+          "type": "text",
+          "title": "Mediterranean & Eastern Europe",
+          "content": "Sicily/Etna, Sardinia, Priorat, Rías Baixas; Tokaji, Greece (Assyrtiko), Lebanon (Bekaa).",
+          "xp": 25,
+          "icon": "🏺",
+          "activities": { "read": { "xp": 10, "content": "Sicily/Etna, Sardinia, Priorat, Rías Baixas; Tokaji, Greece (Assyrtiko), Lebanon (Bekaa)." } }
+        }
+      ]
+    },
+    {
+      "id": "module-3-3",
+      "title": "Module 3: The Sommelier in Action",
+      "description": "Professional service, wine list & cellar management, and blind tasting.",
+      "trail": {
+        "nodes": [
+          { "id": "lesson-3-3-1", "x": 25, "y": 75 },
+          { "id": "lesson-3-3-2", "x": 50, "y": 30 },
+          { "id": "lesson-3-3-3", "x": 75, "y": 70 }
+        ],
+        "unlockRules": [
+          { "target": "lesson-3-3-2", "requires": "lesson-3-3-1" },
+          { "target": "lesson-3-3-3", "requires": "lesson-3-3-2" }
+        ]
+      },
+      "lessons": [
+        {
+          "id": "lesson-3-3-1",
+          "type": "text",
+          "title": "Professional Service",
+          "content": "Mise en place, glassware, opening sparkling wines, aeration, and decanting.",
+          "xp": 15,
+          "icon": "🤵",
+          "activities": { "read": { "xp": 10, "content": "Mise en place, glassware, opening sparkling wines, aeration, and decanting." } }
+        },
+        {
+          "id": "lesson-3-3-2",
+          "type": "text",
+          "title": "Wine List & Cellar Management",
+          "content": "Structuring by region/grape/style, pricing, inventory, and rotation.",
+          "xp": 20,
+          "icon": "📜",
+          "activities": { "read": { "xp": 10, "content": "Structuring by region/grape/style, pricing, inventory, and rotation." } }
+        },
+        {
+          "id": "lesson-3-3-3",
+          "type": "text",
+          "title": "Blind Tasting (Deductive Method)",
+          "content": "A step-by-step guide to train in identifying grapes, regions, and quality.",
+          "xp": 25,
+          "icon": "🤔",
+          "activities": { "read": { "xp": 10, "content": "A step-by-step guide to train in identifying grapes, regions, and quality." } }
+        }
+      ]
+    },
+    {
+      "id": "module-3-4",
+      "title": "Module 4: Beyond Wine",
+      "description": "Spirits, beers, and other beverages in a sommelier's education.",
+      "trail": {
+        "nodes": [
+          { "id": "lesson-3-4-1", "x": 30, "y": 40 },
+          { "id": "lesson-3-4-2", "x": 70, "y": 60 }
+        ],
+        "unlockRules": [
+          { "target": "lesson-3-4-2", "requires": "lesson-3-4-1", "minXp": 15 }
+        ]
+      },
+      "lessons": [
+        {
+          "id": "lesson-3-4-1",
+          "type": "text",
+          "title": "Spirits & Beers",
+          "content": "Whisky, Cognac/Armagnac, Gin, Cachaça; Ale/Lager/Lambic schools and main styles.",
+          "xp": 20,
+          "icon": "🥃",
+          "activities": { "read": { "xp": 10, "content": "Whisky, Cognac/Armagnac, Gin, Cachaça; Ale/Lager/Lambic schools and main styles." } }
+        },
+        {
+          "id": "lesson-3-4-2",
+          "type": "text",
+          "title": "Sake, Tea, Coffee & Waters",
+          "content": "Sake categories; tea types; coffee methods; mineral waters and pairing.",
+          "xp": 20,
+          "icon": "🍵",
+          "activities": { "read": { "xp": 10, "content": "Sake categories; tea types; coffee methods; mineral waters and pairing." } }
+        }
+      ]
+    }
+  ]
+}

@@ -12,12 +12,12 @@ const getInitialProgress = (): UserProgress => {
       achievements: parsed.achievements || [],
       completedLessons: parsed.completedLessons || [],
       completedActivities: parsed.completedActivities || [],
-      currentLessonId: parsed.currentLessonId || '1_oque-e-vinho',
+      currentLessonId: parsed.currentLessonId || 'lesson-1-1-1',
       favoriteArticles: parsed.favoriteArticles || [],
     };
   } catch (error) {
     console.error('Error reading from localStorage', error);
-    return { xp: 0, achievements: [], completedLessons: [], completedActivities: [], currentLessonId: '1_oque-e-vinho', favoriteArticles: [] };
+    return { xp: 0, achievements: [], completedLessons: [], completedActivities: [], currentLessonId: 'lesson-1-1-1', favoriteArticles: [] };
   }
 };
 

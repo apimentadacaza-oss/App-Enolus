@@ -9,6 +9,7 @@ import SettingsPage from './pages/Settings';
 import WelcomeScreen from './components/WelcomeScreen';
 import { useUserProgress } from './hooks/useUserProgress';
 import type { Tab } from './types';
+import Lab from './pages/Lab';
 
 const WELCOME_KEY = 'enolus_has_seen_welcome';
 
@@ -89,6 +90,8 @@ const App: React.FC = () => {
                 />;
       case 'settings':
         return <SettingsPage />;
+      case 'lab':
+        return <Lab />;
       default:
         return <ExplorePage />;
     }

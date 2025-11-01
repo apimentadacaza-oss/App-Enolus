@@ -1,90 +1,163 @@
-
 {
   "id": "level-3",
   "title": "Nível 3: A Maestria do Sommelier",
-  "description": "Aprofunde seus conhecimentos com tópicos avançados e técnicas profissionais para dominar a arte do vinho.",
+  "description": "Aprofunde-se em viticultura e enologia avançadas, serviço profissional e regiões menos óbvias.",
   "modules": [
     {
       "id": "module-3-1",
-      "title": "Módulo 1: A Arte do Envelhecimento",
-      "description": "Desvende os segredos dos vinhos de guarda e sua evolução na garrafa.",
+      "title": "Módulo 1: A Ciência por Trás do Vinho",
+      "description": "Viticultura, enologia e defeitos com abordagem técnica.",
+      "trail": {
+        "nodes": [
+          { "id": "lesson-3-1-1", "x": 20, "y": 50 },
+          { "id": "lesson-3-1-2", "x": 50, "y": 25 },
+          { "id": "lesson-3-1-3", "x": 80, "y": 60 }
+        ],
+        "unlockRules": [
+          { "target": "lesson-3-1-2", "requires": "lesson-3-1-1" },
+          { "target": "lesson-3-1-3", "requires": "lesson-3-1-2" }
+        ]
+      },
       "lessons": [
         {
           "id": "lesson-3-1-1",
           "type": "text",
-          "title": "Potencial de Guarda: Por que Vinhos Envelhecem?",
-          "content": "Explore os componentes do vinho como taninos, acidez e açúcar que permitem que ele evolua e melhore com o tempo.",
-          "xp": 20
+          "title": "Viticultura Avançada",
+          "content": "Terroir em profundidade, clones, condução, densidade, poda, irrigação e sanidade.",
+          "xp": 20,
+          "icon": "🌿",
+          "activities": { "read": { "xp": 10, "content": "Terroir em profundidade, clones, condução, densidade, poda, irrigação e sanidade." } }
         },
         {
           "id": "lesson-3-1-2",
           "type": "text",
-          "title": "Aromas Terciários: A Evolução na Garrafa",
-          "content": "Aprenda a identificar aromas complexos de envelhecimento, como couro, tabaco, cogumelos e nozes.",
-          "xp": 20
+          "title": "Enologia Avançada",
+          "content": "Fermentações (selvagens/selecionadas, MLF), maceração (remontagem/pigeage/délestage), barricas e tostas.",
+          "xp": 25,
+          "icon": "🔬",
+          "activities": { "read": { "xp": 10, "content": "Fermentações (selvagens/selecionadas, MLF), maceração (remontagem/pigeage/délestage), barricas e tostas." } }
         },
         {
           "id": "lesson-3-1-3",
-          "type": "video",
-          "title": "Como Montar e Manter sua Adega",
-          "content": "Dicas essenciais sobre temperatura, umidade, luz e posicionamento para armazenar seus vinhos corretamente.",
-          "xp": 30
+          "type": "text",
+          "title": "Defeitos do Vinho",
+          "content": "Oxidação, redução, Brett, TCA, acidez volátil; prevenção e correções.",
+          "xp": 20,
+          "icon": "⚠️",
+          "activities": { "read": { "xp": 10, "content": "Oxidação, redução, Brett, TCA, acidez volátil; prevenção e correções." } }
         }
       ]
     },
     {
       "id": "module-3-2",
-      "title": "Módulo 2: Harmonização Avançada",
-      "description": "Domine as combinações complexas de comida e vinho como um verdadeiro especialista.",
+      "title": "Módulo 2: Explorando Regiões Menos Óbvias",
+      "description": "Tesouros do Loire, Rhône, Alsácia, Jura e Mediterrâneo.",
+      "trail": {
+        "nodes": [
+          { "id": "lesson-3-2-1", "x": 30, "y": 50 },
+          { "id": "lesson-3-2-2", "x": 70, "y": 50 }
+        ],
+        "unlockRules": [
+          { "target": "lesson-3-2-2", "requires": "lesson-3-2-1", "minXp": 15 }
+        ]
+      },
       "lessons": [
         {
           "id": "lesson-3-2-1",
           "type": "text",
-          "title": "Harmonização por Contraste vs. Similaridade",
-          "content": "Aprenda as duas principais filosofias de harmonização para criar combinações equilibradas ou ousadas.",
-          "xp": 20
+          "title": "França Alternativa: Loire, Rhône, Alsácia e Jura",
+          "content": "Sancerre/Pouilly-Fumé; Côte-Rôtie/Hermitage; Riesling/Gewürztraminer; Vin Jaune/Vin de Paille.",
+          "xp": 20,
+          "icon": "🗺️",
+          "activities": { "read": { "xp": 10, "content": "Sancerre/Pouilly-Fumé; Côte-Rôtie/Hermitage; Riesling/Gewürztraminer; Vin Jaune/Vin de Paille." } }
         },
         {
           "id": "lesson-3-2-2",
           "type": "text",
-          "title": "Desafios de Harmonização: Pratos Difíceis",
-          "content": "Descubra quais vinhos funcionam com alimentos notoriamente difíceis de harmonizar, como aspargos, ovos e pratos picantes.",
-          "xp": 20
-        },
-        {
-          "id": "lesson-3-2-3",
-          "type": "audio",
-          "title": "Estudo de Caso: Montando um Jantar Harmonizado",
-          "content": "Siga um guia de áudio que planeja um menu de três pratos com as harmonizações de vinho perfeitas para cada um.",
-          "xp": 35
+          "title": "Mediterrâneo & Leste Europeu",
+          "content": "Sicília/Etna, Sardenha, Priorat, Rías Baixas; Tokaji, Grécia (Assyrtiko), Líbano (Bekaa).",
+          "xp": 25,
+          "icon": "🏺",
+          "activities": { "read": { "xp": 10, "content": "Sicília/Etna, Sardenha, Priorat, Rías Baixas; Tokaji, Grécia (Assyrtiko), Líbano (Bekaa)." } }
         }
       ]
     },
     {
       "id": "module-3-3",
-      "title": "Módulo 3: O Serviço do Vinho Profissional",
-      "description": "Aprenda as técnicas que elevam a experiência da degustação a um novo patamar.",
+      "title": "Módulo 3: O Sommelier em Ação",
+      "description": "Serviço profissional, carta e gestão de adega, degustação às cegas.",
+      "trail": {
+        "nodes": [
+          { "id": "lesson-3-3-1", "x": 25, "y": 75 },
+          { "id": "lesson-3-3-2", "x": 50, "y": 30 },
+          { "id": "lesson-3-3-3", "x": 75, "y": 70 }
+        ],
+        "unlockRules": [
+          { "target": "lesson-3-3-2", "requires": "lesson-3-3-1" },
+          { "target": "lesson-3-3-3", "requires": "lesson-3-3-2" }
+        ]
+      },
       "lessons": [
         {
           "id": "lesson-3-3-1",
           "type": "text",
-          "title": "A Arte da Decantação: Quando e Por Quê?",
-          "content": "Entenda a diferença entre decantar para remover sedimentos e para aerar o vinho, e saiba quando cada técnica é necessária.",
-          "xp": 20
+          "title": "Serviço Profissional",
+          "content": "Mise en place, taças, abertura de espumantes, aeração e decantação.",
+          "xp": 15,
+          "icon": "🤵",
+          "activities": { "read": { "xp": 10, "content": "Mise en place, taças, abertura de espumantes, aeração e decantação." } }
         },
         {
           "id": "lesson-3-3-2",
-          "type": "video",
-          "title": "A Taça Certa para Cada Vinho",
-          "content": "Veja como o formato da taça afeta a percepção dos aromas e sabores de diferentes tipos de vinho.",
-          "xp": 30
+          "type": "text",
+          "title": "Carta de Vinhos & Gestão de Adega",
+          "content": "Estruturação por região/uva/estilo, precificação, inventário e rotação.",
+          "xp": 20,
+          "icon": "📜",
+          "activities": { "read": { "xp": 10, "content": "Estruturação por região/uva/estilo, precificação, inventário e rotação." } }
         },
         {
           "id": "lesson-3-3-3",
           "type": "text",
-          "title": "Temperaturas de Serviço: A Chave do Sabor",
-          "content": "Um guia detalhado sobre as temperaturas ideais para servir vinhos espumantes, brancos, rosés e tintos.",
-          "xp": 20
+          "title": "Degustação às Cegas (Método Dedutivo)",
+          "content": "Passo a passo para treinar identificação de uvas, regiões e qualidade.",
+          "xp": 25,
+          "icon": "🤔",
+          "activities": { "read": { "xp": 10, "content": "Passo a passo para treinar identificação de uvas, regiões e qualidade." } }
+        }
+      ]
+    },
+    {
+      "id": "module-3-4",
+      "title": "Módulo 4: Além do Vinho",
+      "description": "Destilados, cervejas e outras bebidas na formação do sommelier.",
+      "trail": {
+        "nodes": [
+          { "id": "lesson-3-4-1", "x": 30, "y": 40 },
+          { "id": "lesson-3-4-2", "x": 70, "y": 60 }
+        ],
+        "unlockRules": [
+          { "target": "lesson-3-4-2", "requires": "lesson-3-4-1", "minXp": 15 }
+        ]
+      },
+      "lessons": [
+        {
+          "id": "lesson-3-4-1",
+          "type": "text",
+          "title": "Destilados & Cervejas",
+          "content": "Whisky, Cognac/Armagnac, Gin, Cachaça; escolas Ale/Lager/Lambic e estilos principais.",
+          "xp": 20,
+          "icon": "🥃",
+          "activities": { "read": { "xp": 10, "content": "Whisky, Cognac/Armagnac, Gin, Cachaça; escolas Ale/Lager/Lambic e estilos principais." } }
+        },
+        {
+          "id": "lesson-3-4-2",
+          "type": "text",
+          "title": "Saquê, Chá, Café & Águas",
+          "content": "Categorias de saquê; tipos de chá; métodos de café; águas minerais e harmonização.",
+          "xp": 20,
+          "icon": "🍵",
+          "activities": { "read": { "xp": 10, "content": "Categorias de saquê; tipos de chá; métodos de café; águas minerais e harmonização." } }
         }
       ]
     }

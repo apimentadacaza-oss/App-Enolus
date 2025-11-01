@@ -1,7 +1,6 @@
-
 import React from 'react';
 import type { Tab } from '../types';
-import { ExploreIcon, TracksIcon, QuizIcon, EncyclopediaIcon, ProfileIcon, SettingsIcon } from './icons/NavIcons';
+import { ExploreIcon, TracksIcon, QuizIcon, EncyclopediaIcon, ProfileIcon, SettingsIcon, LabIcon } from './icons/NavIcons';
 import { useTranslation } from 'react-i18next';
 
 interface BottomNavProps {
@@ -19,6 +18,7 @@ const BottomNav: React.FC<BottomNavProps> = ({ activeTab, onTabChange }) => {
     { id: 'encyclopedia', label: t('nav.encyclopedia'), icon: EncyclopediaIcon },
     { id: 'profile', label: t('nav.profile'), icon: ProfileIcon },
     { id: 'settings', label: t('nav.settings'), icon: SettingsIcon },
+    { id: 'lab', label: 'Lab', icon: LabIcon },
   ];
 
   return (

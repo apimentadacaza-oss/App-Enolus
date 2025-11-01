@@ -37,7 +37,7 @@ interface JourneyMapProps extends TracksPageProps {
 
 // --- MAIN PAGE COMPONENT ---
 const TracksPage: React.FC<TracksPageProps> = (props) => {
-  const { t } = useTranslation(['map', 'tracks']);
+  const { t, i18n } = useTranslation(['map', 'tracks']);
   const [levels, setLevels] = useState<Level[]>([]);
   const [expandedLevel, setExpandedLevel] = useState<string | null>(null);
   const [expandedModule, setExpandedModule] = useState<string | null>(null);
@@ -45,30 +45,43 @@ const TracksPage: React.FC<TracksPageProps> = (props) => {
 
   useEffect(() => {
     const fetchLevels = async () => {
+      setLoading(true);
       try {
-        const [level1Res, level2Res, level3Res, level4Res, level5Res, level6Res] = await Promise.all([
-          fetch('./data/level1.json'),
-          fetch('./data/level2.json'),
-          fetch('./data/level3.json'),
-          fetch('./data/level4.json'),
-          fetch('./data/level5.json'),
-          fetch('./data/level6.json')
-        ]);
-        const [level1Data, level2Data, level3Data, level4Data, level5Data, level6Data] = await Promise.all([
-          level1Res.json(),
-          level2Res.json(),
-          level3Res.json(),
-          level4Res.json(),
-          level5Res.json(),
-          level6Res.json()
-        ]);
+        const lang = i18n.language;
+        const isEnglish = lang.startsWith('en');
+        const levelFiles = ['level1', 'level2', 'level3', 'level4', 'level5'];
         
-        setLevels([level1Data, level2Data, level3Data, level4Data, level5Data, level6Data]);
+        const fetchPromises = levelFiles.map(async (file) => {
+          if (isEnglish) {
+            // For English, try fetching the _en version first, then fallback to the original
+            try {
+              const response = await fetch(`./data/${file}_en.json`);
+              if (response.ok) return response;
+            } catch (e) {
+              // Ignore fetch error, will proceed to fallback
+            }
+          }
+          // Fetch the default (Portuguese) version, or as a fallback for English
+          return fetch(`./data/${file}.json`);
+        });
+
+        const responses = await Promise.all(
+          fetchPromises.map(p => p.catch(() => null))
+        );
         
-        if (level1Data) {
-            setExpandedLevel(level1Data.id);
-            if (level1Data.modules && level1Data.modules.length > 0) {
-                setExpandedModule(level1Data.modules[0].id);
+        const jsonData = await Promise.all(
+          responses.map(res => res && res.ok ? res.json() : null)
+        );
+        
+        const validLevels = jsonData.filter((data): data is Level => data !== null);
+        setLevels(validLevels);
+        
+        if (!expandedLevel && validLevels.length > 0) {
+            const firstValidLevel = validLevels[0];
+            setExpandedLevel(firstValidLevel.id);
+            if (firstValidLevel.modules && firstValidLevel.modules.length > 0) {
+                const firstModuleWithTrail = firstValidLevel.modules.find(m => m.trail);
+                setExpandedModule(firstModuleWithTrail ? firstModuleWithTrail.id : firstValidLevel.modules[0].id);
             }
         }
       } catch (err) {
@@ -79,7 +92,7 @@ const TracksPage: React.FC<TracksPageProps> = (props) => {
     };
     
     fetchLevels();
-  }, []);
+  }, [i18n.language, expandedLevel]);
 
   useEffect(() => {
     const LEVEL_1_ACHIEVEMENT = 'Aprendiz Enófilo';
@@ -137,7 +150,7 @@ const TracksPage: React.FC<TracksPageProps> = (props) => {
           {expandedLevel === level.id && (
             <div className="mt-6 space-y-4 animate-fade-in">
               {level.modules.map((module: Module) => {
-                if (module.id === 'module-1-1' && module.trail) {
+                if (module.trail) {
                     return <JourneyMap key={module.id} module={module} {...props} />;
                 }
 

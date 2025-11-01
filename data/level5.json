@@ -1,55 +1,129 @@
-
 {
   "id": "level-5",
-  "title": "Nível 5: Viticultura e Vinificação - Da Terra à Garrafa",
-  "description": "Entenda os processos técnicos e as decisões cruciais no vinhedo e na adega que moldam o vinho que você bebe.",
+  "title": "Nível 5: Excelência Sommelier e Vinhos Icônicos",
+  "description": "Atinga o mais alto grau de conhecimento no universo do vinho. Domine a degustação profissional, a gestão estratégica e os vinhos mais emblemáticos do mundo.",
   "modules": [
     {
       "id": "module-5-1",
-      "title": "Módulo 1: O Trabalho no Vinhedo",
-      "description": "Aprenda como o 'terroir' e as práticas agrícolas definem o potencial da uva.",
+      "title": "Módulo 1: Degustação Profissional e Blind Tasting",
+      "description": "Aprenda a técnica analítica e sensorial dos sommeliers de elite.",
+      "trail": {
+        "nodes": [
+          { "id": "lesson-5-1-1", "x": 20, "y": 30 },
+          { "id": "lesson-5-1-2", "x": 50, "y": 70 },
+          { "id": "lesson-5-1-3", "x": 80, "y": 40 }
+        ],
+        "unlockRules": [
+          { "target": "lesson-5-1-2", "requires": "lesson-5-1-1" },
+          { "target": "lesson-5-1-3", "requires": "lesson-5-1-2" }
+        ]
+      },
       "lessons": [
         {
           "id": "lesson-5-1-1",
           "type": "text",
-          "title": "Terroir: O DNA do Vinho",
-          "content": "Um mergulho profundo em como solo, clima e topografia influenciam o vinho.",
-          "xp": 30
+          "title": "O Método Dedutivo Avançado",
+          "content": "Como analisar visuais, aromas e sabores para deduzir variedade, região e safra com precisão profissional.",
+          "xp": 20,
+          "icon": "🔎",
+          "activities": { "read": { "xp": 10, "content": "Como analisar visuais, aromas e sabores para deduzir variedade, região e safra com precisão profissional." } }
         },
         {
           "id": "lesson-5-1-2",
           "type": "text",
-          "title": "Viticultura Orgânica, Biodinâmica e Sustentável",
-          "content": "Entenda as filosofias por trás do cultivo de uvas com respeito à natureza.",
-          "xp": 30
+          "title": "Erros Comuns e o Treinamento Sensorial",
+          "content": "Reconheça falhas de percepção, ruídos cognitivos e técnicas para calibrar o paladar com consistência.",
+          "xp": 25,
+          "icon": "🎯",
+          "activities": { "read": { "xp": 10, "content": "Reconheça falhas de percepção, ruídos cognitivos e técnicas para calibrar o paladar com consistência." } }
         },
         {
           "id": "lesson-5-1-3",
-          "type": "video",
-          "title": "O Ciclo Anual da Videira",
-          "content": "Acompanhe a jornada da videira, da poda de inverno à colheita de outono.",
-          "xp": 40
+          "type": "text",
+          "title": "Degustação Cega Prática",
+          "content": "Simulação guiada de avaliação dedutiva com vinhos brancos e tintos de diferentes regiões.",
+          "xp": 30,
+          "icon": "📋",
+          "activities": { "read": { "xp": 10, "content": "Simulação guiada de avaliação dedutiva com vinhos brancos e tintos de diferentes regiões." } }
         }
       ]
     },
     {
       "id": "module-5-2",
-      "title": "Módulo 2: Segredos da Adega",
-      "description": "Descubra as técnicas de vinificação que transformam uvas em vinhos extraordinários.",
+      "title": "Módulo 2: Vinhos Icônicos e Clássicos do Mundo",
+      "description": "Estude os rótulos lendários e as regiões mais reverenciadas da história do vinho.",
+      "trail": {
+        "nodes": [
+          { "id": "lesson-5-2-1", "x": 20, "y": 50 },
+          { "id": "lesson-5-2-2", "x": 50, "y": 25 },
+          { "id": "lesson-5-2-3", "x": 80, "y": 60 }
+        ],
+        "unlockRules": [
+          { "target": "lesson-5-2-2", "requires": "lesson-5-2-1" },
+          { "target": "lesson-5-2-3", "requires": "lesson-5-2-2" }
+        ]
+      },
       "lessons": [
         {
           "id": "lesson-5-2-1",
           "type": "text",
-          "title": "Vinificação em Tinto vs. Branco",
-          "content": "As diferenças fundamentais no processo, da maceração à prensagem.",
-          "xp": 30
+          "title": "Grands Crus da França",
+          "content": "Bordeaux, Borgonha, Champagne e Rhône — os marcos da excelência francesa.",
+          "xp": 20,
+          "icon": "🏰",
+          "activities": { "read": { "xp": 10, "content": "Bordeaux, Borgonha, Champagne e Rhône — os marcos da excelência francesa." } }
         },
         {
           "id": "lesson-5-2-2",
           "type": "text",
-          "title": "O Papel do Carvalho",
-          "content": "A influência da madeira no aroma, sabor e textura do vinho. Tipos de carvalho, níveis de tosta e mais.",
-          "xp": 30
+          "title": "Ícones da Itália, Espanha e Portugal",
+          "content": "Brunello, Barolo, Rioja, Priorat e Douro — tradição e complexidade nas taças mais emblemáticas da Península Ibérica e da Itália.",
+          "xp": 25,
+          "icon": "🏛️",
+          "activities": { "read": { "xp": 10, "content": "Brunello, Barolo, Rioja, Priorat e Douro — tradição e complexidade nas taças mais emblemáticas da Península Ibérica e da Itália." } }
+        },
+        {
+          "id": "lesson-5-2-3",
+          "type": "text",
+          "title": "Lendas do Novo Mundo",
+          "content": "Napa Valley, Mendoza, Barossa e Marlborough — como o Novo Mundo redefiniu o conceito de prestígio.",
+          "xp": 25,
+          "icon": "🌄",
+          "activities": { "read": { "xp": 10, "content": "Napa Valley, Mendoza, Barossa e Marlborough — como o Novo Mundo redefiniu o conceito de prestígio." } }
+        }
+      ]
+    },
+    {
+      "id": "module-5-3",
+      "title": "Módulo 3: Gestão, Comunicação e Mercado do Vinho",
+      "description": "Do salão à consultoria, aprenda a atuar com maestria no mercado global de vinhos.",
+      "trail": {
+        "nodes": [
+          { "id": "lesson-5-3-1", "x": 30, "y": 40 },
+          { "id": "lesson-5-3-2", "x": 70, "y": 60 }
+        ],
+        "unlockRules": [
+          { "target": "lesson-5-3-2", "requires": "lesson-5-3-1", "minXp": 20 }
+        ]
+      },
+      "lessons": [
+        {
+          "id": "lesson-5-3-1",
+          "type": "text",
+          "title": "Gestão Estratégica de Carta e Estoque",
+          "content": "Planejamento de compras, margem, rotação, precificação e storytelling na carta de vinhos.",
+          "xp": 20,
+          "icon": "🏦",
+          "activities": { "read": { "xp": 10, "content": "Planejamento de compras, margem, rotação, precificação e storytelling na carta de vinhos." } }
+        },
+        {
+          "id": "lesson-5-3-2",
+          "type": "text",
+          "title": "O Sommelier Contemporâneo",
+          "content": "Consultoria, comunicação digital, ética profissional e o papel do sommelier como educador e embaixador da cultura do vinho.",
+          "xp": 25,
+          "icon": "🌐",
+          "activities": { "read": { "xp": 10, "content": "Consultoria, comunicação digital, ética profissional e o papel do sommelier como educador e embaixador da cultura do vinho." } }
         }
       ]
     }

@@ -1,62 +1,129 @@
-
 {
   "id": "level-4",
-  "title": "Nível 4: Variedades e Estilos - A Diversidade do Vinho",
-  "description": "Aprofunde-se na vasta gama de uvas e estilos que compõem o universo do vinho, dos clássicos aos especiais.",
+  "title": "Nível 4: Estilos e Tendências do Vinho",
+  "description": "Aprofunde-se nos estilos de vinhos, nas novas abordagens de produção e nas tendências que moldam o futuro do mundo do vinho.",
   "modules": [
     {
       "id": "module-4-1",
-      "title": "Módulo 1: Além das Uvas Clássicas",
-      "description": "Explore uvas tintas e brancas que definem grandes vinhos ao redor do mundo.",
+      "title": "Módulo 1: Variedades e Estilos Avançados",
+      "description": "Explore a diversidade de uvas e estilos que definem a identidade dos grandes vinhos.",
+      "trail": {
+        "nodes": [
+          { "id": "lesson-4-1-1", "x": 20, "y": 30 },
+          { "id": "lesson-4-1-2", "x": 50, "y": 70 },
+          { "id": "lesson-4-1-3", "x": 80, "y": 40 }
+        ],
+        "unlockRules": [
+          { "target": "lesson-4-1-2", "requires": "lesson-4-1-1" },
+          { "target": "lesson-4-1-3", "requires": "lesson-4-1-2" }
+        ]
+      },
       "lessons": [
         {
           "id": "lesson-4-1-1",
           "type": "text",
-          "title": "Syrah/Shiraz: Duas Faces da Mesma Uva",
-          "content": "Descubra as diferenças entre o Syrah do Rhône e o Shiraz australiano.",
-          "xp": 25
+          "title": "Além das Uvas Clássicas",
+          "content": "Conheça variedades menos conhecidas e como elas ampliam o repertório sensorial do vinho.",
+          "xp": 15,
+          "icon": "🧐",
+          "activities": { "read": { "xp": 10, "content": "Conheça variedades menos conhecidas e como elas ampliam o repertório sensorial do vinho." } }
         },
         {
           "id": "lesson-4-1-2",
           "type": "text",
-          "title": "As Uvas Brancas Aromáticas",
-          "content": "Explore a intensidade de aromas de Riesling, Gewürztraminer e Sauvignon Blanc.",
-          "xp": 25
+          "title": "O Mundo dos Vinhos Rosé e Espumantes",
+          "content": "Estilos, métodos de produção e como identificar a qualidade dos rosés e espumantes modernos.",
+          "xp": 20,
+          "icon": "🥂",
+          "activities": { "read": { "xp": 10, "content": "Estilos, métodos de produção e como identificar a qualidade dos rosés e espumantes modernos." } }
         },
         {
           "id": "lesson-4-1-3",
-          "type": "video",
-          "title": "As Jóias da Itália: Nebbiolo e Sangiovese",
-          "content": "Um mergulho profundo nas uvas que dão origem ao Barolo e ao Brunello.",
-          "xp": 35
+          "type": "text",
+          "title": "Vinhos de Guarda e Envelhecimento",
+          "content": "Como o tempo transforma aroma, textura e complexidade; fatores que determinam longevidade.",
+          "xp": 25,
+          "icon": "⏳",
+          "activities": { "read": { "xp": 10, "content": "Como o tempo transforma aroma, textura e complexidade; fatores que determinam longevidade." } }
         }
       ]
     },
     {
       "id": "module-4-2",
-      "title": "Módulo 2: O Mundo dos Vinhos Rosé e Espumantes",
-      "description": "Celebre a vida com bolhas e descubra a versatilidade dos rosés.",
+      "title": "Módulo 2: Viticultura Moderna e Vinificação Alternativa",
+      "description": "Técnicas sustentáveis e inovações que estão redefinindo a produção de vinhos.",
+      "trail": {
+        "nodes": [
+          { "id": "lesson-4-2-1", "x": 20, "y": 30 },
+          { "id": "lesson-4-2-2", "x": 50, "y": 70 },
+          { "id": "lesson-4-2-3", "x": 80, "y": 40 }
+        ],
+        "unlockRules": [
+          { "target": "lesson-4-2-2", "requires": "lesson-4-2-1" },
+          { "target": "lesson-4-2-3", "requires": "lesson-4-2-2" }
+        ]
+      },
       "lessons": [
         {
           "id": "lesson-4-2-1",
           "type": "text",
-          "title": "A Produção do Vinho Rosé",
-          "content": "Aprenda sobre os métodos de maceração curta, sangria e corte.",
-          "xp": 25
+          "title": "Vinhos Orgânicos, Naturais e Biodinâmicos",
+          "content": "Diferenças conceituais, práticas agrícolas, certificações e impacto sensorial.",
+          "xp": 20,
+          "icon": "🍃",
+          "activities": { "read": { "xp": 10, "content": "Diferenças conceituais, práticas agrícolas, certificações e impacto sensorial." } }
         },
         {
           "id": "lesson-4-2-2",
           "type": "text",
-          "title": "Métodos de Produção de Espumantes",
-          "content": "Compare o método tradicional (Champenoise) com o método Charmat.",
-          "xp": 25
+          "title": "Vinificação Alternativa e Inovações Técnicas",
+          "content": "Anfôras, cimento cru, barris neutros, fermentações com leveduras nativas e tecnologias emergentes.",
+          "xp": 20,
+          "icon": "⚗️",
+          "activities": { "read": { "xp": 10, "content": "Anfôras, cimento cru, barris neutros, fermentações com leveduras nativas e tecnologias emergentes." } }
         },
         {
           "id": "lesson-4-2-3",
-          "type": "audio",
-          "title": "Degustando Espumantes: Champagne, Prosecco e Cava",
-          "content": "Um guia de áudio para diferenciar os principais espumantes do mundo.",
-          "xp": 40
+          "type": "text",
+          "title": "Sustentabilidade e Futuro do Vinho",
+          "content": "Como produtores e consumidores estão moldando um novo paradigma de responsabilidade ambiental e social.",
+          "xp": 25,
+          "icon": "♻️",
+          "activities": { "read": { "xp": 10, "content": "Como produtores e consumidores estão moldando um novo paradigma de responsabilidade ambiental e social." } }
+        }
+      ]
+    },
+    {
+      "id": "module-4-3",
+      "title": "Módulo 3: Tópicos Especiais e Novas Fronteiras",
+      "description": "Descubra os movimentos mais inovadores e as regiões emergentes que estão redefinindo o mapa do vinho.",
+      "trail": {
+        "nodes": [
+          { "id": "lesson-4-3-1", "x": 30, "y": 40 },
+          { "id": "lesson-4-3-2", "x": 70, "y": 60 }
+        ],
+        "unlockRules": [
+          { "target": "lesson-4-3-2", "requires": "lesson-4-3-1", "minXp": 15 }
+        ]
+      },
+      "lessons": [
+        {
+          "id": "lesson-4-3-1",
+          "type": "text",
+          "title": "Novas Regiões do Vinho",
+          "content": "China, Inglaterra, Brasil Premium, Líbano e outros países que surpreendem pela qualidade e originalidade.",
+          "xp": 20,
+          "icon": "🧭",
+          "activities": { "read": { "xp": 10, "content": "China, Inglaterra, Brasil Premium, Líbano e outros países que surpreendem pela qualidade e originalidade." } }
+        },
+        {
+          "id": "lesson-4-3-2",
+          "type": "text",
+          "title": "Tendências de Mercado e Comportamento do Consumidor",
+          "content": "Baixo álcool, vinhos em lata, minimalismo na rotulagem, diversidade e inclusão no mundo do vinho.",
+          "xp": 25,
+          "icon": "📈",
+          "activities": { "read": { "xp": 10, "content": "Baixo álcool, vinhos em lata, minimalismo na rotulagem, diversidade e inclusão no mundo do vinho." } }
         }
       ]
     }
